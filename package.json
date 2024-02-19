@@ -1,0 +1,38 @@
+{
+  "name": "playtime",
+  "version": "0.1.0",
+  "description": "Playtime: a Hapi/node application for managing Playlists",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon --verbose src/server.js",
+    "lint": "./node_modules/.bin/eslint . --ext .js",
+    "test": "mocha --ui tdd test/**/*.js -exit"
+  },
+  "author": "Kieron Garvey",
+  "license": "ISC",
+  "devDependencies": {
+    "axios": "^1.6.7",
+    "chai": "^5.0.0",
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "mocha": "^10.3.0",
+    "prettier": "^3.2.2"
+  },
+  "dependencies": {
+    "@hapi/boom": "^10.0.1",
+    "@hapi/cookie": "^12.0.1",
+    "@hapi/hapi": "^21.3.2",
+    "@hapi/vision": "^7.0.3",
+    "dotenv": "^16.3.1",
+    "handlebars": "^4.7.8",
+    "joi": "^17.12.0",
+    "lowdb": "^7.0.1",
+    "mongoose": "^8.1.0",
+    "nodemon": "^3.0.3",
+    "uuid": "^9.0.1"
+  }
+}
