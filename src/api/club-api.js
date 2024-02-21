@@ -1,6 +1,7 @@
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
-import { ClubSpec, CountySpec } from "../models/joi-schemas.js";
+import { IdSpec, ClubSpec, ClubSpecPlus, ClubArraySpec  } from "../models/joi-schemas.js";
+import { validationError } from "./logger.js";
 
 export const clubApi = {
   find: {
@@ -13,6 +14,10 @@ export const clubApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    response: { schema: ClubArraySpec, failAction: validationError },
+    description: "Get all clubApi",
+    notes: "Returns all clubApi",
   },
 
   findOne: {
@@ -28,6 +33,11 @@ export const clubApi = {
         return Boom.serverUnavailable("No club with this id");
       }
     },
+    tags: ["api"],
+    description: "Find a CLub",
+    notes: "Returns a Club",
+    validate: { params: { id: IdSpec }, failAction: validationError },
+    response: { schema: ClubSpecPlus, failAction: validationError },
   },
 
   create: {
@@ -43,6 +53,11 @@ export const clubApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Create a Club",
+    notes: "Returns the newly created club",
+    validate: { payload: ClubSpec },
+    response: { schema: ClubSpecPlus, failAction: validationError },
   },
 
   deleteAll: {
@@ -55,6 +70,8 @@ export const clubApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Delete all clubApi",
   },
 
   deleteOne: {
@@ -71,5 +88,8 @@ export const clubApi = {
         return Boom.serverUnavailable("No Club with this id");
       }
     },
+    tags: ["api"],
+    description: "Delete a Club",
+    validate: { params: { id: IdSpec }, failAction: validationError },
   },
 };

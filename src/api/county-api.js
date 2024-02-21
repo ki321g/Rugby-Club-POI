@@ -1,6 +1,7 @@
 import Boom from "@hapi/boom";
-import { CountySpec } from "../models/joi-schemas.js";
+import { IdSpec, CountyArraySpec, CountySpec, CountySpecPlus } from "../models/joi-schemas.js";
 import { db } from "../models/db.js";
+import { validationError } from "./logger.js";
 
 export const countyApi = {
   find: {
@@ -13,6 +14,10 @@ export const countyApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    response: { schema: CountyArraySpec, failAction: validationError },
+    description: "Get all Counties",
+    notes: "Returns all Counties",
   },
 
   findOne: {
@@ -28,6 +33,11 @@ export const countyApi = {
         return Boom.serverUnavailable("No County with this id");
       }
     },
+    tags: ["api"],
+    description: "Find a County",
+    notes: "Returns a County",
+    validate: { params: { id: IdSpec }, failAction: validationError },
+    response: { schema: CountySpecPlus, failAction: validationError },
   },
 
   create: {
@@ -44,6 +54,11 @@ export const countyApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Create a County",
+    notes: "Returns the newly created County",
+    validate: { payload: CountySpec, failAction: validationError },
+    response: { schema: CountySpecPlus, failAction: validationError },
   },
 
   deleteOne: {
@@ -60,6 +75,9 @@ export const countyApi = {
         return Boom.serverUnavailable("No County with this id");
       }
     },
+    tags: ["api"],
+    description: "Delete a County",
+    validate: { params: { id: IdSpec }, failAction: validationError },
   },
 
   deleteAll: {
@@ -72,5 +90,7 @@ export const countyApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Delete all countytApi",
   },
 };

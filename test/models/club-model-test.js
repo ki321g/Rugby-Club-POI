@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import { db } from "../../src/models/db.js";
-import { testCounties, testClubs, kilkenny, wexford, wexford_warriors, testUsers } from "../fixtures.js";
+import { testCounties, testClubs, kilkenny, wexford, wexford_warriors, testUsers, maggie } from "../fixtures.js";
 import { assertSubset } from "../test-utils.js";
 
 suite("Club Model Tests", () => {

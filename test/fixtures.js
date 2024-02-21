@@ -38,8 +38,8 @@ export const wexford_warriors = {
   phone: "086222222",
   email: "info@wexford.ie",
   website: "http://wexfordfc.ie",
-  latitude: 5.111111,
-  longitude: -7.777777,
+  latitude: 52.2386926,
+  longitude: -7.1403204,
 };
 
 export const kilkenny = {
@@ -65,8 +65,8 @@ export const testClubs = [
     phone: "0868063421",
     email: "info@waterfordrfc.ie",
     website: "http://waterfordrfc.ie",
-    latitude: 5.121512,
-    longitude: -7.121245,
+    latitude: 52.2386926,
+    longitude: -7.1403204,
   },
   {
     name: "Cork Eagles RFC",
@@ -74,8 +74,8 @@ export const testClubs = [
     phone: "086444444",
     email: "info@corkrfc.ie",
     website: "http://corkrfc.ie",
-    latitude: 4.121512,
-    longitude: -6.121245,
+    latitude: 52.2386926,
+    longitude: -7.1403204,
   },
   {
     name: "Limerick RFC",
@@ -83,7 +83,7 @@ export const testClubs = [
     phone: "086666666",
     email: "info@Limerickrfc.ie",
     website: "http://Limerickrfc.ie",
-    latitude: 4.111512,
-    longitude: -2.121245,
+    latitude: 52.2386926,
+    longitude: -7.1403204,
   },
 ];

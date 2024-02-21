@@ -24,14 +24,8 @@
   ],
   "counties": [
     {
-      "userid": "43b53ebb-3208-4ff2-888a-db175b19165c",
-      "county": "Kilkenny",
-      "_id": "11d7bc44-a72a-4da7-a80c-728f6dfbc80b"
-    },
-    {
-      "userid": "43b53ebb-3208-4ff2-888a-db175b19165c",
-      "county": "test",
-      "_id": "f347c386-207b-446d-9a73-ffdfc2ecc85f"
+      "title": "Kilkenny",
+      "_id": "2eda1a94-15e8-4441-8e68-fb5028801b1f"
     }
   ],
   "clubs": [
@@ -43,8 +37,8 @@
       "website": "http://waterfordrfc.ie",
       "latitude": 5.121512,
       "longitude": -7.121245,
-      "_id": "d8529f2c-7e8f-45ef-9741-c78e5af99a63",
-      "countyid": "11d7bc44-a72a-4da7-a80c-728f6dfbc80b"
+      "_id": "faa49479-4348-4e42-95f7-e037ff29f647",
+      "countyid": "2eda1a94-15e8-4441-8e68-fb5028801b1f"
     },
     {
       "name": "Cork Eagles RFC",
@@ -54,8 +48,8 @@
       "website": "http://corkrfc.ie",
       "latitude": 4.121512,
       "longitude": -6.121245,
-      "_id": "873ff842-ba8b-4a01-b3e9-f57bafe69516",
-      "countyid": "11d7bc44-a72a-4da7-a80c-728f6dfbc80b"
+      "_id": "023dd2e6-a759-4ca1-8833-00a775a42cf9",
+      "countyid": "2eda1a94-15e8-4441-8e68-fb5028801b1f"
     },
     {
       "name": "Limerick RFC",
@@ -65,8 +59,8 @@
       "website": "http://Limerickrfc.ie",
       "latitude": 4.111512,
       "longitude": -2.121245,
-      "_id": "574a4cf7-2a4f-4d08-896e-327989ac2e23",
-      "countyid": "11d7bc44-a72a-4da7-a80c-728f6dfbc80b"
+      "_id": "84dbc6ae-e1a7-45aa-af1e-dbe9557394c7",
+      "countyid": "2eda1a94-15e8-4441-8e68-fb5028801b1f"
     }
   ]
 }
