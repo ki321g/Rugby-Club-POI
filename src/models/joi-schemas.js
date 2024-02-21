@@ -3,8 +3,8 @@ import Joi from "joi";
 export const IdSpec = Joi.alternatives().try(Joi.string(), Joi.object()).description("a valid ID");
 
 export const UserCredentialsSpec = {
-  email: Joi.string().email().required(),
-  password: Joi.string().required(),
+  email: Joi.string().email().example("homer@simpson.com").required(),
+  password: Joi.string().example("secret").required(),
 };
 
 export const UserSpec = Joi.object()

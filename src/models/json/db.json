@@ -1,47 +1,5 @@
 {
-  "users": [
-    {
-      "firstName": "Maggie",
-      "lastName": "Simpson",
-      "email": "maggie@simpson.com",
-      "password": "secret",
-      "_id": "fc14e3ec-0cb2-47e0-bb91-a1cd3d21415e"
-    }
-  ],
+  "users": [],
   "counties": [],
-  "clubs": [
-    {
-      "name": "Waterford City RFC",
-      "address": "Waterford",
-      "phone": "0868063421",
-      "email": "info@waterfordrfc.ie",
-      "website": "http://waterfordrfc.ie",
-      "latitude": 52.2386926,
-      "longitude": -7.1403204,
-      "_id": "076099bb-57e1-433b-9a10-cbc708026e57",
-      "countyid": "89f6dd1d-4412-4394-bb25-1423fd79ad4f"
-    },
-    {
-      "name": "Cork Eagles RFC",
-      "address": "Cork",
-      "phone": "086444444",
-      "email": "info@corkrfc.ie",
-      "website": "http://corkrfc.ie",
-      "latitude": 52.2386926,
-      "longitude": -7.1403204,
-      "_id": "90870218-bacb-4ed5-9553-e1dbefd1ce77",
-      "countyid": "89f6dd1d-4412-4394-bb25-1423fd79ad4f"
-    },
-    {
-      "name": "Limerick RFC",
-      "address": "Limerick",
-      "phone": "086666666",
-      "email": "info@Limerickrfc.ie",
-      "website": "http://Limerickrfc.ie",
-      "latitude": 52.2386926,
-      "longitude": -7.1403204,
-      "_id": "39e25f21-92aa-4980-8192-bfc77d339617",
-      "countyid": "89f6dd1d-4412-4394-bb25-1423fd79ad4f"
-    }
-  ]
+  "clubs": []
 }
