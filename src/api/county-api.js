@@ -19,7 +19,7 @@ export const countyApi = {
     auth: false,
     async handler(request) {
       try {
-        const county = await db.countyStore.getPCountyById(request.params.id);
+        const county = await db.countyStore.getCountyById(request.params.id);
         if (!county) {
           return Boom.notFound("No County with this id");
         }

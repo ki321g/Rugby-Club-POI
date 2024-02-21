@@ -27,7 +27,7 @@ export const clubMongoStore = {
     return null;
   },
 
-  async deleteCLub(id) {
+  async deleteClub(id) {
     try {
       await Club.deleteOne({ _id: id });
     } catch (error) {

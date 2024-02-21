@@ -7,7 +7,7 @@ export const clubApi = {
     auth: false,
     handler: async function (request, h) {
       try {
-        const clubs = await db.clubStore.getAllClub();
+        const clubs = await db.clubStore.getAllClubs();
         return clubs;
       } catch (err) {
         return Boom.serverUnavailable("Database Error");

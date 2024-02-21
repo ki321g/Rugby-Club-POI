@@ -28,8 +28,8 @@ export const testUsers = [
   }
 ];
 
-export const mozart = {
-  title: "Mozart Favourites"
+export const wexford = {
+  title: "Wexford"
 };
 
 export const concerto = {
@@ -39,36 +39,48 @@ export const concerto = {
 };
 
 
-export const beethoven = {
-  title: "Mozart Favourites"
+export const kilkenny = {
+  title: "Kilkenny"
 };
 
-export const testPlaylists = [
+export const testCounties = [
   {
-    title: "Beethoven Sonatas"
+    county: "Cork"
   },
   {
-    title: "Beethoven Concertos"
+    county: "Dublin"
   },
   {
-    title: "Beethoven Symphonies"
+    county: "Limerick"
   }
 ];
 
-export const testTracks = [
+export const testClubs = [
   {
-    "title": "Piano Sonata No. 3",
-    "artist": "Beethoven",
-    "duration": 5
+    "name": "Waterford City RFC",
+    "address": "Waterford",
+    "phone": "0868063421",
+    "email": "info@waterfordrfc.ie",
+    "website": "http://waterfordrfc.ie",
+    "latitude": 5.121512,
+    "longitude": -7.121245
   },
   {
-    "title": "Piano Sonata No. 7",
-    "artist": "Beethoven",
-    "duration": 6
+    "name": "Waterford City RFC",
+    "address": "Waterford",
+    "phone": "0868063421",
+    "email": "info@waterfordrfc.ie",
+    "website": "http://waterfordrfc.ie",
+    "latitude": 5.121512,
+    "longitude": -7.121245
   },
   {
-    "title": "Piano Sonata No. 10",
-    "artist": "Beethoven",
-    "duration": 4
+    "name": "Waterford City RFC",
+    "address": "Waterford",
+    "phone": "0868063421",
+    "email": "info@waterfordrfc.ie",
+    "website": "http://waterfordrfc.ie",
+    "latitude": 5.121512,
+    "longitude": -7.121245
   }
 ];
