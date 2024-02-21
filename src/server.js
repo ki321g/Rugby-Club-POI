@@ -24,14 +24,15 @@ if (result.error) {
 
 const swaggerOptions = {
   info: {
-    title: "Playtime API",
-    version: "0.1",
+    title: "Rugby Club POI API",
+    version: "0.1.0",
   },
 };
 
 async function init() {
   const server = Hapi.server({
     port: process.env.PORT || 3000,
+    host: "localhost",
   });
 
   await server.register(Inert);

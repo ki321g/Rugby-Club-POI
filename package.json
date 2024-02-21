@@ -1,7 +1,7 @@
 {
-  "name": "playtime",
-  "version": "0.8.0",
-  "description": "A Playlist application for the HDip in Computing, WIT",
+  "name": "rugbyclubpoi",
+  "version": "0.1.0",
+  "description": "A Rugby Club POI application for the HDip in Computing, WIT",
   "main": "src/server.js",
   "type": "module",
   "scripts": {
