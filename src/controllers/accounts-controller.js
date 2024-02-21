@@ -5,12 +5,7 @@ export const accountsController = {
   index: {
     auth: false,
     handler: function (request, h) {
-      try {
-        return h.view("main", { title: "Welcome to Playlist" });
-      } catch (err) {
-        console.error("Error in GET / route:", err.stack || err);
-        throw err;
-      }
+      return h.view("main", { title: "Welcome to Playlist" });
     },
   },
   showSignup: {
@@ -31,7 +26,7 @@ export const accountsController = {
     handler: async function (request, h) {
       const user = request.payload;
       await db.userStore.addUser(user);
-      return h.redirect("/login");
+      return h.redirect("/");
     },
   },
   showLogin: {
@@ -40,7 +35,7 @@ export const accountsController = {
       return h.view("login-view", { title: "Login to Playlist" });
     },
   },
-  login: { 
+  login: {
     auth: false,
     validate: {
       payload: UserCredentialsSpec,
@@ -60,7 +55,6 @@ export const accountsController = {
     },
   },
   logout: {
-    auth: false,
     handler: function (request, h) {
       request.cookieAuth.clear();
       return h.redirect("/");
@@ -68,15 +62,10 @@ export const accountsController = {
   },
 
   async validate(request, session) {
-    try {
-      const user = await db.userStore.getUserById(session.id);
+    const user = await db.userStore.getUserById(session.id);
     if (!user) {
       return { isValid: false };
     }
     return { isValid: true, credentials: user };
-    } catch (err) {
-      console.error("Error in validate function:", err.stack || err);
-      throw err; // re-throw the error so it can be handled by Hapi
-    }
-  }
+  },
 };

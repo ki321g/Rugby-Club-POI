@@ -1,16 +1,17 @@
-// import "dotenv/config";
+import Inert from "@hapi/inert";
+import Vision from "@hapi/vision";
+import Hapi from "@hapi/hapi";
+import Cookie from "@hapi/cookie";
 import dotenv from "dotenv";
 import path from "path";
 import Joi from "joi";
-import Hapi from "@hapi/hapi";
-import Vision from "@hapi/vision";
-import Cookie from "@hapi/cookie";
-import Handlebars from "handlebars";
+import HapiSwagger from "hapi-swagger";
 import { fileURLToPath } from "url";
+import Handlebars from "handlebars";
 import { webRoutes } from "./web-routes.js";
-import { apiRoutes } from "./api-routes.js";
 import { db } from "./models/db.js";
 import { accountsController } from "./controllers/accounts-controller.js";
+import { apiRoutes } from "./api-routes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,51 +22,65 @@ if (result.error) {
   process.exit(1);
 }
 
+const swaggerOptions = {
+  info: {
+    title: "Playtime API",
+    version: "0.1",
+  },
+};
+
 async function init() {
-  try {
-    const server = Hapi.server({
-      port: process.env.PORT,
-      host: "localhost",
-    });
-    await server.register(Vision);
-    await server.register(Cookie);
-    server.validator(Joi);
+  const server = Hapi.server({
+    port: process.env.PORT || 3000,
+  });
 
-    server.auth.strategy("session", "cookie", {
-      cookie: {
-        name: process.env.COOKIE_NAME,
-        password: process.env.COOKIE_PASSWORD,
-        isSecure: false,
-      },
-      redirectTo: "/",
-      validate: accountsController.validate,
-    });
-    server.auth.default("session");
+  await server.register(Inert);
+  await server.register(Vision);
+  await server.register(Cookie);
 
-    server.views({
-      engines: {
-        hbs: Handlebars,
-      },
-      relativeTo: __dirname,
-      path: "./views",
-      layoutPath: "./views/layouts",
-      partialsPath: "./views/partials",
-      layout: true,
-      isCached: false,
-    });
+  await server.register([
+    Inert,
+    Vision,
+    {
+      plugin: HapiSwagger,
+      options: swaggerOptions,
+    },
+  ]);
 
-    db.init("mongo");
-    server.route(webRoutes);
-    server.route(apiRoutes);
-    await server.start();
-    console.log("Server running on %s", server.info.uri);
-  } catch (err) {
-    console.error("Error in init function:", err.stack || err);
-  }
+  server.validator(Joi);
+
+  server.views({
+    engines: {
+      hbs: Handlebars,
+    },
+    relativeTo: __dirname,
+    path: "./views",
+    layoutPath: "./views/layouts",
+    partialsPath: "./views/partials",
+    layout: true,
+    isCached: false,
+  });
+
+  server.auth.strategy("session", "cookie", {
+    cookie: {
+      name: process.env.cookie_name,
+      password: process.env.cookie_password,
+      isSecure: false,
+    },
+    redirectTo: "/",
+    validate: accountsController.validate,
+  });
+  server.auth.default("session");
+
+  db.init("mongo");
+  server.route(webRoutes);
+  server.route(apiRoutes);
+  await server.start();
+  console.log("Server running on %s", server.info.uri);
 }
 
 process.on("unhandledRejection", (err) => {
-  console.error("Unhandled Rejection at:", err.stack || err);
+  console.log(err);
   process.exit(1);
 });
 

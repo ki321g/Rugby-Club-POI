@@ -9,21 +9,16 @@ export const playlistController = {
         title: "Playlist",
         playlist: playlist,
       };
-      try {
-        return h.view("playlist-view", viewData);
-      } catch (err) {
-        console.error("Error in GET / route:", err.stack || err);
-        throw err;
-      }
+      return h.view("playlist-view", viewData);
     },
   },
+
   addTrack: {
     validate: {
       payload: TrackSpec,
       options: { abortEarly: false },
-      failAction: async function (request, h, error) {
-        const currentPlaylist = await db.playlistStore.getPlaylistById(request.params.id);
-        return h.view("playlist-view", { title: "Add track error", playlist:currentPlaylist, errors: error.details }).takeover().code(400);
+      failAction: function (request, h, error) {
+        return h.view("playlist-view", { title: "Add track error", errors: error.details }).takeover().code(400);
       },
     },
     handler: async function (request, h) {
@@ -37,8 +32,9 @@ export const playlistController = {
       return h.redirect(`/playlist/${playlist._id}`);
     },
   },
+
   deleteTrack: {
-    handler: async function(request, h) {
+    handler: async function (request, h) {
       const playlist = await db.playlistStore.getPlaylistById(request.params.id);
       await db.trackStore.deleteTrack(request.params.trackid);
       return h.redirect(`/playlist/${playlist._id}`);

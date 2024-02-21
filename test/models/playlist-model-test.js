@@ -1,10 +1,8 @@
-import { EventEmitter } from "events";
 import { assert } from "chai";
 import { db } from "../../src/models/db.js";
 import { testPlaylists, mozart } from "../fixtures.js";
 import { assertSubset } from "../test-utils.js";
 
-EventEmitter.setMaxListeners(25);
 suite("Playlist Model tests", () => {
 
   setup(async () => {
@@ -16,9 +14,8 @@ suite("Playlist Model tests", () => {
     }
   });
 
-  test("create a Playlist", async () => {
-    const playlist = await db.playlistStore.addPlaylist(mozart);	
-    // assert.equal(mozart, playlist);    
+  test("create a playlist", async () => {
+    const playlist = await db.playlistStore.addPlaylist(mozart);
     assertSubset(mozart, playlist);
     assert.isDefined(playlist._id);
   });
@@ -37,15 +34,16 @@ suite("Playlist Model tests", () => {
     assertSubset(mozart, playlist);
   });
 
-  test("delete One Playlist - success", async () => {
-    await db.playlistStore.deletePlaylistById(testPlaylists[0]._id);
+  test("delete One Playist - success", async () => {
+    const id = testPlaylists[0]._id;
+    await db.playlistStore.deletePlaylistById(id);
     const returnedPlaylists = await db.playlistStore.getAllPlaylists();
     assert.equal(returnedPlaylists.length, testPlaylists.length - 1);
-    const deletedPlaylist = await db.playlistStore.getPlaylistById(testPlaylists[0]._id);
+    const deletedPlaylist = await db.playlistStore.getPlaylistById(id);
     assert.isNull(deletedPlaylist);
   });
 
-  test("get a Playlist - bad params", async () => {
+  test("get a playlist - bad params", async () => {
     assert.isNull(await db.playlistStore.getPlaylistById(""));
     assert.isNull(await db.playlistStore.getPlaylistById());
   });

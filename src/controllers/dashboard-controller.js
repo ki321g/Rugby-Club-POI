@@ -11,12 +11,7 @@ export const dashboardController = {
         user: loggedInUser,
         playlists: playlists,
       };
-      try {
-        return h.view("dashboard-view", viewData);
-      } catch (err) {
-        console.error("Error in GET / route:", err.stack || err);
-        throw err;
-      }
+      return h.view("dashboard-view", viewData);
     },
   },
 
@@ -24,9 +19,8 @@ export const dashboardController = {
     validate: {
       payload: PlaylistSpec,
       options: { abortEarly: false },
-      failAction: async function (request, h, error) {
-        const playlists = await db.playlistStore.getUserPlaylists(request.auth.credentials._id);
-        return h.view("dashboard-view", { title: "Add Playlist error", playlists: playlists, errors: error.details }).takeover().code(400);
+      failAction: function (request, h, error) {
+        return h.view("dashboard-view", { title: "Add Playlist error", errors: error.details }).takeover().code(400);
       },
     },
     handler: async function (request, h) {
@@ -39,10 +33,10 @@ export const dashboardController = {
       return h.redirect("/dashboard");
     },
   },
-    
-  deleteplaylist: {
+
+  deletePlaylist: {
     handler: async function (request, h) {
-      const playlist = await db.playlistStore.getPlaylistById(request.params.id);      
+      const playlist = await db.playlistStore.getPlaylistById(request.params.id);
       await db.playlistStore.deletePlaylistById(playlist._id);
       return h.redirect("/dashboard");
     },

@@ -5,28 +5,32 @@
       <th>Artist</th>
       <th>Duration</th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     {{#each playlist.tracks}}
-      <tr>
-        <td>
-          {{title}}
-        </td>
-        <td>
-          {{artist}}
-        </td>
-        <td>
-          {{duration}}
-        </td>
-        <td>
-          <a href="/playlist/{{../playlist._id}}/deletetrack/{{_id}}" class="button">
-            <span class="icon is-small">
-              <i class="fas fa-trash"></i>
-            </span>
-          </a>
-        </td>
-      </tr>       
+    <tr>
+      <td>
+        {{title}}
+      </td>
+      <td>
+        {{artist}}
+      </td>
+      <td>
+        {{duration}}
+      </td>
+      <td>
+        <a href="/track/{{../playlist._id}}/edittrack/{{_id}}" class="ui icon button">
+          <i class="fas fa-edit"></i>
+        </a>
+      </td>
+      <td>
+        <a href="/playlist/{{../playlist._id}}/deletetrack/{{_id}}" class="ui icon button">
+          <i class="fas fa-trash"></i>
+        </a>
+      </td>
+    </tr>
     {{/each}}
   </tbody>
 </table>

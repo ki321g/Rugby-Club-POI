@@ -16,13 +16,6 @@ export const playlistJsonStore = {
     return playlist;
   },
 
-  // async getPlaylistById(id) {
-  //   await db.read();
-  //   const list = db.data.playlists.find((playlist) => playlist._id === id);
-  //   list.tracks = await trackJsonStore.getTracksByPlaylistId(list._id);
-  //   return list;
-  // },
-
   async getPlaylistById(id) {
     await db.read();
     let list = db.data.playlists.find((playlist) => playlist._id === id);
@@ -39,20 +32,13 @@ export const playlistJsonStore = {
     return db.data.playlists.filter((playlist) => playlist.userid === userid);
   },
 
-  // async deletePlaylistById(id) {
-  //   await db.read();
-  //   const index = db.data.playlists.findIndex((playlist) => playlist._id === id);
-  //   db.data.playlists.splice(index, 1);
-  //   await db.write();
-  // },
-
   async deletePlaylistById(id) {
     await db.read();
     const index = db.data.playlists.findIndex((playlist) => playlist._id === id);
     if (index !== -1) db.data.playlists.splice(index, 1);
     await db.write();
   },
-  
+
   async deleteAllPlaylists() {
     db.data.playlists = [];
     await db.write();
