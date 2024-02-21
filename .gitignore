@@ -1,3 +1,6 @@
+# JSON files
+src/models/json/db.json
+
 # IDE
 .idea
 
