@@ -4,7 +4,7 @@ export const IdSpec = Joi.alternatives().try(Joi.string(), Joi.object()).descrip
 
 export const UserCredentialsSpec = {
   email: Joi.string().email().required(),
-  password: Joi.string().required()
+  password: Joi.string().required(),
 };
 
 export const UserSpec = Joi.object()
@@ -14,18 +14,22 @@ export const UserSpec = Joi.object()
     email: Joi.string().email().example("homer@simpson.com").required(),
     password: Joi.string().example("secret").required(),
     _id: IdSpec,
-    __v: Joi.number()
+    __v: Joi.number(),
   })
   .label("UserDetails");
 
 export const UserArray = Joi.array().items(UserSpec).label("UserArray");
 
-export const TrackSpec = {
-  title: Joi.string().required(),
-  artist: Joi.string().required(),
-  duration: Joi.number().allow("").optional()
+export const ClubSpec = {
+  name: Joi.string().required(),
+  address: Joi.string().required(),
+  phone: Joi.string().allow("").optional(),
+  email: Joi.string().allow("").optional(),
+  website: Joi.string().allow("").optional(),
+  latitude: Joi.number().required(),
+  longitude: Joi.number().required(),
 };
 
-export const PlaylistSpec = {
-  title: Joi.string().required()
+export const CountySpec = {
+  county: Joi.string().required(),
 };

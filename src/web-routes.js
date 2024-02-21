@@ -1,8 +1,8 @@
 import { aboutController } from "./controllers/about-controller.js";
 import { accountsController } from "./controllers/accounts-controller.js";
 import { dashboardController } from "./controllers/dashboard-controller.js";
-import { playlistController } from "./controllers/playlist-controller.js";
-import { trackController } from "./controllers/track-controller.js";
+import { countyController } from "./controllers/county-controller.js";
+import { clubController } from "./controllers/club-controller.js";
 
 export const webRoutes = [
   { method: "GET", path: "/", config: accountsController.index },
@@ -15,15 +15,15 @@ export const webRoutes = [
   { method: "GET", path: "/about", config: aboutController.index },
 
   { method: "GET", path: "/dashboard", config: dashboardController.index },
-  { method: "POST", path: "/dashboard/addplaylist", config: dashboardController.addPlaylist },
-  { method: "GET", path: "/dashboard/deleteplaylist/{id}", config: dashboardController.deletePlaylist },
+  { method: "POST", path: "/dashboard/addcounty", config: dashboardController.addCounty },
+  { method: "GET", path: "/dashboard/deletecounty/{id}", config: dashboardController.deleteCounty },
 
-  { method: "GET", path: "/playlist/{id}", config: playlistController.index },
-  { method: "POST", path: "/playlist/{id}/addtrack", config: playlistController.addTrack },
-  { method: "GET", path: "/playlist/{id}/deletetrack/{trackid}", config: playlistController.deleteTrack },
+  { method: "GET", path: "/county/{id}", config: countyController.index },
+  { method: "POST", path: "/county/{id}/addclub", config: countyController.addClub },
+  { method: "GET", path: "/county/{id}/deleteclub/{clubid}", config: countyController.deleteClub },
 
-  { method: "GET", path: "/track/{id}/edittrack/{trackid}", config: trackController.index },
-  { method: "POST", path: "/track/{id}/updatetrack/{trackid}", config: trackController.update },
+  { method: "GET", path: "/club/{id}/editclub/{clubid}", config: clubController.index },
+  { method: "POST", path: "/club/{id}/updateclub/{clubid}", config: clubController.update },
 
   { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } },
 ];

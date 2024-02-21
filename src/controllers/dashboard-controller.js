@@ -1,43 +1,50 @@
-import { PlaylistSpec } from "../models/joi-schemas.js";
+import { CountySpec } from "../models/joi-schemas.js";
 import { db } from "../models/db.js";
 
 export const dashboardController = {
   index: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
-      const playlists = await db.playlistStore.getUserPlaylists(loggedInUser._id);
+      let counties;
+      // console.log(loggedInUser);
+      const userCounties = await db.countyStore.getUserCounties(loggedInUser._id);
+      // console.log(userCounties);
+      // Sort the counties array alphabetically by the 'name' property
+      counties = userCounties.sort((a, b) => a.county.localeCompare(b.county));
+      // console.log(counties);
       const viewData = {
-        title: "Playtime Dashboard",
+        title: "RugbyClubPOI Dashboard",
         user: loggedInUser,
-        playlists: playlists,
+        counties: counties,
       };
       return h.view("dashboard-view", viewData);
     },
   },
 
-  addPlaylist: {
+  addCounty: {
     validate: {
-      payload: PlaylistSpec,
+      payload: CountySpec,
       options: { abortEarly: false },
       failAction: function (request, h, error) {
-        return h.view("dashboard-view", { title: "Add Playlist error", errors: error.details }).takeover().code(400);
+        return h.view("dashboard-view", { title: "Add County error", errors: error.details }).takeover().code(400);
       },
     },
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
-      const newPlayList = {
+      const newCounty = {
         userid: loggedInUser._id,
-        title: request.payload.title,
+        county: request.payload.county,
       };
-      await db.playlistStore.addPlaylist(newPlayList);
+      await db.countyStore.addCounty(newCounty);
       return h.redirect("/dashboard");
     },
   },
 
-  deletePlaylist: {
+  deleteCounty: {
     handler: async function (request, h) {
-      const playlist = await db.playlistStore.getPlaylistById(request.params.id);
-      await db.playlistStore.deletePlaylistById(playlist._id);
+      console.log("Deleting CountyID: " + request.params.id);
+      const county = await db.countyStore.getCountyById(request.params.id);
+      await db.countyStore.deleteCountyById(county._id);
       return h.redirect("/dashboard");
     },
   },

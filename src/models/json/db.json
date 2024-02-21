@@ -1,54 +1,31 @@
 {
   "users": [
     {
-      "firstName": "Homer",
-      "lastName": "Simpson",
-      "email": "homer@simpson.com",
-      "password": "secret",
-      "_id": "ef4be94b-beea-4960-a32b-6e5088ac03db"
-    },
-    {
-      "firstName": "Marge",
-      "lastName": "Simpson",
-      "email": "marge@simpson.com",
-      "password": "secret",
-      "_id": "ef934fe3-71df-44a1-8c49-8a31998120e8"
-    },
-    {
-      "firstName": "Bart",
-      "lastName": "Simpson",
-      "email": "bart@simpson.com",
-      "password": "secret",
-      "_id": "7c8c5c98-2203-41cf-9848-b28a58ce1ae9"
+      "firstName": "Kieron",
+      "lastName": "Garvey",
+      "email": "k@g.com",
+      "password": "123456",
+      "_id": "62a679fb-6e96-45bf-b670-cae45709cc3e"
     }
   ],
-  "playlists": [
+  "counties": [
     {
-      "title": "Mozart Favourites",
-      "_id": "c61a37a3-fc2c-4635-95cd-4acde57de84f"
+      "userid": "62a679fb-6e96-45bf-b670-cae45709cc3e",
+      "county": "Waterford",
+      "_id": "f5e6bf87-481d-4ec4-bdc2-34e56c985e2c"
     }
   ],
-  "tracks": [
+  "clubs": [
     {
-      "title": "Piano Sonata No. 3",
-      "artist": "Beethoven",
-      "duration": 5,
-      "_id": "5d9cebe0-afbd-4fc8-90a0-f3900bf1a013",
-      "playlistid": "c61a37a3-fc2c-4635-95cd-4acde57de84f"
-    },
-    {
-      "title": "Piano Sonata No. 7",
-      "artist": "Beethoven",
-      "duration": 6,
-      "_id": "1f776a68-a8dd-4103-8c6c-4dcddeb37f57",
-      "playlistid": "c61a37a3-fc2c-4635-95cd-4acde57de84f"
-    },
-    {
-      "title": "Piano Sonata No. 10",
-      "artist": "Beethoven",
-      "duration": 4,
-      "_id": "47faa1cf-fc71-411f-a8b0-212fc638fc49",
-      "playlistid": "c61a37a3-fc2c-4635-95cd-4acde57de84f"
+      "name": "Waterford City RFC",
+      "address": "Waterford",
+      "phone": "0868063421",
+      "email": "info@waterfordrfc.ie",
+      "website": "http://waterfordrfc.ie",
+      "latitude": 5.121512,
+      "longitude": -7.121245,
+      "_id": "af00a873-1017-49f8-9ce4-c01bac1a7686",
+      "countyid": "f5e6bf87-481d-4ec4-bdc2-34e56c985e2c"
     }
   ]
 }

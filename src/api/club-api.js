@@ -1,13 +1,14 @@
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
+import { ClubSpec, CountySpec } from "../models/joi-schemas.js";
 
-export const trackApi = {
+export const clubApi = {
   find: {
     auth: false,
     handler: async function (request, h) {
       try {
-        const tracks = await db.trackStore.getAllTracks();
-        return tracks;
+        const clubs = await db.clubStore.getAllClub();
+        return clubs;
       } catch (err) {
         return Boom.serverUnavailable("Database Error");
       }
@@ -18,13 +19,13 @@ export const trackApi = {
     auth: false,
     async handler(request) {
       try {
-        const track = await db.trackStore.getTrackById(request.params.id);
-        if (!track) {
-          return Boom.notFound("No track with this id");
+        const club = await db.clubStore.getClubById(request.params.id);
+        if (!club) {
+          return Boom.notFound("No club with this id");
         }
-        return track;
+        return club;
       } catch (err) {
-        return Boom.serverUnavailable("No track with this id");
+        return Boom.serverUnavailable("No club with this id");
       }
     },
   },
@@ -33,11 +34,11 @@ export const trackApi = {
     auth: false,
     handler: async function (request, h) {
       try {
-        const track = await db.trackStore.addTrack(request.params.id, request.payload);
-        if (track) {
-          return h.response(track).code(201);
+        const club = await db.clubStore.addClub(request.params.id, request.payload);
+        if (club) {
+          return h.response(club).code(201);
         }
-        return Boom.badImplementation("error creating track");
+        return Boom.badImplementation("error creating club");
       } catch (err) {
         return Boom.serverUnavailable("Database Error");
       }
@@ -48,7 +49,7 @@ export const trackApi = {
     auth: false,
     handler: async function (request, h) {
       try {
-        await db.trackStore.deleteAllTracks();
+        await db.clubStore.deleteAllClubs();
         return h.response().code(204);
       } catch (err) {
         return Boom.serverUnavailable("Database Error");
@@ -60,14 +61,14 @@ export const trackApi = {
     auth: false,
     handler: async function (request, h) {
       try {
-        const track = await db.trackStore.getTrackById(request.params.id);
-        if (!track) {
-          return Boom.notFound("No Track with this id");
+        const club = await db.clubStore.getClubById(request.params.id);
+        if (!club) {
+          return Boom.notFound("No Club with this id");
         }
-        await db.trackStore.deleteTrack(track._id);
+        await db.clubStore.deleteClub(club._id);
         return h.response().code(204);
       } catch (err) {
-        return Boom.serverUnavailable("No Track with this id");
+        return Boom.serverUnavailable("No Club with this id");
       }
     },
   },

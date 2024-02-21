@@ -1,0 +1,46 @@
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Website</th>
+      <th>Geo Location</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each county.clubs}}
+      <tr>
+        <td>
+          {{name}}
+        </td>
+        <td>
+          {{address}}
+        </td>
+        <td>
+          {{phone}}
+        </td>
+        <td>
+          {{email}}
+        </td>
+        <td>
+          {{website}}
+        </td>
+        <td>
+          {{latitude}},
+          {{longitude}}
+        </td>
+        <td>
+          <a href="/club/{{../county._id}}/editclub/{{_id}}" class="ui icon button">
+            <i class="fas fa-edit"></i>
+          </a>
+          <a href="/county/{{../county._id}}/deleteclub/{{_id}}" class="ui icon button">
+            <i class="fas fa-trash"></i>
+          </a>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

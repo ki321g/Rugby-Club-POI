@@ -2,12 +2,12 @@ import Mongoose from "mongoose";
 
 const { Schema } = Mongoose;
 
-const playlistSchema = new Schema({
-  title: String,
+const countySchema = new Schema({
+  county: String,
   userid: {
     type: Schema.Types.ObjectId,
     ref: "User",
   },
 });
 
-export const Playlist = Mongoose.model("Playlist", playlistSchema);
+export const County = Mongoose.model("County", countySchema);

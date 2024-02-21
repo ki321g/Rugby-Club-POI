@@ -1,0 +1,62 @@
+{{> menu}}
+
+<form method="POST" action="/club/{{county._id}}/updateclub/{{club._id}}">
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Website</th>
+      <th>Geo Location</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>
+          <div class="field">
+            <input class="input" type="text" value="{{club.name}}" name="name">
+          </div>
+        </td>
+        <td>
+          <div class="field">
+        <input class="input" type="text" value="{{club.address}}" name="address">
+      </div>
+        </td>
+        <td>
+          <div class="field">
+        <input class="input" type="text" value="{{club.phone}}" name="phone">
+      </div>
+        </td>
+        <td>
+          <div class="field">
+        <input class="input" type="email" value="{{club.email}}" name="email">
+      </div>
+        </td>
+        <td>
+          <div class="field">
+        <input class="input" type="text" value="{{club.website}}" name="website">
+      </div>
+        </td>
+        <td>
+          <div class="field">
+        <input class="input" type="number" step=".0000001" value="{{club.latitude}}" name="latitude">
+      </div>
+      <div class="field">
+        <input class="input" type="number" step=".0000001" value="{{club.longitude}}" name="longitude">
+      </div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  <input type="submit" value="Update club">
+</form>
+
+{{#if errors}}
+    <ul>
+        {{#each errors}}
+            <li>{{message}}</li>
+        {{/each}}
+    </ul>
+{{/if}}
