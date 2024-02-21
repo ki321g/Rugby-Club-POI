@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js --ignore 'src/models/json/*.json'",
+    "dev": "nodemon src/server.js --ignore './src/models/json/*.json'",
     "lint": "eslint . --ext .js",
     "test": "mocha --ui tdd test/**/*.js -exit",
     "testmodels": "mocha --ui tdd test/models/**/*.js -exit",

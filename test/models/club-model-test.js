@@ -4,16 +4,16 @@ import { testCounties, testClubs, kilkenny, wexford, wexford_warriors, testUsers
 import { assertSubset } from "../test-utils.js";
 
 suite("Club Model Tests", () => {
-  let kilkennyList = null;
+  let testingClub = null;
 
   setup(async () => {
     db.init("json");
     await db.countyStore.deleteAllCounties();
     await db.clubStore.deleteAllClubs();
-    kilkennyList = await db.countyStore.addCounty(kilkenny);
+    testingClub = await db.countyStore.addCounty(kilkenny);
     for (let i = 0; i < testClubs.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
-      testClubs[i] = await db.clubStore.addClub(kilkennyList._id, testClubs[i]);
+      testClubs[i] = await db.clubStore.addClub(testingClub._id, testClubs[i]);
     }
   });
 
@@ -25,7 +25,7 @@ suite("Club Model Tests", () => {
   });
 
   test("Create Multiple clubApi", async () => {
-    const clubs = await db.countyStore.getCountyById(kilkennyList._id);
+    const clubs = await db.countyStore.getCountyById(testingClub._id);
     assert.equal(testClubs.length, testClubs.length);
   });
 

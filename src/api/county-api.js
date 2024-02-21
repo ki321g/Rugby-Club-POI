@@ -91,6 +91,6 @@ export const countyApi = {
       }
     },
     tags: ["api"],
-    description: "Delete all countytApi",
+    description: "Delete all countyApi",
   },
 };

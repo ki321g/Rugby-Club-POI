@@ -38,7 +38,7 @@ export const ClubSpecPlus = ClubSpec.keys({
   __v: Joi.number(),
 }).label("ClubPlus");
 
-export const ClubArraySpec = Joi.array().items(ClubSpecPlus).label("ClubkArray");
+export const ClubArraySpec = Joi.array().items(ClubSpecPlus).label("ClubArray");
 
 // export const ClubSpec = {
 //   name: Joi.string().required(),

@@ -29,7 +29,7 @@ export const testUsers = [
 ];
 
 export const wexford = {
-  title: "Wexford",
+  county: "Wexford",
 };
 
 export const wexford_warriors = {
@@ -42,8 +42,24 @@ export const wexford_warriors = {
   longitude: -7.1403204,
 };
 
+// export const tramore = [{  
+//   "name": "Tramore RFC",
+//   "address": "Tramore",
+//   "phone": "0868063421",
+//   "email": "info@tramorerfc.ie",
+//   "website": "http://tramorerfc.ie",
+//   "latitude": 52.2386926,
+//   "longitude": -7.1403204
+// }];
+
 export const kilkenny = {
-  title: "Kilkenny",
+  "name": "Kilkenny RFC",
+  "address": "Kilkenny",
+  "phone": "0868063421",
+  "email": "info@kilkennyrfc.ie",
+  "website": "http://kilkennyrfc.ie",
+  "latitude": 52.2386926,
+  "longitude": -7.1403204
 };
 
 export const testCounties = [
