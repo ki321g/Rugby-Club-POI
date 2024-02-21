@@ -1,14 +1,13 @@
 import { assert } from "chai";
 import { db } from "../../src/models/db.js";
-import { testCounties, testClubs, kilkenny, wexford, concerto, testUsers } from "../fixtures.js";
+import { testCounties, testClubs, kilkenny, wexford, wexford_warriors, testUsers } from "../fixtures.js";
 import { assertSubset } from "../test-utils.js";
 
 suite("Club Model Tests", () => {
-
   let kilkennyList = null;
 
   setup(async () => {
-    db.init("mongo");
+    db.init("json");
     await db.countyStore.deleteAllCounties();
     await db.clubStore.deleteAllClubs();
     kilkennyList = await db.countyStore.addCounty(kilkenny);
@@ -20,14 +19,14 @@ suite("Club Model Tests", () => {
 
   test("Create Single Club", async () => {
     const wexfordList = await db.countyStore.addCounty(wexford);
-    const club = await db.clubStore.addClub(wexfordList._id, concerto)
+    const club = await db.clubStore.addClub(wexfordList._id, wexford_warriors);
     assert.isNotNull(club._id);
-    assertSubset (concerto, club);
+    assertSubset(wexford_warriors, club);
   });
 
   test("Create Multiple clubApi", async () => {
     const clubs = await db.countyStore.getCountyById(kilkennyList._id);
-    assert.equal(testClubs.length, testClubs.length)
+    assert.equal(testClubs.length, testClubs.length);
   });
 
   test("Delete all clubApi", async () => {
@@ -40,9 +39,9 @@ suite("Club Model Tests", () => {
 
   test("Get a Club - Success", async () => {
     const wexfordList = await db.countyStore.addCounty(wexford);
-    const club = await db.clubStore.addClub(wexfordList._id, concerto)
+    const club = await db.clubStore.addClub(wexfordList._id, wexford_warriors);
     const newClub = await db.clubStore.getClubById(club._id);
-    assertSubset (concerto, newClub);
+    assertSubset(wexford_warriors, newClub);
   });
 
   test("Delete One Club - Success", async () => {

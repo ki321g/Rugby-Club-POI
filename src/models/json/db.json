@@ -1,18 +1,37 @@
 {
   "users": [
     {
-      "firstName": "Kieron",
-      "lastName": "Garvey",
-      "email": "k@g.com",
-      "password": "1",
-      "_id": "8c75fa82-1683-4f41-ae92-021781e9c347"
+      "firstName": "Homer",
+      "lastName": "Simpson",
+      "email": "homer@simpson.com",
+      "password": "secret",
+      "_id": "43b53ebb-3208-4ff2-888a-db175b19165c"
+    },
+    {
+      "firstName": "Marge",
+      "lastName": "Simpson",
+      "email": "marge@simpson.com",
+      "password": "secret",
+      "_id": "dfffdbfa-18d4-4443-adcf-7ee2df322444"
+    },
+    {
+      "firstName": "Bart",
+      "lastName": "Simpson",
+      "email": "bart@simpson.com",
+      "password": "secret",
+      "_id": "9956c025-7b19-4f5f-bdc9-b7d606c6e77c"
     }
   ],
   "counties": [
     {
-      "userid": "8c75fa82-1683-4f41-ae92-021781e9c347",
-      "county": "Waterford",
-      "_id": "f5e6bf87-481d-4ec4-bdc2-34e56c985e2c"
+      "userid": "43b53ebb-3208-4ff2-888a-db175b19165c",
+      "county": "Kilkenny",
+      "_id": "11d7bc44-a72a-4da7-a80c-728f6dfbc80b"
+    },
+    {
+      "userid": "43b53ebb-3208-4ff2-888a-db175b19165c",
+      "county": "test",
+      "_id": "f347c386-207b-446d-9a73-ffdfc2ecc85f"
     }
   ],
   "clubs": [
@@ -24,8 +43,30 @@
       "website": "http://waterfordrfc.ie",
       "latitude": 5.121512,
       "longitude": -7.121245,
-      "_id": "af00a873-1017-49f8-9ce4-c01bac1a7686",
-      "countyid": "f5e6bf87-481d-4ec4-bdc2-34e56c985e2c"
+      "_id": "d8529f2c-7e8f-45ef-9741-c78e5af99a63",
+      "countyid": "11d7bc44-a72a-4da7-a80c-728f6dfbc80b"
+    },
+    {
+      "name": "Cork Eagles RFC",
+      "address": "Cork",
+      "phone": "086444444",
+      "email": "info@corkrfc.ie",
+      "website": "http://corkrfc.ie",
+      "latitude": 4.121512,
+      "longitude": -6.121245,
+      "_id": "873ff842-ba8b-4a01-b3e9-f57bafe69516",
+      "countyid": "11d7bc44-a72a-4da7-a80c-728f6dfbc80b"
+    },
+    {
+      "name": "Limerick RFC",
+      "address": "Limerick",
+      "phone": "086666666",
+      "email": "info@Limerickrfc.ie",
+      "website": "http://Limerickrfc.ie",
+      "latitude": 4.111512,
+      "longitude": -2.121245,
+      "_id": "574a4cf7-2a4f-4d08-896e-327989ac2e23",
+      "countyid": "11d7bc44-a72a-4da7-a80c-728f6dfbc80b"
     }
   ]
 }
