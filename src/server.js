@@ -64,8 +64,8 @@ async function init() {
 
   server.auth.strategy("session", "cookie", {
     cookie: {
-      name: process.env.COOKIE_NAME",
-      password: process.env.COOKIE_PASSWORD,
+      name: process.env.COOKIE_NAME || "club_poi_cookie",
+      password: process.env.COOKIE_PASSWORD || "password-should-be-32-characters",
       isSecure: false,
     },
     redirectTo: "/",
