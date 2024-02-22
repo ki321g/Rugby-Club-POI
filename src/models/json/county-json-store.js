@@ -28,15 +28,7 @@ export const countyJsonStore = {
   },
 
   async getUserCounties(userId) {
-    // console.log(userId);
-    // console.log("getUserCounties - Here");
     await db.read();
-    // console.log("getUserCounties - After Read");
-    // let list = db.data.counties.filter((county) => county.userid === userId);
-    // console.log(list);
-    // if (!list) {
-    //   list = [];
-    // }
     return db.data.counties.filter((county) => county.userid === userId);;
   },
 
