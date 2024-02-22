@@ -32,6 +32,11 @@ export const wexford = {
   county: "Wexford",
 };
 
+export const clare = {
+  county: "Clare",
+};
+
+
 export const wexford_warriors = {
   name: "Wexford Warriors RFC",
   address: "Wexford",

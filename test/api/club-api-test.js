@@ -3,6 +3,7 @@ import { assert } from "chai";
 import { assertSubset } from "../test-utils.js";
 import { rugbyClubPOIService } from "./rugby-club-poi-service-service.js";
 import { maggie, wexford, testClubs, kilkenny } from "../fixtures.js";
+import { db } from "../../src/models/db.js";
 
 EventEmitter.setMaxListeners(25);
 
@@ -10,7 +11,8 @@ suite("Club API tests", () => {
   let user = null;
   let testingCounty = null;
 
-  setup(async () => {
+  setup(async () => {    
+    db.init("json");
     await rugbyClubPOIService.deleteAllCounties();
     await rugbyClubPOIService.deleteAllUsers();
     await rugbyClubPOIService.deleteAllClubs();
@@ -22,8 +24,6 @@ suite("Club API tests", () => {
   teardown(async () => {});
 
   test("Create Club", async () => {
-    console.log("THIS IS ME LOGGING TESTING CLUB");
-    console.log(testingCounty);
     const returnedClub = await rugbyClubPOIService.createClub(testingCounty._id, kilkenny);
     assertSubset(kilkenny, returnedClub);
   });

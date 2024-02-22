@@ -6,6 +6,7 @@ import { db } from "../../src/models/db.js";
 
 suite("User API tests", () => {
   setup(async () => {
+    db.init("json");
     await rugbyClubPOIService.deleteAllUsers();
     for (let i = 0; i < testUsers.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
@@ -19,15 +20,6 @@ suite("User API tests", () => {
     assertSubset(maggie, newUser);
     assert.isDefined(newUser._id);
   });
-
-  test("delete all userApi", async () => {
-    let returnedUsers = await rugbyClubPOIService.getAllUsers();
-    assert.equal(returnedUsers.length, 3);
-    await rugbyClubPOIService.deleteAllUsers();
-    returnedUsers = await rugbyClubPOIService.getAllUsers();
-    assert.equal(returnedUsers.length, 0);
-  });
-
   test("get a user", async () => {
     const returnedUser = await rugbyClubPOIService.getUser(testUsers[0]._id);
     assert.deepEqual(testUsers[0], returnedUser);
@@ -52,5 +44,13 @@ suite("User API tests", () => {
       assert(error.response.data.message === "No User with this id");
       assert.equal(error.response.data.statusCode, 404);
     }
+  });
+  
+  test("delete all userApi", async () => {
+    let returnedUsers = await rugbyClubPOIService.getAllUsers();
+    assert.equal(returnedUsers.length, 3);
+    await rugbyClubPOIService.deleteAllUsers();
+    returnedUsers = await rugbyClubPOIService.getAllUsers();
+    assert.equal(returnedUsers.length, 0);
   });
 });

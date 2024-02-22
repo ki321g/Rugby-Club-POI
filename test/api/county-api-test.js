@@ -13,7 +13,7 @@ suite("County API tests", () => {
     await rugbyClubPOIService.deleteAllCounties();
     await rugbyClubPOIService.deleteAllUsers();
     user = await rugbyClubPOIService.createUser(maggie);
-    maggie.userid = user._id;
+    wexford.userid = user._id;
   });
 
   teardown(async () => {});

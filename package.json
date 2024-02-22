@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js --ignore './src/models/json/*.json'",
+    "dev": "nodemon src/server.js --ignore '*.json'",
     "lint": "eslint . --ext .js",
     "test": "mocha --ui tdd test/**/*.js -exit",
     "testmodels": "mocha --ui tdd test/models/**/*.js -exit",
@@ -20,7 +20,7 @@
     "node",
     "hapi"
   ],
-  "author": "edeleastar",
+  "author": "Kieron Garvey",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/wit-hdip-comp-sci-2021/playtime/issues"

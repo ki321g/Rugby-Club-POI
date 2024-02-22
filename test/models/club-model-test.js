@@ -1,19 +1,27 @@
 import { assert } from "chai";
 import { db } from "../../src/models/db.js";
-import { testCounties, testClubs, kilkenny, wexford, wexford_warriors, testUsers, maggie } from "../fixtures.js";
+import { testCounties, testClubs, clare, kilkenny, wexford, wexford_warriors, testUsers, maggie } from "../fixtures.js";
 import { assertSubset } from "../test-utils.js";
 
 suite("Club Model Tests", () => {
-  let testingClub = null;
+  let testingCounty = null;
+  let user = null;
 
   setup(async () => {
     db.init("json");
     await db.countyStore.deleteAllCounties();
     await db.clubStore.deleteAllClubs();
-    testingClub = await db.countyStore.addCounty(kilkenny);
-    for (let i = 0; i < testClubs.length; i += 1) {
+    await db.userStore.deleteAll();
+    user = await db.userStore.addUser(maggie);
+    maggie.userid = user._id;  
+    clare.userid = user._id;   
+    wexford.userid = user._id;
+
+    testingCounty = await db.countyStore.addCounty(clare);
+
+    for (let i = 0; i < testClubs.length; i += 1) {      
       // eslint-disable-next-line no-await-in-loop
-      testClubs[i] = await db.clubStore.addClub(testingClub._id, testClubs[i]);
+      testClubs[i] = await db.clubStore.addClub(testingCounty._id, testClubs[i]);
     }
   });
 
@@ -25,7 +33,7 @@ suite("Club Model Tests", () => {
   });
 
   test("Create Multiple clubApi", async () => {
-    const clubs = await db.countyStore.getCountyById(testingClub._id);
+    const clubs = await db.countyStore.getCountyById(testingCounty._id);
     assert.equal(testClubs.length, testClubs.length);
   });
 

@@ -1,5 +1,77 @@
 {
-  "users": [],
-  "counties": [],
-  "clubs": []
+  "users": [
+    {
+      "firstName": "Bart",
+      "lastName": "Simpson",
+      "email": "bart@simpson.com",
+      "password": "secret",
+      "_id": "ace3e80a-a960-4a28-bfff-3b7b999240ae"
+    },
+    {
+      "firstName": "Marge",
+      "lastName": "Simpson",
+      "email": "marge@simpson.com",
+      "password": "secret",
+      "_id": "4fe91c24-a5bb-475e-a11c-f3067cdcb673"
+    },
+    {
+      "firstName": "Bart",
+      "lastName": "Simpson",
+      "email": "bart@simpson.com",
+      "password": "secret",
+      "_id": "98a20fd4-4de2-4f66-a6d8-3bc5a0c14141"
+    }
+  ],
+  "counties": [
+    {
+      "county": "Cork",
+      "userid": "d3de1e26-e6c6-47ea-8f19-17c31aa2d5ef",
+      "_id": "a216145a-3e76-4e2b-91be-d44f696bcbf5"
+    },
+    {
+      "county": "Dublin",
+      "userid": "d3de1e26-e6c6-47ea-8f19-17c31aa2d5ef",
+      "_id": "d79302e8-e64a-4d6e-afe3-b78a6b4a6774"
+    },
+    {
+      "county": "Limerick",
+      "userid": "d3de1e26-e6c6-47ea-8f19-17c31aa2d5ef",
+      "_id": "db761267-804c-4567-abc5-4707e7d03ec4"
+    }
+  ],
+  "clubs": [
+    {
+      "name": "Waterford City RFC",
+      "address": "Waterford",
+      "phone": "0868063421",
+      "email": "info@waterfordrfc.ie",
+      "website": "http://waterfordrfc.ie",
+      "latitude": 52.2386926,
+      "longitude": -7.1403204,
+      "_id": "0b76624d-1390-494e-b4e5-ee89d70d444d",
+      "countyid": "72b4eb14-ac06-46fc-8c67-5243e392672b"
+    },
+    {
+      "name": "Cork Eagles RFC",
+      "address": "Cork",
+      "phone": "086444444",
+      "email": "info@corkrfc.ie",
+      "website": "http://corkrfc.ie",
+      "latitude": 52.2386926,
+      "longitude": -7.1403204,
+      "_id": "77efb014-957c-429c-8fed-507d01363af0",
+      "countyid": "72b4eb14-ac06-46fc-8c67-5243e392672b"
+    },
+    {
+      "name": "Limerick RFC",
+      "address": "Limerick",
+      "phone": "086666666",
+      "email": "info@Limerickrfc.ie",
+      "website": "http://Limerickrfc.ie",
+      "latitude": 52.2386926,
+      "longitude": -7.1403204,
+      "_id": "b2f1ef02-d408-4ffb-b6dc-78e6a156a458",
+      "countyid": "72b4eb14-ac06-46fc-8c67-5243e392672b"
+    }
+  ]
 }
