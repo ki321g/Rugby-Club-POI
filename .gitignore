@@ -1,5 +1,6 @@
 # JSON files
-src/models/json/db.json
+# .src/models/json/db.json
+*.json
 
 # IDE
 .idea
