@@ -5,13 +5,13 @@ export const accountsController = {
   index: {
     auth: false,
     handler: function (request, h) {
-      return h.view("main", { title: "Welcome to RugbyClubPOI" });
+      return h.view("main", { title: "Welcome to RugbyGamePOI" });
     },
   },
   showSignup: {
     auth: false,
     handler: function (request, h) {
-      return h.view("signup-view", { title: "Sign up for RugbyClubPOI" });
+      return h.view("signup-view", { title: "Sign up for RugbyGamePOI" });
     },
   },
   signup: {
@@ -33,7 +33,7 @@ export const accountsController = {
   showLogin: {
     auth: false,
     handler: function (request, h) {
-      return h.view("login-view", { title: "Login to RugbyClubPOI" });
+      return h.view("login-view", { title: "Login to RugbyGamePOI" });
     },
   },
   login: {

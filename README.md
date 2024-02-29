@@ -1,12 +1,12 @@
-# Rugby Club POI
+# Rugby Game POI
 ## Project description
 This project will list Rugby CLubs in Ireland, initial spec below but subject to change
 
-- List Rugby Clubs
-- Group Clubs by Province and county
-- Add reviews for each clubs
-- Give statistics/Analytics on club views and users
-- User ineterface for logged out users to view all data, data segmented by Province, County and Review rating
+- List Rugby Games
+- Group Games by Province and club
+- Add reviews for each games
+- Give statistics/Analytics on game views and users
+- User ineterface for logged out users to view all data, data segmented by Province, Club and Review rating
 
 ## Technology Stack
 - Backend: Node.js, Hapi.js

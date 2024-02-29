@@ -1,0 +1,31 @@
+<form class="box" action="/club/{{club._id}}/addgame" method="POST">
+  <label>Enter Game Details:</label>
+  <div class="field is-horizontal">
+    <div class="field-body">
+      <div class="field">
+        <input class="input" type="text" placeholder="Home Team" name="home" />
+      </div>
+      <div class="field">
+        <input class="input" type="text" placeholder="0" name="homescore" />
+      </div>
+      <div class="field">
+        <input class="input" type="text" placeholder="0" name="awayscore" />
+      </div>
+      <div class="field">
+        <input class="input" type="text" placeholder="Away Team" name="away" />
+      </div>
+      <div class="field">
+        <input class="input" type="text" placeholder="Game Time" name="gametime" />
+      </div>
+      <div class="field">
+        <input class="input" type="text" placeholder="Game Location" name="gamelocation" />
+      </div>
+    </div>
+  </div>
+  <button class="button is-primary">Add Game</button>
+  {{! <div class="field">
+    <label class="label">Enter Game Details:</label>
+    <input class="input" type="text" placeholder="Enter game name" name="club" />
+  </div>
+  <button class="button is-primary">Add Game</button> }}
+</form>

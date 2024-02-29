@@ -17,30 +17,30 @@ export const UserSpec = Joi.object()
     __v: Joi.number(),
   })
   .label("UserDetails");
-   
+
 export const UserArray = Joi.array().items(UserSpec).label("UserArray");
 
-export const ClubSpec = Joi.object()
-.keys({
-  name: Joi.string().example("Waterford City RFC").required(),
-  address: Joi.string().example("Cork Road, Waterford").required(),
-  phone: Joi.string().example("0869874563").allow("").optional(),
-  email: Joi.string().example("info@waterfordrfc.ie").allow("").optional(),
-  website: Joi.string().example("http://www.waterfordrfc.ie").allow("").optional(),
-  latitude: Joi.number().example("52.2386926").required(),
-  longitude: Joi.number().example("-7.1403204").required(),
-  countyid: IdSpec,
-})
-.label("Club");
+export const GameSpec = Joi.object()
+  .keys({
+    home: Joi.string().example("Waterford City RFC").required(),
+    homescore: Joi.number().example("12").required(),
+    awayscore: Joi.number().example("10").required(),
+    away: Joi.string().example("Tramore RFC").required(),
+    gametime: Joi.string().example("Some time").required(),
+    gamelocation: Joi.string().example("Waterford").required(),
+    userid: IdSpec,
+    clubid: IdSpec,
+  })
+  .label("Game");
 
-export const ClubSpecPlus = ClubSpec.keys({
+export const GameSpecPlus = GameSpec.keys({
   _id: IdSpec,
   __v: Joi.number(),
-}).label("ClubPlus");
+}).label("GamePlus");
 
-export const ClubArraySpec = Joi.array().items(ClubSpecPlus).label("ClubArray");
+export const GameArraySpec = Joi.array().items(GameSpecPlus).label("GameArray");
 
-// export const ClubSpec = {
+// export const GameSpec = {
 //   name: Joi.string().required(),
 //   address: Joi.string().required(),
 //   phone: Joi.string().allow("").optional(),
@@ -50,17 +50,22 @@ export const ClubArraySpec = Joi.array().items(ClubSpecPlus).label("ClubArray");
 //   longitude: Joi.number().required(),
 // };
 
-export const CountySpec = Joi.object()
-.keys({
-  county: Joi.string().example("Waterford").required(),
-  userid: IdSpec,
-  clubs: ClubArraySpec,
-})
-.label("County");
+export const ClubSpec = Joi.object()
+  .keys({
+    club: Joi.string().example("Waterford City RFC").required(),
+    address: Joi.string().example("Cork Road, Waterford").required(),
+    phone: Joi.string().example("0869874563").allow("").optional(),
+    email: Joi.string().example("info@waterfordrfc.ie").allow("").optional(),
+    website: Joi.string().example("http://www.waterfordrfc.ie").allow("").optional(),
+    latitude: Joi.number().example("52.2386926").required(),
+    longitude: Joi.number().example("-7.1403204").required(),
+    games: GameArraySpec,
+  })
+  .label("Club");
 
-export const CountySpecPlus = CountySpec.keys({
+export const ClubSpecPlus = ClubSpec.keys({
   _id: IdSpec,
   __v: Joi.number(),
-}).label("PlaylistPlus");
+}).label("ClubPlus");
 
-export const CountyArraySpec = Joi.array().items(CountySpecPlus).label("CountyArray");
+export const ClubArraySpec = Joi.array().items(ClubSpecPlus).label("ClubArray");

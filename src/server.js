@@ -24,7 +24,7 @@ if (result.error) {
 
 const swaggerOptions = {
   info: {
-    title: "Rugby Club POI API",
+    title: "Rugby Game POI API",
     version: "0.1.0",
   },
 };
@@ -64,7 +64,7 @@ async function init() {
 
   server.auth.strategy("session", "cookie", {
     cookie: {
-      name: process.env.COOKIE_NAME || "club_poi_cookie",
+      name: process.env.COOKIE_NAME || "game_poi_cookie",
       password: process.env.COOKIE_PASSWORD || "password-should-be-32-characters",
       isSecure: false,
     },

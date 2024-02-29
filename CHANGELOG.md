@@ -1,4 +1,4 @@
-# Ruby Club POI Changelog
+# Ruby Game POI Changelog
 
 ## version 0.1.0
 

@@ -1,0 +1,45 @@
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>Home Team</th>
+      <th>Home Score</th>
+      <th>Away Score</th>
+      <th>Email</th>
+      <th>Away Team</th>
+      <th>Game Location</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each club.games}}
+      <tr>
+        <td>
+          {{home}}
+        </td>
+        <td>
+          {{homescore}}
+        </td>
+        <td>
+          {{awayscore}}
+        </td>
+        <td>
+          {{away}}
+        </td>
+        <td>
+          {{gametime}}
+        </td>
+        <td>
+          {{gamelocation}}
+        </td>
+        <td>
+          <a href="/game/{{../club._id}}/editgame/{{_id}}" class="ui icon button">
+            <i class="fas fa-edit"></i>
+          </a>
+          <a href="/club/{{../club._id}}/deletegame/{{_id}}" class="ui icon button">
+            <i class="fas fa-trash"></i>
+          </a>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

@@ -1,33 +1,33 @@
 import { assert } from "chai";
 import { assertSubset } from "../test-utils.js";
-import { rugbyClubPOIService } from "./rugby-club-poi-service-service.js";
+import { rugbyGamePOIService } from "./rugby-game-poi-service-service.js";
 import { maggie, testUsers } from "../fixtures.js";
 import { db } from "../../src/models/db.js";
 
 suite("User API tests", () => {
   setup(async () => {
     db.init("json");
-    await rugbyClubPOIService.deleteAllUsers();
+    await rugbyGamePOIService.deleteAllUsers();
     for (let i = 0; i < testUsers.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
-      testUsers[0] = await rugbyClubPOIService.createUser(testUsers[i]);
+      testUsers[0] = await rugbyGamePOIService.createUser(testUsers[i]);
     }
   });
   teardown(async () => {});
 
   test("create a user", async () => {
-    const newUser = await rugbyClubPOIService.createUser(maggie);
+    const newUser = await rugbyGamePOIService.createUser(maggie);
     assertSubset(maggie, newUser);
     assert.isDefined(newUser._id);
   });
   test("get a user", async () => {
-    const returnedUser = await rugbyClubPOIService.getUser(testUsers[0]._id);
+    const returnedUser = await rugbyGamePOIService.getUser(testUsers[0]._id);
     assert.deepEqual(testUsers[0], returnedUser);
   });
 
   test("get a user - bad id", async () => {
     try {
-      const returnedUser = await rugbyClubPOIService.getUser("1234");
+      const returnedUser = await rugbyGamePOIService.getUser("1234");
       assert.fail("Should not return a response");
     } catch (error) {
       assert(error.response.data.message === "No User with this id");
@@ -36,9 +36,9 @@ suite("User API tests", () => {
   });
 
   test("get a user - deleted user", async () => {
-    await rugbyClubPOIService.deleteAllUsers();
+    await rugbyGamePOIService.deleteAllUsers();
     try {
-      const returnedUser = await rugbyClubPOIService.getUser(testUsers[0]._id);
+      const returnedUser = await rugbyGamePOIService.getUser(testUsers[0]._id);
       assert.fail("Should not return a response");
     } catch (error) {
       assert(error.response.data.message === "No User with this id");
@@ -47,10 +47,10 @@ suite("User API tests", () => {
   });
   
   test("delete all userApi", async () => {
-    let returnedUsers = await rugbyClubPOIService.getAllUsers();
+    let returnedUsers = await rugbyGamePOIService.getAllUsers();
     assert.equal(returnedUsers.length, 3);
-    await rugbyClubPOIService.deleteAllUsers();
-    returnedUsers = await rugbyClubPOIService.getAllUsers();
+    await rugbyGamePOIService.deleteAllUsers();
+    returnedUsers = await rugbyGamePOIService.getAllUsers();
     assert.equal(returnedUsers.length, 0);
   });
 });

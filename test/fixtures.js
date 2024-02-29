@@ -29,11 +29,11 @@ export const testUsers = [
 ];
 
 export const wexford = {
-  county: "Wexford",
+  club: "Wexford",
 };
 
 export const clare = {
-  county: "Clare",
+  club: "Clare",
 };
 
 
@@ -67,19 +67,19 @@ export const kilkenny = {
   "longitude": -7.1403204
 };
 
-export const testCounties = [
+export const testClubs = [
   {
-    county: "Cork",
+    club: "Cork",
   },
   {
-    county: "Dublin",
+    club: "Dublin",
   },
   {
-    county: "Limerick",
+    club: "Limerick",
   },
 ];
 
-export const testClubs = [
+export const testGames = [
   {
     name: "Waterford City RFC",
     address: "Waterford",

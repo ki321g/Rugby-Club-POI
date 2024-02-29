@@ -1,0 +1,59 @@
+{{> menu}}
+
+<form method="POST" action="/game/{{club._id}}/updategame/{{game._id}}">
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>Home Team</th>
+      <th>Home Score</th>
+      <th>Away Score</th>
+      <th>Email</th>
+      <th>Away Team</th>
+      <th>Game Location</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>
+          <div class="field">
+            <input class="input" type="text" value="{{game.home}}" name="home">
+          </div>
+        </td>
+        <td>
+          <div class="field">
+        <input class="input" type="number" value="{{game.homescore}}" name="homescore">
+      </div>
+        </td>
+        <td>
+          <div class="field">
+        <input class="input" type="number" value="{{game.awayscore}}" name="awayscore">
+      </div>
+        </td>
+        <td>
+          <div class="field">
+        <input class="input" type="text" value="{{game.away}}" name="away">
+      </div>
+        </td>
+        <td>
+          <div class="field">
+        <input class="input" type="text" value="{{game.gametime}}" name="gametime">
+      </div>
+        </td>
+        <td>
+          <div class="field">
+        <input class="input" type="text" value="{{game.gamelocation}}" name="gamelocation">
+      </div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  <input type="submit" value="Update game">
+</form>
+
+{{#if errors}}
+    <ul>
+        {{#each errors}}
+            <li>{{message}}</li>
+        {{/each}}
+    </ul>
+{{/if}}

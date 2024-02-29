@@ -1,8 +1,8 @@
 import { aboutController } from "./controllers/about-controller.js";
 import { accountsController } from "./controllers/accounts-controller.js";
 import { dashboardController } from "./controllers/dashboard-controller.js";
-import { countyController } from "./controllers/county-controller.js";
 import { clubController } from "./controllers/club-controller.js";
+import { gameController } from "./controllers/game-controller.js";
 
 export const webRoutes = [
   { method: "GET", path: "/", config: accountsController.index },
@@ -15,15 +15,15 @@ export const webRoutes = [
   { method: "GET", path: "/about", config: aboutController.index },
 
   { method: "GET", path: "/dashboard", config: dashboardController.index },
-  { method: "POST", path: "/dashboard/addcounty", config: dashboardController.addCounty },
-  { method: "GET", path: "/dashboard/deletecounty/{id}", config: dashboardController.deleteCounty },
+  { method: "POST", path: "/dashboard/addclub", config: dashboardController.addClub },
+  { method: "GET", path: "/dashboard/deleteclub/{id}", config: dashboardController.deleteClub },
 
-  { method: "GET", path: "/county/{id}", config: countyController.index },
-  { method: "POST", path: "/county/{id}/addclub", config: countyController.addClub },
-  { method: "GET", path: "/county/{id}/deleteclub/{clubid}", config: countyController.deleteClub },
+  { method: "GET", path: "/club/{id}", config: clubController.index },
+  { method: "POST", path: "/club/{id}/addgame", config: clubController.addGame },
+  { method: "GET", path: "/club/{id}/deletegame/{gameid}", config: clubController.deleteGame },
 
-  { method: "GET", path: "/club/{id}/editclub/{clubid}", config: clubController.index },
-  { method: "POST", path: "/club/{id}/updateclub/{clubid}", config: clubController.update },
+  { method: "GET", path: "/game/{id}/editgame/{gameid}", config: gameController.index },
+  { method: "POST", path: "/game/{id}/updategame/{gameid}", config: gameController.update },
 
   { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } },
 ];

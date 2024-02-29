@@ -1,4 +1,5 @@
 import { v4 } from "uuid";
+import { gameMemStore } from "./game-mem-store.js";
 
 let clubs = [];
 
@@ -7,49 +8,31 @@ export const clubMemStore = {
     return clubs;
   },
 
-  async addClub(countyId, club) {
+  async addClub(club) {
     club._id = v4();
-    club.countyid = countyId;
     clubs.push(club);
     return club;
   },
 
-  async getClubsByCountyId(id) {
-    return clubs.filter((club) => club.countyid === id);
-  },
-
   async getClubById(id) {
-    let foundClub = clubs.find((club) => club._id === id);
-    if (!foundClub) {
-      foundClub = null;
+    const list = clubs.find((club) => club._id === id);
+    if (list) {
+      list.games = await gameMemStore.getGamesByClubId(list._id);
+      return list;
     }
-    return foundClub;
+    return null;
   },
 
-  async getCountyClubs(countyidId) {
-    let foundClubs = clubs.filter((club) => club.countyid === countyidId);
-    if (!foundClubs) {
-      foundClubs = null;
-    }
-    return foundClubs;
+  async getUserClubs(userid) {
+    return clubs.filter((club) => club.userid === userid);
   },
 
-  async deleteClub(id) {
+  async deleteClubById(id) {
     const index = clubs.findIndex((club) => club._id === id);
     if (index !== -1) clubs.splice(index, 1);
   },
 
   async deleteAllClubs() {
     clubs = [];
-  },
-
-  async updateClub(club, updatedClub) {
-    club.name = updatedClub.name;
-    club.address = updatedClub.address;
-    club.phone = updatedClub.phone;
-    club.email = updatedClub.email;
-    club.website = updatedClub.website;
-    club.latitude = Number(updatedClub.latitude);
-    club.longitude = Number(updatedClub.longitude);
   },
 };

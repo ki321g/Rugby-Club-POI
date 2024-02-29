@@ -1,50 +1,58 @@
-import { CountySpec } from "../models/joi-schemas.js";
+import { ClubSpec } from "../models/joi-schemas.js";
 import { db } from "../models/db.js";
 
 export const dashboardController = {
   index: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
-      let counties;
+      let clubs;
       // console.log(loggedInUser);
-      const userCounties = await db.countyStore.getUserCounties(loggedInUser._id);
-      // console.log(userCounties);
-      // Sort the counties array alphabetically by the 'name' property
-      counties = userCounties.sort((a, b) => a.county.localeCompare(b.county));
-      // console.log(counties);
+      const userClubs = await db.clubStore.getUserClubs(loggedInUser._id);
+      // console.log(userClubs);
+      // Sort the clubs array alphabetically by the 'name' property
+      clubs = userClubs.sort((a, b) => a.club.localeCompare(b.club));
+      // console.log(clubs);
       const viewData = {
-        title: "RugbyClubPOI Dashboard",
+        title: "RugbyGamePOI Dashboard",
         user: loggedInUser,
-        counties: counties,
+        clubs: clubs,
       };
       return h.view("dashboard-view", viewData);
     },
   },
 
-  addCounty: {
+  addClub: {
     validate: {
-      payload: CountySpec,
+      payload: ClubSpec,
       options: { abortEarly: false },
       failAction: function (request, h, error) {
-        return h.view("dashboard-view", { title: "Add County error", errors: error.details }).takeover().code(400);
+        return h.view("dashboard-view", { title: "Add Club error", errors: error.details }).takeover().code(400);
       },
     },
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
-      const newCounty = {
+      const newClub = {
+        club: request.payload.club,
+        address: request.payload.address,
+        phone: request.payload.phone,
+        email: request.payload.email,
+        website: request.payload.website,
+        latitude: Number(request.payload.latitude),
+        longitude: Number(request.payload.longitude),
         userid: loggedInUser._id,
-        county: request.payload.county,
+        // userid: loggedInUser._id,
+        // club: request.payload.club,
       };
-      await db.countyStore.addCounty(newCounty);
+      await db.clubStore.addClub(newClub);
       return h.redirect("/dashboard");
     },
   },
 
-  deleteCounty: {
+  deleteClub: {
     handler: async function (request, h) {
-      console.log("Deleting CountyID: " + request.params.id);
-      const county = await db.countyStore.getCountyById(request.params.id);
-      await db.countyStore.deleteCountyById(county._id);
+      console.log("Deleting ClubID: " + request.params.id);
+      const club = await db.clubStore.getClubById(request.params.id);
+      await db.clubStore.deleteClubById(club._id);
       return h.redirect("/dashboard");
     },
   },

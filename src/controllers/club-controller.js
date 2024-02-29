@@ -1,41 +1,59 @@
-import { ClubSpec } from "../models/joi-schemas.js";
+import { GameSpec } from "../models/joi-schemas.js";
 import { db } from "../models/db.js";
 
 export const clubController = {
   index: {
     handler: async function (request, h) {
-      const county = await db.countyStore.getCountyById(request.params.id);
-      const club = await db.clubStore.getClubById(request.params.clubid);
+      const loggedInUser = request.auth.credentials;
+      const club = await db.clubStore.getClubById(request.params.id);
       const viewData = {
-        title: "Edit Club",
-        county: county,
+        title: "Club",
         club: club,
       };
       return h.view("club-view", viewData);
     },
   },
 
-  update: {
+  addGame: {
     validate: {
-      payload: ClubSpec,
+      payload: GameSpec,
       options: { abortEarly: false },
       failAction: function (request, h, error) {
-        return h.view("club-view", { title: "Edit club error", errors: error.details }).takeover().code(400);
+        return h.view("club-view", { title: "Add game error", errors: error.details }).takeover().code(400);
       },
     },
     handler: async function (request, h) {
-      const club = await db.clubStore.getClubById(request.params.clubid);
-      const newClub = {
-        name: request.payload.name,
-        address: request.payload.address,
-        phone: request.payload.phone,
-        email: request.payload.email,
-        website: request.payload.website,
-        latitude: Number(request.payload.latitude),
-        longitude: Number(request.payload.longitude),
+      // console.log(request);
+      // console.log(request.params);
+      // console.log(request.payload);
+      const club = await db.clubStore.getClubById(request.params.id);
+      // console.log(club);
+      // console.log(request.payload.home);
+      // console.log(request.payload.homescore);
+      // console.log(request.payload.awayscore);
+      // console.log(request.payload.away);
+      // console.log(request.payload.gametime);
+      // console.log(request.payload.gamelocation);
+      const newGame = {
+        home: request.payload.home,
+        homescore: Number(request.payload.homescore),
+        awayscore: Number(request.payload.awayscore),
+        away: request.payload.away,
+        gametime: request.payload.gametime,
+        gamelocation: request.payload.gamelocation,
       };
-      await db.clubStore.updateClub(club, newClub);
-      return h.redirect(`/county/${request.params.id}`);
+
+      // console.log(newGame);
+      await db.gameStore.addGame(club._id, newGame);
+      return h.redirect(`/club/${club._id}`);
+    },
+  },
+
+  deleteGame: {
+    handler: async function (request, h) {
+      const club = await db.clubStore.getClubById(request.params.id);
+      await db.gameStore.deleteGame(request.params.gameid);
+      return h.redirect(`/club/${club._id}`);
     },
   },
 };

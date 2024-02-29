@@ -1,6 +1,6 @@
 import Boom from "@hapi/boom";
+import { IdSpec, ClubArraySpec, ClubSpec, ClubSpecPlus } from "../models/joi-schemas.js";
 import { db } from "../models/db.js";
-import { IdSpec, ClubSpec, ClubSpecPlus, ClubArraySpec  } from "../models/joi-schemas.js";
 import { validationError } from "./logger.js";
 
 export const clubApi = {
@@ -16,8 +16,8 @@ export const clubApi = {
     },
     tags: ["api"],
     response: { schema: ClubArraySpec, failAction: validationError },
-    description: "Get all clubApi",
-    notes: "Returns all clubApi",
+    description: "Get all Clubs",
+    notes: "Returns all Clubs",
   },
 
   findOne: {
@@ -26,15 +26,15 @@ export const clubApi = {
       try {
         const club = await db.clubStore.getClubById(request.params.id);
         if (!club) {
-          return Boom.notFound("No club with this id");
+          return Boom.notFound("No Club with this id");
         }
         return club;
       } catch (err) {
-        return Boom.serverUnavailable("No club with this id");
+        return Boom.serverUnavailable("No Club with this id");
       }
     },
     tags: ["api"],
-    description: "Find a CLub",
+    description: "Find a Club",
     notes: "Returns a Club",
     validate: { params: { id: IdSpec }, failAction: validationError },
     response: { schema: ClubSpecPlus, failAction: validationError },
@@ -44,20 +44,40 @@ export const clubApi = {
     auth: false,
     handler: async function (request, h) {
       try {
-        const club = await db.clubStore.addClub(request.params.id, request.payload);
-        if (club) {
-          return h.response(club).code(201);
+        const club = request.payload;
+        const newClub = await db.clubStore.addClub(club);
+        if (newClub) {
+          return h.response(newClub).code(201);
         }
-        return Boom.badImplementation("error creating club");
+        return Boom.badImplementation("error creating Club");
       } catch (err) {
         return Boom.serverUnavailable("Database Error");
       }
     },
     tags: ["api"],
     description: "Create a Club",
-    notes: "Returns the newly created club",
-    validate: { payload: ClubSpec },
+    notes: "Returns the newly created Club",
+    validate: { payload: ClubSpec, failAction: validationError },
     response: { schema: ClubSpecPlus, failAction: validationError },
+  },
+
+  deleteOne: {
+    auth: false,
+    handler: async function (request, h) {
+      try {
+        const club = await db.clubStore.getClubById(request.params.id);
+        if (!club) {
+          return Boom.notFound("No Club with this id");
+        }
+        await db.clubStore.deleteClubById(club._id);
+        return h.response().code(204);
+      } catch (err) {
+        return Boom.serverUnavailable("No Club with this id");
+      }
+    },
+    tags: ["api"],
+    description: "Delete a Club",
+    validate: { params: { id: IdSpec }, failAction: validationError },
   },
 
   deleteAll: {
@@ -72,24 +92,5 @@ export const clubApi = {
     },
     tags: ["api"],
     description: "Delete all clubApi",
-  },
-
-  deleteOne: {
-    auth: false,
-    handler: async function (request, h) {
-      try {
-        const club = await db.clubStore.getClubById(request.params.id);
-        if (!club) {
-          return Boom.notFound("No Club with this id");
-        }
-        await db.clubStore.deleteClub(club._id);
-        return h.response().code(204);
-      } catch (err) {
-        return Boom.serverUnavailable("No Club with this id");
-      }
-    },
-    tags: ["api"],
-    description: "Delete a Club",
-    validate: { params: { id: IdSpec }, failAction: validationError },
   },
 };
