@@ -1,4 +1,8 @@
-{{> welcome-menu}}
+{{#if UserLoggedIn}}
+  {{> menu }}
+{{else}}
+  {{>  welcome-menu}}
+{{/if}}
 
 <div class="columns is-vcentered ">
   <div class="column has-text-centered">

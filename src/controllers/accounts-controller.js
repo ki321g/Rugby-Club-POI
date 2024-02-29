@@ -3,9 +3,39 @@ import { db } from "../models/db.js";
 
 export const accountsController = {
   index: {
-    auth: false,
-    handler: function (request, h) {
-      return h.view("main", { title: "Welcome to RugbyGamePOI" });
+    auth: {
+      mode: "try",
+    },
+    handler: async function (request, h) {
+      const loggedInUser = request.auth.credentials;
+      const users = await db.userStore.getAllUsers();
+      const adminUsers = users.filter((user) => user.accountType === "admin");
+      const adminUserCount = adminUsers.length;
+      console.log(adminUsers);
+      console.log(adminUserCount);
+      console.log(loggedInUser);
+      let UserLoggedIn = Boolean(loggedInUser);
+      console.log("UserLoggedIn: " + UserLoggedIn);
+      if (adminUserCount == 0) {
+        console.log("Admin users found. adminUserCount: " + adminUserCount);
+
+        const viewData = {
+          title: "RugbyGamePOI Setup",
+          user: request.auth.credentials,
+          UserLoggedIn: UserLoggedIn,
+        };
+
+        return h.redirect("/signup");
+      } else {
+        console.log("No Admin Users found. adminUserCount: " + adminUserCount);
+
+        const viewData = {
+          title: "Welcome to RugbyGamePOI",
+          user: request.auth.credentials,
+          UserLoggedIn: UserLoggedIn,
+        };
+        return h.view("main", viewData);
+      }
     },
   },
   showSignup: {
@@ -26,7 +56,23 @@ export const accountsController = {
     handler: async function (request, h) {
       const user = request.payload;
       // console.log(user);
-      await db.userStore.addUser(user);
+      await db.userStore.addUser(user, "user");
+      return h.redirect("/login");
+    },
+  },
+  signupAdmin: {
+    auth: false,
+    validate: {
+      payload: UserSpec,
+      options: { abortEarly: false },
+      failAction: function (request, h, error) {
+        return h.view("signup-view", { title: "Sign up error", errors: error.details }).takeover().code(400);
+      },
+    },
+    handler: async function (request, h) {
+      const user = request.payload;
+      // console.log(user);
+      await db.userStore.addUser(user, "admin");
       return h.redirect("/login");
     },
   },

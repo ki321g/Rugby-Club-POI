@@ -5,6 +5,7 @@ export const maggie = {
   lastName: "Simpson",
   email: "maggie@simpson.com",
   password: "secret",
+  accountType: "user"
 };
 
 export const testUsers = [
@@ -13,18 +14,21 @@ export const testUsers = [
     lastName: "Simpson",
     email: "homer@simpson.com",
     password: "secret",
+    accountType: "user"
   },
   {
     firstName: "Marge",
     lastName: "Simpson",
     email: "marge@simpson.com",
     password: "secret",
+    accountType: "user"
   },
   {
     firstName: "Bart",
     lastName: "Simpson",
     email: "bart@simpson.com",
     password: "secret",
+    accountType: "user"
   },
 ];
 
@@ -46,16 +50,6 @@ export const wexford_warriors = {
   latitude: 52.2386926,
   longitude: -7.1403204,
 };
-
-// export const tramore = [{  
-//   "name": "Tramore RFC",
-//   "address": "Tramore",
-//   "phone": "0868063421",
-//   "email": "info@tramorerfc.ie",
-//   "website": "http://tramorerfc.ie",
-//   "latitude": 52.2386926,
-//   "longitude": -7.1403204
-// }];
 
 export const kilkenny = {
   "name": "Kilkenny RFC",

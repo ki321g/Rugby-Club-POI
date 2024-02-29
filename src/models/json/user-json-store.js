@@ -7,9 +7,10 @@ export const userJsonStore = {
     return db.data.users;
   },
 
-  async addUser(user) {
+  async addUser(user, accountType) {
     await db.read();
     user._id = v4();
+    user.accountType = accountType;
     db.data.users.push(user);
     await db.write();
     return user;
