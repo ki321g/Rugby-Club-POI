@@ -8,7 +8,7 @@ export const adminController = {
       let UserLoggedIn = Boolean(loggedInUser);
       let superAdmin = false;
 
-      if (loggedInUser.accountType === "superadmin") {
+      if (loggedInUser.accountType === "superadmin" || loggedInUser.accountType === "admin") {
         superAdmin = Boolean(loggedInUser.accountType);
         console.log("superAdmin: " + superAdmin);
       }

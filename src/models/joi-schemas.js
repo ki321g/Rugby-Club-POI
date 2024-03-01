@@ -59,6 +59,7 @@ export const ClubSpec = Joi.object()
     website: Joi.string().example("http://www.waterfordrfc.ie").allow("").optional(),
     latitude: Joi.number().example("52.2386926").required(),
     longitude: Joi.number().example("-7.1403204").required(),
+    description: Joi.string().example("A great rugby club").allow("").optional(),
     games: GameArraySpec,
   })
   .label("Club");

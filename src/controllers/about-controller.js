@@ -8,10 +8,10 @@ export const aboutController = {
       let UserLoggedIn = Boolean(loggedInUser);
       let superAdmin = false;
       if (loggedInUser) {
-        if (loggedInUser.accountType === "superadmin") {
+        if (loggedInUser.accountType === "superadmin" || loggedInUser.accountType === "admin") {
           superAdmin = Boolean(loggedInUser.accountType);
-          console.log("superAdmin: " + superAdmin);
-        }
+        }        
+        console.log("superAdmin: " + superAdmin);
       }
       const viewData = {
         title: "About RugbyGamePOI",

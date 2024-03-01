@@ -1,4 +1,5 @@
 import { GameSpec } from "../models/joi-schemas.js";
+import { ClubSpec } from "../models/joi-schemas.js";
 import { db } from "../models/db.js";
 
 export const clubController = {
@@ -54,6 +55,33 @@ export const clubController = {
       const club = await db.clubStore.getClubById(request.params.id);
       await db.gameStore.deleteGame(request.params.gameid);
       return h.redirect(`/club/${club._id}`);
+    },
+  },
+  update: {
+    validate: {
+      payload: ClubSpec,
+      options: { abortEarly: false },
+      failAction: function (request, h, error) {
+        return h.view("edit-club-view", { title: "Edit club error", errors: error.details }).takeover().code(400);
+      },
+    },
+    handler: async function (request, h) {
+      console.log("Editing ClubID handler: " + request.params.id);
+      const club = await db.clubStore.getClubById(request.params.id);
+      // console.log(request.payload);
+      const newClub = {
+        club: request.payload.club,
+        address: request.payload.address,
+        phone: request.payload.phone,
+        email: request.payload.email,
+        website: request.payload.website,
+        latitude: Number(request.payload.latitude),
+        longitude: Number(request.payload.longitude),
+        description: request.payload.description,
+      };
+      console.log(newClub);
+      await db.clubStore.updateClub(club, newClub);
+      return h.redirect(`/dashboard`);
     },
   },
 };

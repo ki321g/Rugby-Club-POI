@@ -9,12 +9,13 @@ export const dashboardController = {
       let clubs;
       // console.log(loggedInUser);
       const userClubs = await db.clubStore.getUserClubs(loggedInUser._id);
-      console.log(loggedInUser);
-      console.log("loggedInUser.accountType: " + loggedInUser.accountType);
-      if (loggedInUser.accountType === "superadmin") {
+      // console.log(loggedInUser);
+      // console.log("loggedInUser.accountType: " + loggedInUser.accountType);
+      if (loggedInUser.accountType === "superadmin" || loggedInUser.accountType === "admin") {
         superAdmin = Boolean(loggedInUser.accountType);
-        console.log("superAdmin: " + superAdmin);
       }
+
+      // console.log("superAdmin: " + superAdmin);
       // console.log(userClubs);
       // Sort the clubs array alphabetically by the 'name' property
       clubs = userClubs.sort((a, b) => a.club.localeCompare(b.club));
@@ -28,7 +29,6 @@ export const dashboardController = {
       return h.view("dashboard-view", viewData);
     },
   },
-
   addClub: {
     validate: {
       payload: ClubSpec,
@@ -56,6 +56,18 @@ export const dashboardController = {
     },
   },
 
+  editClub: {
+    handler: async function (request, h) {
+      console.log("Editing ClubID: " + request.params.id);
+      const club = await db.clubStore.getClubById(request.params.id);
+      // console.log(club);
+      const viewData = {
+        title: "Edit Club",
+        club: club,
+      };
+      return h.view("edit-club-view", viewData);
+    },
+  },
   deleteClub: {
     handler: async function (request, h) {
       console.log("Deleting ClubID: " + request.params.id);
