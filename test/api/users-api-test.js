@@ -24,7 +24,7 @@ suite("User API tests", () => {
     assert.isDefined(newUser._id);
   });
   test("get a user", async () => {
-    const returnedUser = await rugbyGamePOIService.getUser(testUsers[0]._id);
+    const returnedUser = await rugbyGamePOIService.getUser(users[0]._id);
     assert.deepEqual(testUsers[0], returnedUser);
   });
 
@@ -41,7 +41,7 @@ suite("User API tests", () => {
   test("get a user - deleted user", async () => {
     await rugbyGamePOIService.deleteAllUsers();
     try {
-      const returnedUser = await rugbyGamePOIService.getUser(testUsers[0]._id);
+      const returnedUser = await rugbyGamePOIService.getUser(users[0]._id);
       assert.fail("Should not return a response");
     } catch (error) {
       assert(error.response.data.message === "No User with this id");

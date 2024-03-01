@@ -9,10 +9,11 @@ export const UserCredentialsSpec = Joi.object()
   })
   .label("UserCredentials");
 
-  export const UserSpec = UserCredentialsSpec.keys({
-    firstName: Joi.string().example("Homer").required(),
-    lastName: Joi.string().example("Simpson").required(),
-  }).label("UserDetails");
+export const UserSpec = UserCredentialsSpec.keys({
+  firstName: Joi.string().example("Homer").required(),
+  lastName: Joi.string().example("Simpson").required(),
+  accountType: Joi.string().example("user").required(),
+}).label("UserDetails");
 
 export const UserSpecPlus = UserSpec.keys({
   _id: IdSpec,
@@ -40,16 +41,6 @@ export const GameSpecPlus = GameSpec.keys({
 }).label("GamePlus");
 
 export const GameArraySpec = Joi.array().items(GameSpecPlus).label("GameArray");
-
-// export const GameSpec = {
-//   name: Joi.string().required(),
-//   address: Joi.string().required(),
-//   phone: Joi.string().allow("").optional(),
-//   email: Joi.string().allow("").optional(),
-//   website: Joi.string().allow("").optional(),
-//   latitude: Joi.number().required(),
-//   longitude: Joi.number().required(),
-// };
 
 export const ClubSpec = Joi.object()
   .keys({

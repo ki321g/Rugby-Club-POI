@@ -54,7 +54,6 @@ export const wexfordWaterford = {
   gamelocation: "114",
 };
 
-
 export const wexford = {
   club: "wexford RFC",
   address: "wexford",
