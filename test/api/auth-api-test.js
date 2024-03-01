@@ -1,27 +1,27 @@
 import { assert } from "chai";
 import { rugbyGamePOIService } from "./rugby-game-poi-service.js";
 import { decodeToken } from "../../src/api/jwt-utils.js";
-import { maggie } from "../fixtures.js";
+import { maggie, maggieCredentials } from "../fixtures.js";
 
 suite("Authentication API tests", async () => {
   setup(async () => {
     rugbyGamePOIService.clearAuth();
     // await rugbyGamePOIService.deleteAllUsers(); // added
     await rugbyGamePOIService.createUser(maggie);
-    await rugbyGamePOIService.authenticate(maggie);
+    await rugbyGamePOIService.authenticate(maggieCredentials);
     await rugbyGamePOIService.deleteAllUsers();
   });
 
   test("authenticate", async () => {
     const returnedUser = await rugbyGamePOIService.createUser(maggie);
-    const response = await rugbyGamePOIService.authenticate(maggie);
+    const response = await rugbyGamePOIService.authenticate(maggieCredentials);
     assert(response.success);
     assert.isDefined(response.token);
   });
 
   test("verify Token", async () => {
     const returnedUser = await rugbyGamePOIService.createUser(maggie);
-    const response = await rugbyGamePOIService.authenticate(maggie);
+    const response = await rugbyGamePOIService.authenticate(maggieCredentials);
 
     const userInfo = decodeToken(response.token);
     assert.equal(userInfo.email, returnedUser.email);

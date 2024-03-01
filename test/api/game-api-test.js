@@ -2,7 +2,7 @@ import { EventEmitter } from "events";
 import { assert } from "chai";
 import { assertSubset } from "../test-utils.js";
 import { rugbyGamePOIService } from "./rugby-game-poi-service.js";
-import { maggie, wexford, testGames, corkWaterford } from "../fixtures.js";
+import { maggie, maggieCredentials, wexford, testGames, corkWaterford } from "../fixtures.js";
 import { db } from "../../src/models/db.js";
 
 EventEmitter.setMaxListeners(25);
@@ -15,12 +15,12 @@ suite("Game API tests", () => {
     db.init("json");
     rugbyGamePOIService.clearAuth();
     user = await rugbyGamePOIService.createUser(maggie);
-    await rugbyGamePOIService.authenticate(maggie);
+    await rugbyGamePOIService.authenticate(maggieCredentials);
     await rugbyGamePOIService.deleteAllClubs();
     await rugbyGamePOIService.deleteAllGames();
     await rugbyGamePOIService.deleteAllUsers();
     user = await rugbyGamePOIService.createUser(maggie);
-    await rugbyGamePOIService.authenticate(maggie);
+    await rugbyGamePOIService.authenticate(maggieCredentials);
     wexford.userid = user._id;
     testingClub = await rugbyGamePOIService.createClub(wexford);    
   });

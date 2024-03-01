@@ -15,16 +15,6 @@ export const userJsonStore = {
     await db.write();
     return user;
   },
-  // async addUser(user, accountType) {
-  //   await db.read();
-  //   user._id = v4();
-  //   console.log(user);
-  //   console.log(accountType);
-  //   user.accountType = accountType;
-  //   db.data.users.push(user);
-  //   await db.write();
-  //   return user;
-  // },
 
   async getUserById(id) {
     await db.read();

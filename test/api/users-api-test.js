@@ -1,20 +1,24 @@
 import { assert } from "chai";
 import { assertSubset } from "../test-utils.js";
 import { rugbyGamePOIService } from "./rugby-game-poi-service.js";
-import { maggie, testUsers } from "../fixtures.js";
+import { maggie, maggieCredentials, testUsers } from "../fixtures.js";
 import { db } from "../../src/models/db.js";
 
 const users = new Array(testUsers.length);
 
 suite("User API tests", () => {
   setup(async () => {
-    console.log(testUsers);
     db.init("json");
+    rugbyGamePOIService.clearAuth();
+    await rugbyGamePOIService.createUser(maggie);
+    await rugbyGamePOIService.authenticate(maggieCredentials);
     await rugbyGamePOIService.deleteAllUsers();
     for (let i = 0; i < testUsers.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
       users[0] = await rugbyGamePOIService.createUser(testUsers[i]);
     }
+    await rugbyGamePOIService.createUser(maggie);
+    await rugbyGamePOIService.authenticate(maggieCredentials);
   });
   teardown(async () => {});
 
@@ -34,7 +38,7 @@ suite("User API tests", () => {
       assert.fail("Should not return a response");
     } catch (error) {
       assert(error.response.data.message === "No User with this id");
-      // assert.equal(error.response.data.statusCode, 503);
+      assert.equal(error.response.data.statusCode, 503);
     }
   });
 
@@ -48,11 +52,13 @@ suite("User API tests", () => {
       assert.equal(error.response.data.statusCode, 404);
     }
   });
-  
+
   test("delete all userApi", async () => {
     let returnedUsers = await rugbyGamePOIService.getAllUsers();
-    assert.equal(returnedUsers.length, 3);
+    assert.equal(returnedUsers.length, 4);
     await rugbyGamePOIService.deleteAllUsers();
+    await rugbyGamePOIService.createUser(maggie);
+    await rugbyGamePOIService.authenticate(maggieCredentials);
     returnedUsers = await rugbyGamePOIService.getAllUsers();
     assert.equal(returnedUsers.length, 0);
   });

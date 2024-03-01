@@ -30,7 +30,6 @@ export const GameSpec = Joi.object()
     away: Joi.string().example("Tramore RFC").required(),
     gametime: Joi.string().example("Some time").required(),
     gamelocation: Joi.string().example("Waterford").required(),
-    userid: IdSpec,
     clubid: IdSpec,
   })
   .label("Game");
@@ -63,3 +62,10 @@ export const ClubSpecPlus = ClubSpec.keys({
 }).label("ClubPlus");
 
 export const ClubArraySpec = Joi.array().items(ClubSpecPlus).label("ClubArray");
+
+export const JwtAuth = Joi.object()
+  .keys({
+    success: Joi.boolean().example("true").required(),
+    token: Joi.string().example("eyJhbGciOiJND.g5YmJisIjoiaGYwNTNjAOhE.gCWGmY5-YigQw0DCBo").required(),
+  })
+  .label("JwtAuth");

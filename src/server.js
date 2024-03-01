@@ -29,6 +29,14 @@ const swaggerOptions = {
     title: "Rugby Game POI API",
     version: "0.1.0",
   },
+  securityDefinitions: {
+    jwt: {
+      type: "apiKey",
+      name: "Authorization",
+      in: "header"
+    }
+  },
+  security: [{ jwt: [] }]
 };
 
 async function init() {
@@ -36,6 +44,7 @@ async function init() {
     port: process.env.PORT || 3000,
     //host: "localhost",
   });
+  
 
   await server.register(Inert);
   await server.register(Vision);
