@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import { assertSubset } from "../test-utils.js";
-import { rugbyGamePOIService } from "./rugby-game-poi-service-service.js";
+import { rugbyGamePOIService } from "./rugby-game-poi-service.js";
 import { maggie, testUsers } from "../fixtures.js";
 import { db } from "../../src/models/db.js";
 

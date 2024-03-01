@@ -1,7 +1,7 @@
 import { EventEmitter } from "events";
 import { assert } from "chai";
 import { assertSubset } from "../test-utils.js";
-import { rugbyGamePOIService } from "./rugby-game-poi-service-service.js";
+import { rugbyGamePOIService } from "./rugby-game-poi-service.js";
 import { maggie, wexford, testGames, corkWaterford } from "../fixtures.js";
 import { db } from "../../src/models/db.js";
 
@@ -17,7 +17,7 @@ suite("Game API tests", () => {
     await rugbyGamePOIService.deleteAllUsers();
     await rugbyGamePOIService.deleteAllGames();
     user = await rugbyGamePOIService.createUser(maggie);
-    wexford.userid = user._id;
+    // wexford.userid = user._id;
     testingClub = await rugbyGamePOIService.createClub(wexford);    
   });
 
