@@ -1,4 +1,8 @@
-{{> menu active="dashboard"}}
+{{#if superAdmin}}
+  {{> admin-menu active="dashboard"}}
+{{else}}
+  {{>  menu active="dashboard"}}
+{{/if}}
 
 <section class="section">
   {{> list-clubs}}

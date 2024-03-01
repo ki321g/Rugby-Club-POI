@@ -1,11 +1,11 @@
-export const aboutController = {
+import { ClubSpec } from "../models/joi-schemas.js";
+import { db } from "../models/db.js";
+
+export const adminController = {
   index: {
-    auth: {
-      mode: "try",
-    },
-    handler: function (request, h) {
+    handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
-      let UserLoggedIn = Boolean(loggedInUser);      
+      let UserLoggedIn = Boolean(loggedInUser);
       let superAdmin = false;
 
       if (loggedInUser.accountType === "superadmin") {
@@ -14,12 +14,12 @@ export const aboutController = {
       }
 
       const viewData = {
-        title: "About RugbyGamePOI",
+        title: "Admin RugbyGamePOI",
         user: request.auth.credentials,
         UserLoggedIn: UserLoggedIn,
         superAdmin: superAdmin,
       };
-      return h.view("about-view", viewData);
+      return h.view("admin-view", viewData);
     },
   },
 };

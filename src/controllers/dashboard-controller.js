@@ -5,9 +5,16 @@ export const dashboardController = {
   index: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
+      let superAdmin = false;
       let clubs;
       // console.log(loggedInUser);
       const userClubs = await db.clubStore.getUserClubs(loggedInUser._id);
+      console.log(loggedInUser);
+      console.log("loggedInUser.accountType: " + loggedInUser.accountType);
+      if (loggedInUser.accountType === "superadmin") {
+        superAdmin = Boolean(loggedInUser.accountType);
+        console.log("superAdmin: " + superAdmin);
+      }
       // console.log(userClubs);
       // Sort the clubs array alphabetically by the 'name' property
       clubs = userClubs.sort((a, b) => a.club.localeCompare(b.club));
@@ -15,6 +22,7 @@ export const dashboardController = {
       const viewData = {
         title: "RugbyGamePOI Dashboard",
         user: loggedInUser,
+        superAdmin: superAdmin,
         clubs: clubs,
       };
       return h.view("dashboard-view", viewData);

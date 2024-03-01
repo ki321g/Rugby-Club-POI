@@ -1,0 +1,13 @@
+{{#if UserLoggedIn}}
+  {{#if superAdmin}}
+    {{> admin-menu active="admin"}}
+  {{else}}
+    {{>  menu active="admin"}}
+  {{/if}}
+{{else}}
+  {{>  welcome-menu active="admin"}}
+{{/if}}
+
+<section class="section">
+  <h1> Hello from RugbyGamePOI Your on the Admin page </h1>
+</section>

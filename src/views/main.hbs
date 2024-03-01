@@ -1,7 +1,11 @@
 {{#if UserLoggedIn}}
-  {{> menu }}
+  {{#if superAdmin}}
+    {{> admin-menu active="home"}}
+  {{else}}
+    {{>  menu active="home"}}
+  {{/if}}
 {{else}}
-  {{>  welcome-menu}}
+  {{>  welcome-menu active="home"}}
 {{/if}}
 
 <div class="columns is-vcentered ">

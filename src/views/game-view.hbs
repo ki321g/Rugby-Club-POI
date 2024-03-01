@@ -1,4 +1,8 @@
-{{> menu}}
+{{#if superAdmin}}
+  {{> admin-menu active="dashboard"}}
+{{else}}
+  {{>  menu active="dashboard"}}
+{{/if}}
 
 <form method="POST" action="/game/{{club._id}}/updategame/{{game._id}}">
 <table class="table is-fullwidth">

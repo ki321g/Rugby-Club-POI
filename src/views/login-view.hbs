@@ -1,9 +1,13 @@
-{{!-- {{#if UserLoggedIn}}
-  {{> menu active="login"}}
+{{#if UserLoggedIn}}
+  {{#if superAdmin}}
+    {{> admin-menu active="login"}}
+  {{else}}
+    {{>  menu active="login"}}
+  {{/if}}
 {{else}}
   {{>  welcome-menu active="login"}}
-{{/if}} --}}
-{{>  welcome-menu active="login"}}
+{{/if}}
+
 
 <section class="section">
   <h1 class="title">Log in</h1>

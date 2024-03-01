@@ -9,15 +9,16 @@ export const accountsController = {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
       const users = await db.userStore.getAllUsers();
-      const adminUsers = users.filter((user) => user.accountType === "admin");
-      const adminUserCount = adminUsers.length;
-      console.log(adminUsers);
-      console.log(adminUserCount);
+      const superAdminUser = users.filter((user) => user.accountType === "superadmin");
+      // const adminUsers = users.filter((user) => user.accountType === "admin" || user.accountType === "superadmin");
+      const superAdminUserCount = superAdminUser.length;
+      console.log(superAdminUser);
+      console.log(superAdminUserCount);
       console.log(loggedInUser);
       let UserLoggedIn = Boolean(loggedInUser);
       console.log("UserLoggedIn: " + UserLoggedIn);
-      if (adminUserCount == 0) {
-        console.log("Admin users found. adminUserCount: " + adminUserCount);
+      if (superAdminUserCount == 0) {
+        console.log("No Admin Users found. superAdminUserCount: " + superAdminUserCount);
 
         const viewData = {
           title: "RugbyGamePOI Setup",
@@ -27,7 +28,7 @@ export const accountsController = {
 
         return h.redirect("/signup");
       } else {
-        console.log("No Admin Users found. adminUserCount: " + adminUserCount);
+        console.log("Admin users found. superAdminUserCount: " + superAdminUserCount);
 
         const viewData = {
           title: "Welcome to RugbyGamePOI",
