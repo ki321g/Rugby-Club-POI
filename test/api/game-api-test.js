@@ -17,7 +17,7 @@ suite("Game API tests", () => {
     user = await rugbyGamePOIService.createUser(maggie);
     await rugbyGamePOIService.authenticate(maggie);
     await rugbyGamePOIService.deleteAllClubs();
-    await rugbyGamePOIService.deleteAllGames();    
+    await rugbyGamePOIService.deleteAllGames();
     await rugbyGamePOIService.deleteAllUsers();
     user = await rugbyGamePOIService.createUser(maggie);
     await rugbyGamePOIService.authenticate(maggie);
