@@ -1,8 +1,8 @@
-import { createToken } from "./jwt-utils.js";
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
 import { UserSpec, UserSpecPlus, IdSpec, UserArray } from "../models/joi-schemas.js";
 import { validationError } from "./logger.js";
+import { createToken } from "./jwt-utils.js";
 
 export const userApi = {
   find: {

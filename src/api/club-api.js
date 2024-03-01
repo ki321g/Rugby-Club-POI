@@ -5,7 +5,9 @@ import { validationError } from "./logger.js";
 
 export const clubApi = {
   find: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const clubs = await db.clubStore.getAllClubs();
@@ -21,7 +23,9 @@ export const clubApi = {
   },
 
   findOne: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     async handler(request) {
       try {
         const club = await db.clubStore.getClubById(request.params.id);
@@ -41,7 +45,9 @@ export const clubApi = {
   },
 
   create: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const club = request.payload;
@@ -62,7 +68,9 @@ export const clubApi = {
   },
 
   deleteOne: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const club = await db.clubStore.getClubById(request.params.id);
@@ -81,7 +89,9 @@ export const clubApi = {
   },
 
   deleteAll: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         await db.clubStore.deleteAllClubs();

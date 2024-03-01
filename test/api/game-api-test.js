@@ -13,11 +13,15 @@ suite("Game API tests", () => {
 
   setup(async () => {    
     db.init("json");
-    await rugbyGamePOIService.deleteAllClubs();
-    await rugbyGamePOIService.deleteAllUsers();
-    await rugbyGamePOIService.deleteAllGames();
+    rugbyGamePOIService.clearAuth();
     user = await rugbyGamePOIService.createUser(maggie);
-    // wexford.userid = user._id;
+    await rugbyGamePOIService.authenticate(maggie);
+    await rugbyGamePOIService.deleteAllClubs();
+    await rugbyGamePOIService.deleteAllGames();    
+    await rugbyGamePOIService.deleteAllUsers();
+    user = await rugbyGamePOIService.createUser(maggie);
+    await rugbyGamePOIService.authenticate(maggie);
+    wexford.userid = user._id;
     testingClub = await rugbyGamePOIService.createClub(wexford);    
   });
 

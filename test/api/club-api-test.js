@@ -3,17 +3,24 @@ import { assert } from "chai";
 import { assertSubset } from "../test-utils.js";
 import { rugbyGamePOIService } from "./rugby-game-poi-service.js";
 import { maggie, wexford, testClubs } from "../fixtures.js";
+import { db } from "../../src/models/db.js";
 
+// const clubs = new Array(testClubs.length);
 EventEmitter.setMaxListeners(25);
 
 suite("Club API tests", () => {
   let user = null;
 
   setup(async () => {
+    db.init("json");
+    rugbyGamePOIService.clearAuth();
+    user = await rugbyGamePOIService.createUser(maggie);
+    await rugbyGamePOIService.authenticate(maggie);
     await rugbyGamePOIService.deleteAllClubs();
     await rugbyGamePOIService.deleteAllUsers();
     user = await rugbyGamePOIService.createUser(maggie);
-    // wexford.userid = user._id;
+    await rugbyGamePOIService.authenticate(maggie);
+    wexford.userid = user._id;
   });
 
   teardown(async () => {});
@@ -38,7 +45,7 @@ suite("Club API tests", () => {
 
   test("Create Multiple Clubs", async () => {
     for (let i = 0; i < testClubs.length; i += 1) {
-      // testClubs[i].userid = user._id;
+      testClubs[i].userid = user._id;
       // eslint-disable-next-line no-await-in-loop
       await rugbyGamePOIService.createClub(testClubs[i]);
     }

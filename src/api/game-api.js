@@ -5,7 +5,9 @@ import { validationError } from "./logger.js";
 
 export const gameApi = {
   find: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const games = await db.gameStore.getAllGames();
@@ -21,7 +23,9 @@ export const gameApi = {
   },
 
   findOne: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     async handler(request) {
       try {
         const game = await db.gameStore.getGameById(request.params.id);
@@ -41,7 +45,9 @@ export const gameApi = {
   },
 
   create: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const game = await db.gameStore.addGame(request.params.id, request.payload);
@@ -61,7 +67,9 @@ export const gameApi = {
   },
 
   deleteAll: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         await db.gameStore.deleteAllGames();
@@ -75,7 +83,9 @@ export const gameApi = {
   },
 
   deleteOne: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const game = await db.gameStore.getGameById(request.params.id);
