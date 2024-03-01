@@ -55,9 +55,10 @@ export const accountsController = {
       },
     },
     handler: async function (request, h) {
-      const user = request.payload;
-      // console.log(user);
-      await db.userStore.addUser(user, "user");
+      const user = request.payload; 
+      user.accountType = "user";      
+      // console.log(user);     
+      await db.userStore.addUser(user);
       return h.redirect("/login");
     },
   },

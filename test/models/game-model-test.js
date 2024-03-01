@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import { db } from "../../src/models/db.js";
-import { testClubs, testGames, clare, kilkenny, wexford, wexford_warriors, testUsers, maggie } from "../fixtures.js";
+import { testClubs, testGames, clare, wexford, wexfordWaterford, testUsers, maggie } from "../fixtures.js";
 import { assertSubset } from "../test-utils.js";
 
 suite("Game Model Tests", () => {
@@ -27,9 +27,9 @@ suite("Game Model Tests", () => {
 
   test("Create Single Game", async () => {
     const wexfordList = await db.clubStore.addClub(wexford);
-    const game = await db.gameStore.addGame(wexfordList._id, wexford_warriors);
+    const game = await db.gameStore.addGame(wexfordList._id, wexfordWaterford);
     assert.isNotNull(game._id);
-    assertSubset(wexford_warriors, game);
+    assertSubset(wexfordWaterford, game);
   });
 
   test("Create Multiple gameApi", async () => {
@@ -47,9 +47,9 @@ suite("Game Model Tests", () => {
 
   test("Get a Game - Success", async () => {
     const wexfordList = await db.clubStore.addClub(wexford);
-    const game = await db.gameStore.addGame(wexfordList._id, wexford_warriors);
+    const game = await db.gameStore.addGame(wexfordList._id, wexfordWaterford);
     const newGame = await db.gameStore.getGameById(game._id);
-    assertSubset(wexford_warriors, newGame);
+    assertSubset(wexfordWaterford, newGame);
   });
 
   test("Delete One Game - Success", async () => {

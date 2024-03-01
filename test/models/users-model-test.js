@@ -4,7 +4,6 @@ import { maggie, testUsers } from "../fixtures.js";
 import { assertSubset } from "../test-utils.js";
 
 suite("User Model tests", () => {
-
   setup(async () => {
     db.init("json");
     await db.userStore.deleteAll();

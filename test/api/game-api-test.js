@@ -2,7 +2,7 @@ import { EventEmitter } from "events";
 import { assert } from "chai";
 import { assertSubset } from "../test-utils.js";
 import { rugbyGamePOIService } from "./rugby-game-poi-service-service.js";
-import { maggie, wexford, testGames, kilkenny } from "../fixtures.js";
+import { maggie, wexford, testGames, corkWaterford } from "../fixtures.js";
 import { db } from "../../src/models/db.js";
 
 EventEmitter.setMaxListeners(25);
@@ -24,8 +24,8 @@ suite("Game API tests", () => {
   teardown(async () => {});
 
   test("Create Game", async () => {
-    const returnedGame = await rugbyGamePOIService.createGame(testingClub._id, kilkenny);
-    assertSubset(kilkenny, returnedGame);
+    const returnedGame = await rugbyGamePOIService.createGame(testingClub._id, corkWaterford);
+    assertSubset(corkWaterford, returnedGame);
   });
 
   test("Create Multiple Games", async () => {

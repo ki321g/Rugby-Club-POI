@@ -4,13 +4,16 @@ import { rugbyGamePOIService } from "./rugby-game-poi-service-service.js";
 import { maggie, testUsers } from "../fixtures.js";
 import { db } from "../../src/models/db.js";
 
+const users = new Array(testUsers.length);
+
 suite("User API tests", () => {
   setup(async () => {
+    console.log(testUsers);
     db.init("json");
     await rugbyGamePOIService.deleteAllUsers();
     for (let i = 0; i < testUsers.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
-      testUsers[0] = await rugbyGamePOIService.createUser(testUsers[i]);
+      users[0] = await rugbyGamePOIService.createUser(testUsers[i]);
     }
   });
   teardown(async () => {});
