@@ -1,3 +1,17 @@
+:root {
+  --textDark: hsla(0, 0%, 0%, 0.66);
+  --textLight: hsla(0, 0%, 0%, 0.33);
+}
 .main-navbar:hover {
   background: hsl(207, 61%, 48%) !important;
+}
+
+.brand-heading {
+  font-weight: 800;
+  letter-spacing: -2px;
+}
+
+.page-heading {
+  font-weight: 800;
+  letter-spacing: -2px;
 }

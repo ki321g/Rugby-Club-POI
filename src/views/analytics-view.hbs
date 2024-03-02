@@ -1,0 +1,13 @@
+{{#if UserLoggedIn}}
+  {{#if superAdmin}}
+    {{> admin-menu active="analytics"}}
+  {{else}}
+    {{>  menu active="analytics"}}
+  {{/if}}
+{{else}}
+  {{>  welcome-menu active="analytics"}}
+{{/if}}
+
+<section class="section">
+  <div class="title page-heading title is-1">Analytics Page </div>
+</section>

@@ -29,7 +29,7 @@ export const accountsController = {
           UserLoggedIn: UserLoggedIn,
           CreateSuperAdmin: CreateSuperAdmin,
         };
-        
+
         return h.view("signup-view", viewData);
         // return h.redirect("/signup", viewData);
       } else {
@@ -74,22 +74,6 @@ export const accountsController = {
       return h.redirect("/login");
     },
   },
-  signupAdmin: {
-    auth: false,
-    validate: {
-      payload: UserSpec,
-      options: { abortEarly: false },
-      failAction: function (request, h, error) {
-        return h.view("signup-view", { title: "Sign up error", errors: error.details }).takeover().code(400);
-      },
-    },
-    handler: async function (request, h) {
-      const user = request.payload;
-      // console.log(user);
-      await db.userStore.addUser(user, "admin");
-      return h.redirect("/login");
-    },
-  },
   showLogin: {
     auth: false,
     handler: function (request, h) {
@@ -108,10 +92,19 @@ export const accountsController = {
     handler: async function (request, h) {
       const { email, password } = request.payload;
       const user = await db.userStore.getUserByEmail(email);
+
       if (!user || user.password !== password) {
         return h.redirect("/");
       }
+      console.log("Kieron is testing here now.");
+      console.log(user);
+
       request.cookieAuth.set({ id: user._id });
+      if (user.accountType === "superadmin") {
+        console.log("Super Admin User Logged In");
+        return h.redirect("/admin");
+      }
+
       return h.redirect("/dashboard");
     },
   },

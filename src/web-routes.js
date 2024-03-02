@@ -16,6 +16,7 @@ export const webRoutes = [
   { method: "POST", path: "/authenticate", config: accountsController.login },
 
   { method: "GET", path: "/admin", config: adminController.index },
+  { method: "GET", path: "/analytics", config: adminController.analytics },
 
   { method: "GET", path: "/dashboard", config: dashboardController.index },
   { method: "POST", path: "/dashboard/addclub", config: dashboardController.addClub },
