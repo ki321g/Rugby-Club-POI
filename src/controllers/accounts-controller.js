@@ -14,6 +14,7 @@ export const accountsController = {
       const superAdminUserCount = superAdminUser.length;
       let UserLoggedIn = Boolean(loggedInUser);
       let CreateSuperAdmin = false;
+      
       if (superAdminUserCount == 0) {
         CreateSuperAdmin = true;
         const viewData = {
@@ -25,8 +26,6 @@ export const accountsController = {
 
         return h.view("signup-view", viewData);
       } else {
-        console.log("Admin users found. superAdminUserCount: " + superAdminUserCount);
-
         const viewData = {
           title: "Welcome to RugbyGamePOI",
           user: request.auth.credentials,
