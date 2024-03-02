@@ -47,6 +47,7 @@ export const dashboardController = {
         website: request.payload.website,
         latitude: Number(request.payload.latitude),
         longitude: Number(request.payload.longitude),
+        description: request.payload.description,
         userid: loggedInUser._id,
         // userid: loggedInUser._id,
         // club: request.payload.club,
