@@ -8,14 +8,13 @@
   {{>  welcome-menu active="signup"}}
 {{/if}}
 
-<section class="section">
-  <h1 class="title">Sign up </h1>
-  
+<section class="section"> 
   {{#if CreateSuperAdmin}}
-    <div class="notification is-primary">
-      <button class="delete"></button> No SuperAdmin Account: Create  one now!
+    <div class="notification is-danger">
+      <button class="delete"></button> No SuperAdmin Account: Please Create one now.
     </div>
   {{/if}}
+  <h1 class="title">Sign up </h1>
   {{!-- <div class="notification is-danger">
     <button class="delete"></button> Invalid email or password
   </div> --}}
