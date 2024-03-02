@@ -16,17 +16,22 @@ export const accountsController = {
       console.log(superAdminUserCount);
       console.log(loggedInUser);
       let UserLoggedIn = Boolean(loggedInUser);
+      let CreateSuperAdmin = false;
+      console.log("CreateSuperAdmin: " + CreateSuperAdmin);
       console.log("UserLoggedIn: " + UserLoggedIn);
       if (superAdminUserCount == 0) {
         console.log("No Admin Users found. superAdminUserCount: " + superAdminUserCount);
-
+        CreateSuperAdmin = true;
+        console.log("CreateSuperAdmin: " + CreateSuperAdmin);
         const viewData = {
           title: "RugbyGamePOI Setup",
           user: request.auth.credentials,
           UserLoggedIn: UserLoggedIn,
+          CreateSuperAdmin: CreateSuperAdmin,
         };
-
-        return h.redirect("/signup");
+        
+        return h.view("signup-view", viewData);
+        // return h.redirect("/signup", viewData);
       } else {
         console.log("Admin users found. superAdminUserCount: " + superAdminUserCount);
 
@@ -55,9 +60,16 @@ export const accountsController = {
       },
     },
     handler: async function (request, h) {
-      const user = request.payload; 
-      user.accountType = "user";      
-      // console.log(user);     
+      const user = request.payload;
+      const checkUsers = await db.userStore.getAllUsers();
+      const superAdminUser = checkUsers.filter((user) => user.accountType === "superadmin");
+
+      if (superAdminUser.length == 0) {
+        user.accountType = "superadmin";
+      } else {
+        user.accountType = "user";
+      }
+      // console.log(user);
       await db.userStore.addUser(user);
       return h.redirect("/login");
     },

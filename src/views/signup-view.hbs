@@ -9,7 +9,16 @@
 {{/if}}
 
 <section class="section">
-  <h1 class="title">Sign up</h1>
+  <h1 class="title">Sign up </h1>
+  
+  {{#if CreateSuperAdmin}}
+    <div class="notification is-primary">
+      <button class="delete"></button> No SuperAdmin Account: Create  one now!
+    </div>
+  {{/if}}
+  {{!-- <div class="notification is-danger">
+    <button class="delete"></button> Invalid email or password
+  </div> --}}
   <form action="/register" method="POST">
     <label class="label">Name</label>
     <div class="field is-horizontal">
@@ -27,7 +36,8 @@
     </div>
     <div class="field">
       <label class="label">Password</label> <input class="input" type="password" placeholder="Enter Password" name="password">
-    </div>
+    </div>    
+    <input type="hidden" name="accountType" value="user">
     <div class="field is-grouped">
       <button class="button is-link">Submit</button>
     </div>
