@@ -1,0 +1,57 @@
+
+<form method="POST" action="/game/{{club._id}}/updategame/{{game._id}}">
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>FirstName</th>
+      <th>LastName</th>
+      <th>eMail</th>
+      <th>password</th>
+      <th>accountType</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>
+          <div class="field">
+            <input class="input" type="text" value="{{user.firstName}}" name="firstName">
+          </div>
+        </td>
+        <td>
+          <div class="field">
+        <input class="input" type="number" value="{{user.lastName}}" name="lastName">
+      </div>
+        </td>
+        <td>
+          <div class="field">
+        <input class="input" type="number" value="{{user.email}}" name="email">
+      </div>
+        </td>
+        <td>
+          <div class="field">
+        <input class="input" type="text" value="{{user.password}}" name="password">
+      </div>
+        </td>
+        <td>
+        <div class="field">
+        <select name="accountType">
+            <option value="user" {{#if (eq accountType 'user')}}selected{{/if}}>User</option>
+            <option value="admin" {{#if (eq accountType 'admin')}}selected{{/if}}>Admin</option>
+        </select>
+      </div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  {{!-- <input type="submit" value="Update User"> --}}
+  <button class="button is-link">Update User</button>
+</form>
+
+{{#if errors}}
+    <ul>
+        {{#each errors}}
+            <li>{{message}}</li>
+        {{/each}}
+    </ul>
+{{/if}}

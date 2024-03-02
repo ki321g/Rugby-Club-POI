@@ -8,9 +8,11 @@ import Joi from "joi";
 import HapiSwagger from "hapi-swagger";
 import { fileURLToPath } from "url";
 import Handlebars from "handlebars";
+import { handlebarsHelpers } from "./helpers/handlebars-helpers.js";
 import { webRoutes } from "./web-routes.js";
 import { db } from "./models/db.js";
 import { accountsController } from "./controllers/accounts-controller.js";
+
 import { apiRoutes } from "./api-routes.js";
 import jwt from "hapi-auth-jwt2";
 import { validate } from "./api/jwt-utils.js";
@@ -23,6 +25,13 @@ if (result.error) {
   console.log(result.error.message);
   //process.exit(1);
 }
+
+// Register each helper with Handlebars
+Object.keys(handlebarsHelpers).forEach((helper) => {
+  if (Object.prototype.hasOwnProperty.call(handlebarsHelpers, helper)) {
+    Handlebars.registerHelper(helper, handlebarsHelpers[helper]);
+  }
+});
 
 const swaggerOptions = {
   info: {

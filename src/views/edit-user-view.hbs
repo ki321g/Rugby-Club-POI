@@ -1,0 +1,72 @@
+{{#if UserLoggedIn}}
+  {{#if superAdmin}}
+    {{> admin-menu active="admin"}}
+  {{else}}
+    {{>  menu active="admin"}}
+  {{/if}}
+{{else}}
+  {{>  welcome-menu active="admin"}}
+{{/if}}
+
+<section class="section">
+    <h1 class="title page-heading is-3">Edit User</h1>
+
+    <form method="POST" action="/updateuser/{{user._id}}">
+    <table class="table is-fullwidth">
+    <thead>
+        <tr>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>eMail</th>
+        <th>password</th>
+        <th>accountType</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <div class="field">
+                    <input class="input" type="text" value="{{user.firstName}}" name="firstName">
+                </div>
+            </td>
+            <td>
+                <div class="field">
+                    <input class="input" type="text" value="{{user.lastName}}" name="lastName">
+                </div>
+            </td>
+            <td>
+                <div class="field">
+                    <input class="input" type="email" value="{{user.email}}" name="email">
+                </div>
+            </td>
+            <td>
+                <div class="field">
+                    <input class="input" type="text" value="{{user.password}}" name="password">
+                </div>
+            </td>
+            <td>
+                <div class="field">
+                    <div class="control">
+                        <div class="select">
+                            <select name="accountType">
+                                <option value="user" {{#if (eq user.accountType 'user')}}selected{{/if}}>User</option>
+                                <option value="admin" {{#if (eq user.accountType 'admin')}}selected{{/if}}>Admin</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+    </table>
+    {{!-- <input type="submit" value="Update User"> --}}
+    <button class="button is-link">Update User</button>
+    </form>
+</section>
+{{#if errors}}
+    <ul>
+        {{#each errors}}
+            <li>{{message}}</li>
+        {{/each}}
+    </ul>
+{{/if}}

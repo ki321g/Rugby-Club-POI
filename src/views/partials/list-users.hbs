@@ -1,0 +1,41 @@
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>FirstName</th>
+      <th>LastName</th>
+      <th>eMail</th>
+      <th>password</th>
+      <th>accountType</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each users}}
+      <tr>
+        <td>
+          {{firstName}}
+        </td>
+        <td>
+          {{lastName}}
+        </td>
+        <td>
+          {{email}}
+        </td>
+        <td>
+          {{password}}
+        </td>
+        <td>
+          {{accountType}}
+        </td>
+        <td>
+          <a href="/edituser/{{_id}}" class="ui icon button">
+            <i class="fas fa-edit"></i>
+          </a>
+          <a href="/deleteuser/{{_id}}" class="ui icon button">
+            <i class="fas fa-trash"></i>
+          </a>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

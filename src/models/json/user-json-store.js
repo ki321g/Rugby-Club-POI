@@ -41,4 +41,16 @@ export const userJsonStore = {
     db.data.users = [];
     await db.write();
   },
+
+  async updateUser(userID, updatedUser) {
+    await db.read();
+    // eslint-disable-next-line no-shadow
+    const user = db.data.users.find((user) => user._id === userID);
+    user.firstName = updatedUser.firstName;
+    user.lastName = updatedUser.lastName;
+    user.email = updatedUser.email;
+    user.password = updatedUser.password;
+    user.accountType = updatedUser.accountType;
+    await db.write();
+  },
 };

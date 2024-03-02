@@ -1,9 +1,11 @@
 import { ClubSpec } from "../models/joi-schemas.js";
+import { UserSpec } from "../models/joi-schemas.js";
 import { db } from "../models/db.js";
 
 export const adminController = {
   index: {
     handler: async function (request, h) {
+      const users = await db.userStore.getAllUsers();
       const loggedInUser = request.auth.credentials;
       let UserLoggedIn = Boolean(loggedInUser);
       let superAdmin = false;
@@ -18,6 +20,7 @@ export const adminController = {
         user: request.auth.credentials,
         UserLoggedIn: UserLoggedIn,
         superAdmin: superAdmin,
+        users: users,
       };
       return h.view("admin-view", viewData);
     },
@@ -40,6 +43,35 @@ export const adminController = {
         superAdmin: superAdmin,
       };
       return h.view("analytics-view", viewData);
+    },
+  },
+  editUser: {
+    handler: async function (request, h) {
+      console.log("Editing User: " + request.params.id);
+      const loggedInUser = request.auth.credentials;
+      let UserLoggedIn = Boolean(loggedInUser);
+      let superAdmin = false;
+
+      if (loggedInUser.accountType === "superadmin" || loggedInUser.accountType === "admin") {
+        superAdmin = Boolean(loggedInUser.accountType);
+        console.log("superAdmin: " + superAdmin);
+      }
+
+      const user = await db.userStore.getUserById(request.params.id);
+      // console.log(club);
+      const viewData = {
+        title: "Edit User",
+        UserLoggedIn: UserLoggedIn,
+        superAdmin: superAdmin,
+        user: user,
+      };
+      return h.view("edit-user-view", viewData);
+    },
+  },
+  deleteUser: {
+    handler: async function (request, h) {
+      await db.userStore.deleteUserById(request.params.id);
+      return h.redirect("/admin");
     },
   },
 };

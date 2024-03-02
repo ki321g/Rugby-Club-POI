@@ -114,6 +114,21 @@ export const accountsController = {
       return h.redirect("/");
     },
   },
+  updateUser: {
+    validate: {
+      payload: UserSpec,
+      options: { abortEarly: false },
+      failAction: function (request, h, error) {
+        return h.view("edit-user-view", { title: "Edit user error", errors: error.details }).takeover().code(400);
+      },
+    },
+    handler: async function (request, h) {
+      const userID = request.params.id;
+      const updatedUser = request.payload;
+      await db.userStore.updateUser(userID, updatedUser);
+      return h.redirect("/admin");
+    },
+  },
 
   async validate(request, session) {
     const user = await db.userStore.getUserById(session.id);
