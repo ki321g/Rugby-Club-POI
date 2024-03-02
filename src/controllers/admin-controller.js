@@ -12,7 +12,6 @@ export const adminController = {
 
       if (loggedInUser.accountType === "superadmin" || loggedInUser.accountType === "admin") {
         superAdmin = Boolean(loggedInUser.accountType);
-        console.log("superAdmin: " + superAdmin);
       }
 
       const viewData = {
@@ -33,7 +32,6 @@ export const adminController = {
 
       if (loggedInUser.accountType === "superadmin" || loggedInUser.accountType === "admin") {
         superAdmin = Boolean(loggedInUser.accountType);
-        console.log("superAdmin: " + superAdmin);
       }
 
       const viewData = {
@@ -54,11 +52,9 @@ export const adminController = {
 
       if (loggedInUser.accountType === "superadmin" || loggedInUser.accountType === "admin") {
         superAdmin = Boolean(loggedInUser.accountType);
-        console.log("superAdmin: " + superAdmin);
       }
 
       const user = await db.userStore.getUserById(request.params.id);
-      // console.log(club);
       const viewData = {
         title: "Edit User",
         UserLoggedIn: UserLoggedIn,

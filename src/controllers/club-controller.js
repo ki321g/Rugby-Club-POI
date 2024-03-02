@@ -24,17 +24,7 @@ export const clubController = {
       },
     },
     handler: async function (request, h) {
-      // console.log(request);
-      // console.log(request.params);
-      // console.log(request.payload);
       const club = await db.clubStore.getClubById(request.params.id);
-      // console.log(club);
-      // console.log(request.payload.home);
-      // console.log(request.payload.homescore);
-      // console.log(request.payload.awayscore);
-      // console.log(request.payload.away);
-      // console.log(request.payload.gametime);
-      // console.log(request.payload.gamelocation);
       const newGame = {
         home: request.payload.home,
         homescore: Number(request.payload.homescore),
@@ -43,8 +33,6 @@ export const clubController = {
         gametime: request.payload.gametime,
         gamelocation: request.payload.gamelocation,
       };
-
-      // console.log(newGame);
       await db.gameStore.addGame(club._id, newGame);
       return h.redirect(`/club/${club._id}`);
     },

@@ -7,19 +7,11 @@ export const dashboardController = {
       const loggedInUser = request.auth.credentials;
       let superAdmin = false;
       let clubs;
-      // console.log(loggedInUser);
       const userClubs = await db.clubStore.getUserClubs(loggedInUser._id);
-      // console.log(loggedInUser);
-      // console.log("loggedInUser.accountType: " + loggedInUser.accountType);
       if (loggedInUser.accountType === "superadmin" || loggedInUser.accountType === "admin") {
         superAdmin = Boolean(loggedInUser.accountType);
       }
-
-      // console.log("superAdmin: " + superAdmin);
-      // console.log(userClubs);
-      // Sort the clubs array alphabetically by the 'name' property
       clubs = userClubs.sort((a, b) => a.club.localeCompare(b.club));
-      // console.log(clubs);
       const viewData = {
         title: "RugbyGamePOI Dashboard",
         user: loggedInUser,
@@ -49,8 +41,6 @@ export const dashboardController = {
         longitude: Number(request.payload.longitude),
         description: request.payload.description,
         userid: loggedInUser._id,
-        // userid: loggedInUser._id,
-        // club: request.payload.club,
       };
       await db.clubStore.addClub(newClub);
       return h.redirect("/dashboard");
@@ -61,7 +51,6 @@ export const dashboardController = {
     handler: async function (request, h) {
       console.log("Editing ClubID: " + request.params.id);
       const club = await db.clubStore.getClubById(request.params.id);
-      // console.log(club);
       const viewData = {
         title: "Edit Club",
         club: club,

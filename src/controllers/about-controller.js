@@ -10,8 +10,7 @@ export const aboutController = {
       if (loggedInUser) {
         if (loggedInUser.accountType === "superadmin" || loggedInUser.accountType === "admin") {
           superAdmin = Boolean(loggedInUser.accountType);
-        }        
-        console.log("superAdmin: " + superAdmin);
+        }
       }
       const viewData = {
         title: "About RugbyGamePOI",

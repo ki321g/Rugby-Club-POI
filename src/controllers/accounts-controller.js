@@ -12,17 +12,10 @@ export const accountsController = {
       const superAdminUser = users.filter((user) => user.accountType === "superadmin");
       // const adminUsers = users.filter((user) => user.accountType === "admin" || user.accountType === "superadmin");
       const superAdminUserCount = superAdminUser.length;
-      console.log(superAdminUser);
-      console.log(superAdminUserCount);
-      console.log(loggedInUser);
       let UserLoggedIn = Boolean(loggedInUser);
       let CreateSuperAdmin = false;
-      console.log("CreateSuperAdmin: " + CreateSuperAdmin);
-      console.log("UserLoggedIn: " + UserLoggedIn);
       if (superAdminUserCount == 0) {
-        console.log("No Admin Users found. superAdminUserCount: " + superAdminUserCount);
         CreateSuperAdmin = true;
-        console.log("CreateSuperAdmin: " + CreateSuperAdmin);
         const viewData = {
           title: "RugbyGamePOI Setup",
           user: request.auth.credentials,
@@ -31,7 +24,6 @@ export const accountsController = {
         };
 
         return h.view("signup-view", viewData);
-        // return h.redirect("/signup", viewData);
       } else {
         console.log("Admin users found. superAdminUserCount: " + superAdminUserCount);
 
@@ -96,12 +88,8 @@ export const accountsController = {
       if (!user || user.password !== password) {
         return h.redirect("/");
       }
-      console.log("Kieron is testing here now.");
-      console.log(user);
-
       request.cookieAuth.set({ id: user._id });
       if (user.accountType === "superadmin") {
-        console.log("Super Admin User Logged In");
         return h.redirect("/admin");
       }
 
