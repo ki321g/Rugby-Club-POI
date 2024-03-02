@@ -66,10 +66,11 @@ export const clubController = {
       },
     },
     handler: async function (request, h) {
-      console.log("Editing ClubID handler: " + request.params.id);
+      console.log("Editing ClubID: " + request.params.id);
       const club = await db.clubStore.getClubById(request.params.id);
-      // console.log(request.payload);
-      const newClub = {
+      const clubID = club._id
+      
+      const updatedClub = {
         club: request.payload.club,
         address: request.payload.address,
         phone: request.payload.phone,
@@ -79,8 +80,8 @@ export const clubController = {
         longitude: Number(request.payload.longitude),
         description: request.payload.description,
       };
-      console.log(newClub);
-      await db.clubStore.updateClub(club, newClub);
+
+      await db.clubStore.updateClub(clubID, updatedClub);
       return h.redirect(`/dashboard`);
     },
   },

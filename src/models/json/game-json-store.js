@@ -43,6 +43,7 @@ export const gameJsonStore = {
   },
 
   async updateGame(game, updatedGame) {
+    await db.read();
     game.home = updatedGame.home;
     game.homescore = Number(updatedGame.homescore);
     game.awayscore = Number(updatedGame.awayscore);

@@ -25,6 +25,11 @@ export const clubJsonStore = {
       list = null;
     }
     return list;
+  }, 
+
+  async getOnlyClubById(id) {
+    await db.read();    
+    return db.data.clubs.find((club) => club._id === id);
   },
 
   async getUserClubs(userId) {
@@ -44,12 +49,9 @@ export const clubJsonStore = {
     await db.write();
   },
 
-  async updateClub(club, updatedClub) {
-    console.log("CLUB:");
-    console.log(club);
-    console.log("UPDATING CLUB:");
-    console.log(updatedClub);
-
+  async updateClub(clubID, updatedClub) {
+    await db.read();
+    const club = await this.getOnlyClubById(clubID);
     club.club = updatedClub.club;
     club.address = updatedClub.address;
     club.phone = updatedClub.phone;
@@ -58,11 +60,6 @@ export const clubJsonStore = {
     club.latitude = Number(updatedClub.latitude);
     club.longitude = Number(updatedClub.longitude);
     club.description = updatedClub.description;
-
-    // delete club.games;
-    
-    console.log("AFTER UPDATING CLUB:");
-    console.log(club);
     await db.write();
   },
 };

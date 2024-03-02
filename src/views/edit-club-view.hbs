@@ -4,68 +4,70 @@
   {{>  menu active="dashboard"}}
 {{/if}}
 
-<form method="POST" action="/club/updateclub/{{club._id}}">
-<table class="table is-fullwidth">
-  <thead>
-    <tr>
-      <th>Club</th>
-      <th>Address</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th>Website</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
+<section class="section">
+    <h1 class="title page-heading is-3">Edit Club</h1>
+  <form method="POST" action="/club/updateclub/{{club._id}}">
+  <table class="table is-fullwidth">
+    <thead>
       <tr>
-        <td>
-          <div class="field">
-            <input class="input" type="text" value="{{club.club}}" name="club">
-          </div>
-        </td>
-        <td>
-          <div class="field">
-        <input class="input" type="text" value="{{club.address}}" name="address">
-      </div>
-        </td>
-        <td>
-          <div class="field">
-        <input class="input" type="number" value="{{club.phone}}" name="phone">
-      </div>
-        </td>
-        <td>
-          <div class="field">
-        <input class="input" type="email" value="{{club.email}}" name="email">
-      </div>
-        </td>
-        <td>
-          <div class="field">
-        <input class="input" type="text" value="{{club.website}}" name="website">
-      </div>
-        </td>
-        <td>
-          <div class="field">
-        <input class="input" type="number" value="{{club.latitude}}" name="latitude">
-      </div>
-        </td>
-        <td>
-          <div class="field">
-        <input class="input" type="number" value="{{club.longitude}}" name="longitude">
-      </div>
-        </td>
-        <td>
-      <div class="field">
-        <input class="input" type="text" value="{{club.description}}" name="description">
-      </div>
-        </td>
+        <th>Club</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Website</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Description</th>
       </tr>
-  </tbody>
-</table>
-  <input type="submit" value="Update club">
-</form>
-
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+            <div class="field">
+              <input class="input" type="text" value="{{club.club}}" name="club">
+            </div>
+          </td>
+          <td>
+            <div class="field">
+          <input class="input" type="text" value="{{club.address}}" name="address">
+        </div>
+          </td>
+          <td>
+            <div class="field">
+          <input class="input" type="number" value="{{club.phone}}" name="phone">
+        </div>
+          </td>
+          <td>
+            <div class="field">
+          <input class="input" type="email" value="{{club.email}}" name="email">
+        </div>
+          </td>
+          <td>
+            <div class="field">
+          <input class="input" type="text" value="{{club.website}}" name="website">
+        </div>
+          </td>
+          <td>
+            <div class="field">
+          <input class="input" type="number" value="{{club.latitude}}" name="latitude">
+        </div>
+          </td>
+          <td>
+            <div class="field">
+          <input class="input" type="number" value="{{club.longitude}}" name="longitude">
+        </div>
+          </td>
+          <td>
+        <div class="field">
+          <input class="input" type="text" value="{{club.description}}" name="description">
+        </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+    <button class="button is-primary">Update Club</button>
+  </form>
+</section>
 {{#if errors}}
     <ul>
         {{#each errors}}
