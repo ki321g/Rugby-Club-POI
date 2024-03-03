@@ -50,9 +50,24 @@ export const clubApi = {
     },
     handler: async function (request, h) {
       try {
+        // decode and validate the JWT token
+        const decodedToken = decodeToken(request.headers.authorization);
+        const validationResult = await validate(decodedToken, request);
+        
+        if (!validationResult.isValid) {
+          return Boom.unauthorized("Invalid credentials");
+        }
+        // access user ID from decoded payload
+        // eslint-disable-next-line prefer-destructuring
+        const userId = decodedToken.userId;
+        // access new placemark data from request payload
+
+
+
+
         const club = request.payload;
         // Add userId to the new placemark data
-        // club.userId = userId;
+         club.userId = userId;
 
         const newClub = await db.clubStore.addClub(club);
         if (newClub) {

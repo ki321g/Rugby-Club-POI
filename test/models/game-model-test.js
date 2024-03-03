@@ -9,6 +9,7 @@ suite("Game Model Tests", () => {
 
   setup(async () => {
     //db.init("json");
+    db.init("mongo");
     await db.clubStore.deleteAllClubs();
     await db.gameStore.deleteAllGames();
     await db.userStore.deleteAll();

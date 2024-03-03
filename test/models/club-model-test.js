@@ -8,6 +8,7 @@ suite("Club Model Tests", () => {
 
   setup(async () => {
     //db.init("json");
+    db.init("mongo");
     await db.clubStore.deleteAllClubs();
     await db.userStore.deleteAll();
     user = await db.userStore.addUser(maggie);

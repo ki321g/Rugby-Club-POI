@@ -11,6 +11,7 @@ export const rugbyGamePOIService = {
 
   async getUser(id) {
     const res = await axios.get(`${this.rugbyGamePOIyUrl}/api/users/${id}`);
+    console.log(res.data);
     return res.data;
   },
 

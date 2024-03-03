@@ -12,7 +12,8 @@ suite("Club API tests", () => {
   let user = null;
 
   setup(async () => {
-   // db.init("json");
+    // db.init("json");
+    db.init("mongo");
     rugbyGamePOIService.clearAuth();
     user = await rugbyGamePOIService.createUser(maggie);
     await rugbyGamePOIService.authenticate(maggieCredentials);

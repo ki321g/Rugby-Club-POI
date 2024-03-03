@@ -9,6 +9,7 @@ const users = new Array(testUsers.length);
 suite("User API tests", () => {
   setup(async () => {
     //db.init("json");
+    db.init("mongo");
     rugbyGamePOIService.clearAuth();
     await rugbyGamePOIService.createUser(maggie);
     await rugbyGamePOIService.authenticate(maggieCredentials);
@@ -29,7 +30,7 @@ suite("User API tests", () => {
   });
   test("get a user", async () => {
     const returnedUser = await rugbyGamePOIService.getUser(users[0]._id);
-    assert.deepEqual(testUsers[0], returnedUser);
+    assert.deepEqual(users[0], returnedUser);
   });
 
   test("get a user - bad id", async () => {
@@ -42,8 +43,10 @@ suite("User API tests", () => {
     }
   });
 
-  test("get a user - deleted user", async () => {
+  test("get a user - deleted user", async () => {    
     await rugbyGamePOIService.deleteAllUsers();
+    await rugbyGamePOIService.createUser(maggie);
+    await rugbyGamePOIService.authenticate(maggieCredentials);
     try {
       const returnedUser = await rugbyGamePOIService.getUser(users[0]._id);
       assert.fail("Should not return a response");
@@ -60,6 +63,6 @@ suite("User API tests", () => {
     await rugbyGamePOIService.createUser(maggie);
     await rugbyGamePOIService.authenticate(maggieCredentials);
     returnedUsers = await rugbyGamePOIService.getAllUsers();
-    assert.equal(returnedUsers.length, 0);
+    assert.equal(returnedUsers.length, 1);
   });
 });
