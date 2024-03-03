@@ -8,6 +8,7 @@ export const dashboardController = {
       let superAdmin = false;
       let hideAddClub = false;
       let clubs, numberClubs;
+
       const userClubs = await db.clubStore.getUserClubs(loggedInUser._id);
       if (loggedInUser.accountType === "superadmin" || loggedInUser.accountType === "admin") {
         superAdmin = Boolean(loggedInUser.accountType);
@@ -25,6 +26,7 @@ export const dashboardController = {
         superAdmin: superAdmin,
         clubs: clubs,
         hideAddClub: hideAddClub,
+        apiKey: process.env.GOOGLE_API_KEY 
       };
       return h.view("dashboard-view", viewData);
     },
