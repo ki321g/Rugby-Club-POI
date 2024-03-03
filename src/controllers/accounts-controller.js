@@ -35,10 +35,38 @@ export const accountsController = {
       }
     },
   },
+  // showSignup: {
+  //   auth: false,
+  //   handler: function (request, h) {
+  //     return h.view("signup-view", { title: "Sign up for RugbyGamePOI" });
+  //   },
+  // },
   showSignup: {
-    auth: false,
-    handler: function (request, h) {
-      return h.view("signup-view", { title: "Sign up for RugbyGamePOI" });
+    auth: {
+      mode: "try",
+    },
+    handler: async function (request, h) {
+      const loggedInUser = request.auth.credentials;
+      const users = await db.userStore.getAllUsers();
+      const superAdminUser = users.filter((user) => user.accountType === "superadmin");
+      // const adminUsers = users.filter((user) => user.accountType === "admin" || user.accountType === "superadmin");
+      const superAdminUserCount = superAdminUser.length;
+      let UserLoggedIn = Boolean(loggedInUser);
+      let CreateSuperAdmin = false;
+      
+      if (superAdminUserCount == 0) {
+        CreateSuperAdmin = true;
+        const viewData = {
+          title: "RugbyGamePOI Setup",
+          user: request.auth.credentials,
+          UserLoggedIn: UserLoggedIn,
+          CreateSuperAdmin: CreateSuperAdmin,
+        };
+
+        return h.view("signup-view", viewData);
+      } else {
+        return h.view("signup-view", { title: "Sign up for RugbyGamePOI" });
+      }
     },
   },
   signup: {
@@ -65,10 +93,38 @@ export const accountsController = {
       return h.redirect("/login");
     },
   },
+  // showLogin: {
+  //   auth: false,
+  //   handler: function (request, h) {
+  //     return h.view("login-view", { title: "Login to RugbyGamePOI" });
+  //   },
+  // },  
   showLogin: {
-    auth: false,
-    handler: function (request, h) {
-      return h.view("login-view", { title: "Login to RugbyGamePOI" });
+    auth: {
+      mode: "try",
+    },
+    handler: async function (request, h) {
+      const loggedInUser = request.auth.credentials;
+      const users = await db.userStore.getAllUsers();
+      const superAdminUser = users.filter((user) => user.accountType === "superadmin");
+      // const adminUsers = users.filter((user) => user.accountType === "admin" || user.accountType === "superadmin");
+      const superAdminUserCount = superAdminUser.length;
+      let UserLoggedIn = Boolean(loggedInUser);
+      let CreateSuperAdmin = false;
+      
+      if (superAdminUserCount == 0) {
+        CreateSuperAdmin = true;
+        const viewData = {
+          title: "RugbyGamePOI Setup",
+          user: request.auth.credentials,
+          UserLoggedIn: UserLoggedIn,
+          CreateSuperAdmin: CreateSuperAdmin,
+        };
+
+        return h.view("signup-view", viewData);
+      } else {
+        return h.view("login-view", { title: "Login to RugbyGamePOI" });
+      }
     },
   },
   login: {
