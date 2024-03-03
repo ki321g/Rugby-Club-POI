@@ -1,32 +1,194 @@
-<form action="/dashboard/addclub" method="POST">
-  <label>Enter Club Details:</label>
-  <div class="field is-horizontal">
+<h1 class="title page-heading is-1">Add Club</h1>
+
+  <form action="/dashboard/addclub" method="POST">
     <div class="field-body">
-      <div class="field">
-        <input class="input" type="text" placeholder="Club Name" name="club" />
-      </div>
-      <div class="field">
-        <input class="input" type="text" placeholder="Club Address" name="address" />
-      </div>
-      <div class="field">
-        <input class="input" type="text" placeholder="Phone" name="phone" />
-      </div>
-      <div class="field">
-        <input class="input" type="email" placeholder="Email" name="email" />
-      </div>
-      <div class="field">
-        <input class="input" type="text" placeholder="Website" name="website" />
-      </div>
-      <div class="field">
-        <input class="input" type="number" step=".0000001" placeholder="Latidude" name="latitude" />
-      </div>
-      <div class="field">
-        <input class="input" type="number" step=".0000001" placeholder="Longitude" name="longitude" />
-      </div>
-      <div class="field">
-        <textarea class="textarea" type="text" placeholder="Description" name="description" /></textarea>
+      <div class="container">
+        <div class="columns is-vcentered">
+          <div class="column has-text-centered is-5">
+            <!-- Content for first column -->
+            <input class="input mb-3" type="text" id="search-box" value="Rugby" placeholder="Search for Places" />
+            <select class="mb-3" id="search-results" multiple></select>
+          </div>
+          <div class="column is-8 is-left">
+            <!-- Content for second column -->
+            <div id="map"></div>
+            <!-- <button class="button" id="fill-button">Add Club</button> -->
+          </div>
+        </div>
+        <div class="columns is-vcentered is-12">
+          <div class="column has-text-centered">
+            <div class="columns is-multiline is-vcentered">
+              <div class="column has-text-centered is-4 pb-0">
+
+                <div class="field">
+                  <input class="input mb-3" type="text" id="place-name" placeholder="Place Name" name="club" />
+                </div>
+
+                <div class="field">
+                  <input class="input mb-3" type="text" id="place-county" placeholder="Place County" name="address" />
+                </div>
+              </div>
+              <div class="column has-text-centered is-4 pb-0">
+
+                <div class="field">
+                  <input class="input mb-3" type="text" id="place-phone" placeholder="Phone Number" name="phone" />
+                </div>
+
+                <div class="field">
+                  <input class="input mb-3" type="text" id="place-website" placeholder="Website" name="website" />
+                </div>
+              </div>
+              <div class="column has-text-centered is-4 pb-0">
+
+                <div class="field">
+                  <input class="input mb-3" type="text" id="place-lat" placeholder="Latitude" name="latitude" />
+                </div>
+
+                <div class="field">
+                  <input class="input mb-3" type="text" id="place-lng" placeholder="Longitude" name="longitude" />
+                </div>
+              </div>
+              <div class="column has-text-centered is-12 pt-0">
+
+                <div class="field">
+                  <input class="input mb-3" type="text" id="place-email" placeholder="Email" name="email" />
+                </div>
+
+                <div class="field">
+                  <textarea class="textarea" rows="5" placeholder="Enter description here..." name="description"></textarea>
+                </div>
+                <button class="button is-success is-large m-3 p-4">Add Club</button>
+                <br />
+                <a id="place-link-location" href="#" target="_blank">View Place</a>
+                ||
+                <a id="place-link-directions" href="#" target="_blank">Get Directions</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <button class="button is-link">Add Club</button>
-</form>
+  </form>
+
+  <!-- Your JavaScript code goes here -->
+  <script>
+    // Replace "AIzaSyD30Rjcb1NWMwm2GQNwOsPfJ0pewgvt1Zs" with your actual Google Maps API key
+    const apiKey = "AIzaSyD30Rjcb1NWMwm2GQNwOsPfJ0pewgvt1Zs";
+
+    // Initialize the Google Maps Places service
+    const service = new google.maps.places.PlacesService(document.createElement('div'));
+
+    // Function to handle user input changes and suggestions
+    const searchBox = document.getElementById("search-box");
+    const searchResults = document.getElementById("search-results");
+
+    window.onload = function () {
+      var searchBox = document.getElementById("search-box");
+
+      searchBox.addEventListener("keyup", (event) => {
+        const input = event.target.value;
+
+        // Clear previous results
+        searchResults.innerHTML = "";
+
+        // If input is empty, don't perform search
+        if (!input) {
+          return;
+        }
+
+        // Perform Places API text search
+        const request = {
+          query: input,
+        };
+
+        service.textSearch(request, (results, status) => {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            // Create and add options to the multiline select
+            for (const place of results) {
+              const option = document.createElement("option");
+              option.value = JSON.stringify(place); // Store place details as JSON
+              option.textContent = place.name;
+              searchResults.appendChild(option);
+            }
+          } else {
+            console.error("Places search failed:", status);
+          }
+        });
+      });
+
+      // Create a new 'keyup' event
+      var event = new Event('keyup');
+
+      // Dispatch the 'keyup' event
+      searchBox.dispatchEvent(event);
+    };
+
+    // Function to handle place selection and information retrieval
+    searchResults.addEventListener("change", () => {
+      const selectedPlace = JSON.parse(searchResults.value); // Convert JSON back to object
+
+      // Clear previous information
+      document.getElementById("place-name").value = "";
+      document.getElementById("place-county").value = "";
+      document.getElementById("place-phone").value = "";
+      document.getElementById("place-website").value = "";
+      document.getElementById("place-lat").value = "";
+      document.getElementById("place-lng").value = "";
+
+      // If no place selected, exit
+      if (!selectedPlace) {
+        return;
+      }
+      // alert("Place: " + selectedPlace.name + "\nPlace ID: " + selectedPlace.place_id);
+
+      service.getDetails({
+        placeId: selectedPlace.place_id
+      }, (place, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          // Extract and display place details
+          document.getElementById("place-name").value = place.name ? place.name : "";
+
+          var placeCounty = "";
+          for (var i = 0; i < place.address_components.length; i++) {
+            var countyComponent = place.address_components[i];
+            if (countyComponent.types.includes('administrative_area_level_1')) {
+              placeCounty = countyComponent.long_name.replace('County ', '');
+              break;
+            }
+          }
+          document.getElementById("place-county").value = placeCounty ? placeCounty : "";
+          document.getElementById("place-phone").value = place.formatted_phone_number ? place.formatted_phone_number : "";
+          document.getElementById("place-website").value = place.website ? place.website : "";
+          document.getElementById("place-lat").value = place.geometry.location.lat() ? place.geometry.location.lat() : "";
+          document.getElementById("place-lng").value = place.geometry.location.lng() ? place.geometry.location.lng() : "";
+
+          // Get the latitude and longitude of the place
+          var lat = place.geometry.location.lat();
+          var lng = place.geometry.location.lng();
+
+          // Create a Google Maps URL using the latitude and longitude
+          var mapsUrlLocation = "https://www.google.com/maps/?q=" + lat + "%2C" + lng;
+          var mapsUrlDirections = "https://www.google.com/maps/dir/?api=1&origin=Current+Location&destination=" + lat + "%2C" + lng;
+
+          // Create a new map centered at the place
+          var map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: lat, lng: lng },
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.SATELLITE
+          });
+
+          // Create a marker at the place
+          var marker = new google.maps.Marker({
+            position: { lat: lat, lng: lng },
+            map: map
+          });
+
+          // Update the href attribute of the place-link element with the Google Maps URL
+          document.getElementById("place-link-location").href = mapsUrlLocation;
+          document.getElementById("place-link-directions").href = mapsUrlDirections;
+        } else {
+          console.error("Place details search failed:", status);
+        }
+      });
+    });
+  </script>

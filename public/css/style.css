@@ -15,3 +15,42 @@
   font-weight: 800;
   letter-spacing: -2px;
 }
+
+/********ADD Club**************/
+#search-box {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+#results {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+#search-results {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  height: 250px;
+  font-family: monospace;
+}
+
+#map {
+  width: 85%;
+  height: 300px;
+  border: 1px solid #ccc;
+}
+
+#textarea,
+#place-name,
+#place-county,
+#place-phone,
+#place-website,
+#place-lat,
+#place-lng {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+}

@@ -6,17 +6,25 @@ export const dashboardController = {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
       let superAdmin = false;
-      let clubs;
+      let hideAddClub = false;
+      let clubs, numberClubs;
       const userClubs = await db.clubStore.getUserClubs(loggedInUser._id);
       if (loggedInUser.accountType === "superadmin" || loggedInUser.accountType === "admin") {
         superAdmin = Boolean(loggedInUser.accountType);
       }
       clubs = userClubs.sort((a, b) => a.club.localeCompare(b.club));
+      numberClubs = clubs.length;
+      
+      if (numberClubs > 0) {
+        hideAddClub = true;
+      }
+
       const viewData = {
         title: "RugbyGamePOI Dashboard",
         user: loggedInUser,
         superAdmin: superAdmin,
         clubs: clubs,
+        hideAddClub: hideAddClub,
       };
       return h.view("dashboard-view", viewData);
     },
