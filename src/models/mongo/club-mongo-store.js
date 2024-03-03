@@ -7,6 +7,12 @@ export const clubMongoStore = {
     return clubs;
   },
 
+  async addClub(club) {
+    const newClub = new Club(club);
+    const clubObj = await newClub.save();
+    return this.getClubById(clubObj._id);
+  },
+
   async getClubById(id) {
     if (id) {
       const club = await Club.findOne({ _id: id }).lean();
@@ -18,10 +24,12 @@ export const clubMongoStore = {
     return null;
   },
 
-  async addClub(club) {
-    const newClub = new Club(club);
-    const clubObj = await newClub.save();
-    return this.getClubById(clubObj._id);
+  async getOnlyClubById(id) {
+    if (id) {
+      const club = await Club.findOne({ _id: id }).lean();
+      return club;
+    }
+    return null;
   },
 
   async getUserClubs(id) {
@@ -39,5 +47,19 @@ export const clubMongoStore = {
 
   async deleteAllClubs() {
     await Club.deleteMany({});
-  }
+  },
+
+  async updateClub(clubID, updatedClub) {
+    const club = await Club.findOne({ _id: clubID});
+    club.club = updatedClub.club;
+    club.address = updatedClub.address;
+    club.phone = updatedClub.phone;
+    club.email = updatedClub.email;
+    club.website = updatedClub.website;
+    club.latitude = Number(updatedClub.latitude);
+    club.longitude = Number(updatedClub.longitude);
+    club.description = updatedClub.description;
+    const updatedClubObj = await club.save();
+    return updatedClubObj;
+  },
 };

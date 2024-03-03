@@ -41,13 +41,13 @@ export const gameMongoStore = {
 
   async updateGame(game, updatedGame) {
     const gameDoc = await Game.findOne({ _id: game._id });
-    gameDoc.name = updatedGame.name;
-    gameDoc.address = updatedGame.address;
-    gameDoc.phone = updatedGame.phone;
-    gameDoc.email = updatedGame.email;
-    gameDoc.website = updatedGame.website;
-    gameDoc.latitude = Number(updatedGame.latitude);
-    gameDoc.longitude = Number(updatedGame.longitude);
-    await gameDoc.save();
+    gameDoc.home = updatedGame.home;
+    gameDoc.homescore = Number(updatedGame.homescore);
+    gameDoc.awayscore = Number(updatedGame.awayscore);
+    gameDoc.away = updatedGame.away;
+    gameDoc.gametime = updatedGame.gametime;
+    gameDoc.gamelocation = Number(updatedGame.gamelocation);    
+    const updatedGameObj = await gameDoc.save();
+    return updatedGameObj;
   },
 };

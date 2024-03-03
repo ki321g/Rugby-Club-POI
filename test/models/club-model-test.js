@@ -7,7 +7,7 @@ suite("Club Model Tests", () => {
   let user = null;
 
   setup(async () => {
-    db.init("json");
+    //db.init("json");
     await db.clubStore.deleteAllClubs();
     await db.userStore.deleteAll();
     user = await db.userStore.addUser(maggie);

@@ -12,7 +12,7 @@ suite("Game API tests", () => {
   let testingClub = null;
 
   setup(async () => {    
-    db.init("json");
+    //db.init("json");
     rugbyGamePOIService.clearAuth();
     user = await rugbyGamePOIService.createUser(maggie);
     await rugbyGamePOIService.authenticate(maggieCredentials);

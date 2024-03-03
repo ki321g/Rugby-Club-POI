@@ -8,7 +8,7 @@ suite("Game Model Tests", () => {
   let user = null;
 
   setup(async () => {
-    db.init("json");
+    //db.init("json");
     await db.clubStore.deleteAllClubs();
     await db.gameStore.deleteAllGames();
     await db.userStore.deleteAll();

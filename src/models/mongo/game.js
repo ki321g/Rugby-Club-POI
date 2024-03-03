@@ -6,13 +6,12 @@ import Mongoose from "mongoose";
 const { Schema } = Mongoose;
 
 const gameSchema = new Schema({
-  name: String,
-  address: String,
-  phone: String,
-  email: String,
-  website: String,
-  latitude: String,
-  longitude: String,
+  home: String,
+  homescore: String,
+  awayscore: String,
+  away: String,
+  gametime: String,
+  gamelocation: String,
   clubid: {
     type: Schema.Types.ObjectId,
     ref: "Club",

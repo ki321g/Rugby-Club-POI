@@ -4,6 +4,13 @@ const { Schema } = Mongoose;
 
 const clubSchema = new Schema({
   club: String,
+  address: String, 
+  phone: String,
+  email: String,
+  website: String,
+  latitude: String,
+  longitude: String,
+  description: String,
   userid: {
     type: Schema.Types.ObjectId,
     ref: "User",
