@@ -22,7 +22,7 @@ suite("Club API tests", () => {
     await rugbyGamePOIService.deleteAllUsers();
     user = await rugbyGamePOIService.createUser(maggie);
     await rugbyGamePOIService.authenticate(maggieCredentials);
-    wexford.userid = user._id;
+    // wexford.userid = user._id;
   });
 
   teardown(async () => {});

@@ -77,7 +77,8 @@ export const rugbyGamePOIService = {
 
   async authenticate(user) {
     const response = await axios.post(`${this.rugbyGamePOIyUrl}/api/users/authenticate`, user);
-    axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.token;
+    // axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.token;
+    axios.defaults.headers.common["Authorization"] = response.data.token;
     return response.data;
   },
 

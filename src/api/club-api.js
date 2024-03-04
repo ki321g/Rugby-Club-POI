@@ -55,22 +55,22 @@ export const clubApi = {
         // decode and validate the JWT token
         const decodedToken = decodeToken(request.headers.authorization);
         const validationResult = await validate(decodedToken, request);
-        console.log(validationResult);
-        console.log(decodedToken);
+        // console.log(validationResult);
+        // console.log(decodedToken);
         if (!validationResult.isValid) {
           return Boom.unauthorized("Invalid credentials");
         }
         // access user ID from decoded payload
         // eslint-disable-next-line prefer-destructuring
-        const userId = decodedToken.userId;
+       // const userId = decodedToken.userId;
         // access new  data from request payload
 
-        console.log(userId);
-
-
+        // console.log(userId);
         const club = request.payload;
+        console.log(club);
         // Add userId to the new  data
-        club.userId = userId;
+        console.log(decodedToken.userId);
+        club.userId = decodedToken.userId;
         console.log(club);
 
         const newClub = await db.clubStore.addClub(club);
@@ -79,7 +79,7 @@ export const clubApi = {
         }
         return Boom.badImplementation("error creating Club");
       } catch (err) {
-        return Boom.serverUnavailable("Database Error");
+        return Boom.serverUnavailable("Database Error");        
       }
     },
     tags: ["api"],

@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { db } from "../models/db.js";
+import { use } from "chai";
 
 const result = dotenv.config();
 if (result.error) {
@@ -9,7 +10,7 @@ if (result.error) {
 
 export function createToken(user) {
   const payload = {
-    id: user._id,
+    userId: user._id,
     email: user.email,
   };
   const options = {
@@ -23,8 +24,14 @@ export function decodeToken(token) {
   const userInfo = {};
   try {
     const decoded = jwt.verify(token, process.env.COOKIE_PASSWORD);
-    userInfo.userId = decoded.id;
-    userInfo.email = decoded.email;
+    console.log(decoded.userId);
+     userInfo.userId = decoded.userId;    
+     userInfo.email = decoded.email;
+    console.log(decoded);
+    console.log(userInfo);
+    if (decoded.userId) {
+      userInfo.userId = decoded.userId;
+    }
   } catch (e) {
     console.log(e.message);
   }
@@ -32,7 +39,7 @@ export function decodeToken(token) {
 }
 
 export async function validate(decoded, request) {
-  const user = await db.userStore.getUserById(decoded.id);
+  const user = await db.userStore.getUserById(decoded.userId);
   if (!user) {
     return { isValid: false };
   }
