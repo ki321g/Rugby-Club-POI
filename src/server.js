@@ -42,10 +42,10 @@ const swaggerOptions = {
     jwt: {
       type: "apiKey",
       name: "Authorization",
-      in: "header"
-    }
+      in: "header",
+    },
   },
-  security: [{ jwt: [] }]
+  security: [{ jwt: [] }],
 };
 
 async function init() {
@@ -53,7 +53,6 @@ async function init() {
     port: process.env.PORT || 3000,
     //host: "localhost",
   });
-  
 
   await server.register(Inert);
   await server.register(Vision);
@@ -103,9 +102,7 @@ async function init() {
 
   server.auth.default("session");
 
-  // db.init("json");
-  db.init("mongo");
-  // db.init();
+  db.init(process.env.STORE_TYPE);
   server.route(webRoutes);
   server.route(apiRoutes);
   await server.start();

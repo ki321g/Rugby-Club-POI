@@ -10,6 +10,7 @@ EventEmitter.setMaxListeners(25);
 
 suite("Club API tests", () => {
   let user = null;
+  let userId = null;
 
   setup(async () => {
     // db.init("json");

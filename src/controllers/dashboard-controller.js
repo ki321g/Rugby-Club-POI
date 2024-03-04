@@ -61,6 +61,7 @@ export const dashboardController = {
     handler: async function (request, h) {
       console.log("Editing ClubID: " + request.params.id);
       const club = await db.clubStore.getClubById(request.params.id);
+      console.log(club);
       const viewData = {
         title: "Edit Club",
         club: club,

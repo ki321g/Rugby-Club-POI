@@ -1,7 +1,9 @@
 import Boom from "@hapi/boom";
+import jwt from "jsonwebtoken";
 import { IdSpec, ClubArraySpec, ClubSpec, ClubSpecPlus } from "../models/joi-schemas.js";
 import { db } from "../models/db.js";
 import { validationError } from "./logger.js";
+import { decodeToken, validate } from "./jwt-utils.js";
 
 export const clubApi = {
   find: {
@@ -53,21 +55,23 @@ export const clubApi = {
         // decode and validate the JWT token
         const decodedToken = decodeToken(request.headers.authorization);
         const validationResult = await validate(decodedToken, request);
-        
+        console.log(validationResult);
+        console.log(decodedToken);
         if (!validationResult.isValid) {
           return Boom.unauthorized("Invalid credentials");
         }
         // access user ID from decoded payload
         // eslint-disable-next-line prefer-destructuring
         const userId = decodedToken.userId;
-        // access new placemark data from request payload
+        // access new  data from request payload
 
-
+        console.log(userId);
 
 
         const club = request.payload;
-        // Add userId to the new placemark data
-         club.userId = userId;
+        // Add userId to the new  data
+        club.userId = userId;
+        console.log(club);
 
         const newClub = await db.clubStore.addClub(club);
         if (newClub) {
