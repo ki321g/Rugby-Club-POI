@@ -6,7 +6,7 @@ export const clubController = {
   index: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
-      const club = await db.clubStore.getClubById(request.params.id);
+      const club = await db.clubStore.getClubAndGamesById(request.params.id);
       const viewData = {
         title: "Club",
         club: club,
@@ -56,8 +56,8 @@ export const clubController = {
     handler: async function (request, h) {
       console.log("Editing ClubID: " + request.params.id);
       const club = await db.clubStore.getClubById(request.params.id);
-      const clubID = club._id
-      
+      const clubID = club._id;
+
       const updatedClub = {
         club: request.payload.club,
         address: request.payload.address,

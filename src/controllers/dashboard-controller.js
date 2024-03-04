@@ -50,7 +50,7 @@ export const dashboardController = {
         latitude: Number(request.payload.latitude),
         longitude: Number(request.payload.longitude),
         description: request.payload.description,
-        userid: loggedInUser._id,
+        userId: loggedInUser._id,
       };
       await db.clubStore.addClub(newClub);
       return h.redirect("/dashboard");

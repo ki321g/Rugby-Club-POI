@@ -13,16 +13,17 @@ export const clubMongoStore = {
     return this.getClubById(clubObj._id);
   },
 
-  // async getClubById(id) {
-  //   if (id) {
-  //     const club = await Club.findOne({ _id: id }).lean();
-  //     if (club) {
-  //       club.games = await gameMongoStore.getGamesByClubId(club._id);
-  //     }
-  //     return club;
-  //   }
-  //   return null;
-  // },
+  async getClubAndGamesById(id) {
+    if (id) {
+      const club = await Club.findOne({ _id: id }).lean();
+      if (club) {
+        club.games = await gameMongoStore.getGamesByClubId(club._id);
+      }
+      return club;
+    }
+    return null;
+  },
+
   async getClubById(id) {
     if (id) {
       const club = await Club.findOne({ _id: id }).lean();
@@ -43,7 +44,7 @@ export const clubMongoStore = {
   },
 
   async getUserClubs(id) {
-    const club = await Club.find({ userid: id }).lean();
+    const club = await Club.find({ userId: id }).lean();
     return club;
   },
 

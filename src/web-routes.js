@@ -33,6 +33,7 @@ export const webRoutes = [
 
   { method: "GET", path: "/game/{id}/editgame/{gameid}", config: gameController.index },
   { method: "POST", path: "/game/{id}/updategame/{gameid}", config: gameController.update },
+  
 
   { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } },
 ];

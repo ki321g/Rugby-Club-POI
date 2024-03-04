@@ -67,11 +67,11 @@ export const clubApi = {
 
         // console.log(userId);
         const club = request.payload;
-        console.log(club);
+        // console.log(club);
         // Add userId to the new  data
-        console.log(decodedToken.userId);
+        // console.log(decodedToken.userId);
         club.userId = decodedToken.userId;
-        console.log(club);
+        // console.log(club);
 
         const newClub = await db.clubStore.addClub(club);
         if (newClub) {
