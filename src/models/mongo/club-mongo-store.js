@@ -13,12 +13,22 @@ export const clubMongoStore = {
     return this.getClubById(clubObj._id);
   },
 
+  // async getClubById(id) {
+  //   if (id) {
+  //     const club = await Club.findOne({ _id: id }).lean();
+  //     if (club) {
+  //       club.games = await gameMongoStore.getGamesByClubId(club._id);
+  //     }
+  //     return club;
+  //   }
+  //   return null;
+  // },
   async getClubById(id) {
     if (id) {
       const club = await Club.findOne({ _id: id }).lean();
-      if (club) {
-        club.games = await gameMongoStore.getGamesByClubId(club._id);
-      }
+      // if (club) {
+      //   club.games = await gameMongoStore.getGamesByClubId(club._id);
+      // }
       return club;
     }
     return null;

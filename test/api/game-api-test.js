@@ -67,10 +67,12 @@ suite("Game API tests", () => {
       // eslint-disable-next-line no-await-in-loop
       await rugbyGamePOIService.createGame(testingClub._id, testGames[i]);
     }
-    const returnedClub = await rugbyGamePOIService.getClub(testingClub._id);
-    assert.equal(returnedClub.games.length, testGames.length);
+    //const returnedClub = await rugbyGamePOIService.getClub(testingClub._id);
+    // assert.equal(returnedClub.games.length, testGames.length);
+    const returnedClub = await rugbyGamePOIService.getAllGames();
+    assert.equal(returnedClub.length, testGames.length);
     for (let i = 0; i < testGames.length; i += 1) {
-      assertSubset(testGames[i], returnedClub.games[i]);
+      assertSubset(testGames[i], returnedClub[i]);
     }
   });
 });
