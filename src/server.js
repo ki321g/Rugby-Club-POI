@@ -12,7 +12,6 @@ import { handlebarsHelpers } from "./helpers/handlebars-helpers.js";
 import { webRoutes } from "./web-routes.js";
 import { db } from "./models/db.js";
 import { accountsController } from "./controllers/accounts-controller.js";
-
 import { apiRoutes } from "./api-routes.js";
 import jwt from "hapi-auth-jwt2";
 import { validate } from "./api/jwt-utils.js";

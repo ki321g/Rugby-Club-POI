@@ -4,6 +4,9 @@
   "description": "A Rugby Game POI application for the HDip in Computing, WIT",
   "main": "src/server.js",
   "type": "module",
+  "engines": {
+    "node": ">=16"
+  },
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js --ignore 'src/models/json/*.json'",
@@ -53,8 +56,5 @@
     "mocha": "^10.2.0",
     "nodemon": "^3.0.3",
     "prettier": "^3.2.4"
-  },
-  "engines": {
-    "node": ">=16"
   }
 }
