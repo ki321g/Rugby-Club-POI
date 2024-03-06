@@ -1,5 +1,6 @@
 import { GameSpec } from "../models/joi-schemas.js";
 import { ClubSpec } from "../models/joi-schemas.js";
+import { imageStore } from "../models/image-store.js";
 import { db } from "../models/db.js";
 
 export const clubController = {
@@ -45,6 +46,7 @@ export const clubController = {
       return h.redirect(`/club/${club._id}`);
     },
   },
+  
   update: {
     validate: {
       payload: ClubSpec,
@@ -73,4 +75,6 @@ export const clubController = {
       return h.redirect(`/dashboard`);
     },
   },
+
+  
 };

@@ -11,6 +11,7 @@ const clubSchema = new Schema({
   latitude: String,
   longitude: String,
   description: String,
+  img: String,
   userId: {
     type: Schema.Types.ObjectId,
     ref: "User",

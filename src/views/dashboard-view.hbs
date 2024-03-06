@@ -5,20 +5,13 @@
 {{/if}}
 
 <section class="section">
-  {{#if hideAddClub}}
-    {{> list-clubs}}  
+  {{#if clubAdded}}
+    {{> club-image }}  
   {{else}}
-  <div class="columns">
-    <div class="column is-1">
-      <!-- Content for first column -->
-    </div>
-    <div class="column is-10">
-      <!-- Content for second column -->      
-      {{> add-club}}
-    </div>
-    <div class="column is-1">
-      <!-- Content for third column -->
-    </div>
-  </div>
+    {{#if hideAddClub}}
+        {{> list-clubs }}
+      {{else}}
+        {{> add-club-dashboard }}
+      {{/if}}  
   {{/if}}  
 </section>

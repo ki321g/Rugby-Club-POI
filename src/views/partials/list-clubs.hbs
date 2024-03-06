@@ -11,6 +11,20 @@
     <p> {{longitude}} </p>
     <p> {{description}}</p>
     <p> {{_id}} </p>
+    {{#if img}}
+      <div class="card-image">
+        <figure class="image is-256x256">
+          <img src={{img}} />
+        </figure>
+        <div class="delete-button-container is-aligned-right pt-2">
+          <a
+            href="/dashboard/deleteimage/{{_id}}"
+            class="button is-danger is-outlined is-hoverable pr-5 pl-5"
+            onclick="return confirm('Are you sure you want to delete this image?');"
+          >Delete<i class="fa-solid fa-trash pl-4"></i></a>
+        </div>
+      </div>
+    {{/if}}
     <a href="/dashboard/editclub/{{_id}}" class="button">
       <span class="icon is-small">
         <i class="fas fa-edit"></i>

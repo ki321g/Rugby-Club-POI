@@ -63,3 +63,9 @@
   font-weight: 500;
   color: #8F99A3;
 }
+
+/********IMAGE********/
+.image.is-256x256 {
+  width: 256px;
+  height: 256px;
+}

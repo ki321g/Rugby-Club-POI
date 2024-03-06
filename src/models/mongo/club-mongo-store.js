@@ -73,4 +73,18 @@ export const clubMongoStore = {
     const updatedClubObj = await club.save();
     return updatedClubObj;
   },
+
+  async updateClubImage(updatedClub) {
+    const club = await Club.findOne({ _id: updatedClub._id });
+    club.club = updatedClub.club;
+    club.address = updatedClub.address;
+    club.phone = updatedClub.phone;
+    club.email = updatedClub.email;
+    club.website = updatedClub.website;
+    club.latitude = Number(updatedClub.latitude);
+    club.longitude = Number(updatedClub.longitude);
+    club.description = updatedClub.description;
+    club.img = updatedClub.img;
+    await club.save();
+  },
 };

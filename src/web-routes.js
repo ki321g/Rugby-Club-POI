@@ -25,6 +25,8 @@ export const webRoutes = [
   { method: "POST", path: "/dashboard/addclub", config: dashboardController.addClub },
   { method: "Get", path: "/dashboard/editclub/{id}", config: dashboardController.editClub },
   { method: "GET", path: "/dashboard/deleteclub/{id}", config: dashboardController.deleteClub },
+  { method: "POST", path: "/dashboard/{id}/uploadimage", config: dashboardController.uploadImage },
+  { method: "GET", path: "/dashboard/deleteimage/{id}", config: dashboardController.deleteImage },
 
   { method: "GET", path: "/club/{id}", config: clubController.index },
   { method: "POST", path: "/club/{id}/addgame", config: clubController.addGame },
