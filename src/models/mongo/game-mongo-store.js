@@ -39,15 +39,28 @@ export const gameMongoStore = {
     await Game.deleteMany({});
   },
 
-  async updateGame(game, updatedGame) {
-    const gameDoc = await Game.findOne({ _id: game._id });
-    gameDoc.home = updatedGame.home;
-    gameDoc.homescore = Number(updatedGame.homescore);
-    gameDoc.awayscore = Number(updatedGame.awayscore);
-    gameDoc.away = updatedGame.away;
-    gameDoc.gametime = updatedGame.gametime;
-    gameDoc.gamelocation = Number(updatedGame.gamelocation);    
-    const updatedGameObj = await gameDoc.save();
+  // async updateGame(game, updatedGame) {
+  //   const gameDoc = await Game.findOne({ _id: game._id });
+  //   gameDoc.home = updatedGame.home;
+  //   gameDoc.homescore = Number(updatedGame.homescore);
+  //   gameDoc.awayscore = Number(updatedGame.awayscore);
+  //   gameDoc.away = updatedGame.away;
+  //   gameDoc.gametime = updatedGame.gametime;
+  //   gameDoc.gamelocation = Number(updatedGame.gamelocation);  
+  //   console.log(gameDoc);  
+  //   const updatedGameObj = await gameDoc.save();
+  //   return updatedGameObj;
+  // },
+  
+  async updateGame(gameID, updatedGame) {
+    const game = await Game.findOne({ _id: gameID });
+    game.home = updatedGame.home;
+    game.homescore = Number(updatedGame.homescore);
+    game.awayscore = Number(updatedGame.awayscore);
+    game.away = updatedGame.away;
+    game.gametime = updatedGame.gametime;
+    game.gamelocation = updatedGame.gamelocation;
+    const updatedGameObj = await game.save();
     return updatedGameObj;
-  },
+  },  
 };

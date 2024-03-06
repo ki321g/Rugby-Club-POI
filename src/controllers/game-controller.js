@@ -33,7 +33,7 @@ export const gameController = {
         gametime: request.payload.gametime,
         gamelocation: request.payload.gamelocation,
       };
-      await db.gameStore.updateGame(game, newGame);
+      await db.gameStore.updateGame(game._id, newGame);
       return h.redirect(`/club/${request.params.id}`);
     },
   },

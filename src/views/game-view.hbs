@@ -7,15 +7,15 @@
 <section class="section">
     <h1 class="title page-heading is-3">Edit Game</h1>
   <form method="POST" action="/game/{{club._id}}/updategame/{{game._id}}">
-  <table class="table is-fullwidth">
+  <table class="table is-fullwidth is-striped is-hoverable is-fullwidth">
     <thead>
-      <tr>
-        <th>Home Team</th>
-        <th>Home Score</th>
-        <th>Away Score</th>
-        <th>Email</th>
-        <th>Away Team</th>
-        <th>Game Location</th>
+      <tr class="is-uppercase">
+        <th class="has-text-centered">Home Team</th>
+        <th class="has-text-centered">Home Score</th>
+        <th class="has-text-centered">Away Score</th>
+        <th class="has-text-centered">Away Team</th>        
+        <th class="has-text-centered">Time</th>
+        <th class="has-text-centered">Game Location</th>
       </tr>
     </thead>
     <tbody>
@@ -51,9 +51,16 @@
         </div>
           </td>
         </tr>
+    <tr>
+      <td colspan="6">
+        <div class="buttons is-centered pt-3">
+          <button class="button is-primary is-fullwidth is-size-5 p-5"><i class="fas fa-pen-to-square p-3"></i> Update Club</button>  
+        </div>  
+      </td>
+    </tr>
     </tbody>
-  </table>
-    <button class="button is-primary">Update Game</button>
+  </table>    
+    
   </form>
 </section>
 {{#if errors}}

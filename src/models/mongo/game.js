@@ -1,4 +1,3 @@
-// import { string } from "joi";
 import Joi from "joi";
 const { string } = Joi;
 import Mongoose from "mongoose";

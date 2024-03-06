@@ -15,10 +15,15 @@ export const dashboardController = {
       }
       clubs = userClubs.sort((a, b) => a.club.localeCompare(b.club));
       numberClubs = clubs.length;
-      
+
+      // if (loggedInUser.accountType === "user" && numberClubs > 0) {
+      //   hideAddClub = true;
+      // }
       if (numberClubs > 0) {
         hideAddClub = true;
       }
+      console.log("Number of clubs: " + numberClubs);
+      console.log("Hide Add Club: " + hideAddClub);
 
       const viewData = {
         title: "RugbyGamePOI Dashboard",
@@ -26,7 +31,7 @@ export const dashboardController = {
         superAdmin: superAdmin,
         clubs: clubs,
         hideAddClub: hideAddClub,
-        apiKey: process.env.GOOGLE_API_KEY 
+        apiKey: process.env.GOOGLE_API_KEY,
       };
       return h.view("dashboard-view", viewData);
     },
@@ -59,11 +64,23 @@ export const dashboardController = {
 
   editClub: {
     handler: async function (request, h) {
+      const loggedInUser = request.auth.credentials;
+      let UserLoggedIn = Boolean(loggedInUser);
+      let superAdmin = false;
+
+      if (loggedInUser.accountType === "superadmin" || loggedInUser.accountType === "admin") {
+        superAdmin = Boolean(loggedInUser.accountType);
+      }
+
       console.log("Editing ClubID: " + request.params.id);
+      console.log("SuperAdmin: " + superAdmin);
       const club = await db.clubStore.getClubById(request.params.id);
-      console.log(club);
+
       const viewData = {
         title: "Edit Club",
+        user: loggedInUser,
+        superAdmin: superAdmin,
+        UserLoggedIn: UserLoggedIn,
         club: club,
       };
       return h.view("edit-club-view", viewData);
