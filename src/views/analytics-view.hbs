@@ -10,4 +10,78 @@
 
 <section class="section">
   <div class="title page-heading title is-1">Analytics Page </div>
+    <section class="info-tiles">        
+        <div class="container mb-3">
+            <div class="title page-heading title is-uppercase is-3">General Analytics</div>
+            <div class="tile is-ancestor has-text-centered">
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">{{totalUsersQty}}</p>
+                        <p class="subtitle is-uppercase">Total Users</p>
+                    </article>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">{{totalClubsQty}}</p>
+                        <p class="subtitle is-uppercase">Total Clubs</p>
+                    </article>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">{{totalGamesQty}}</p>
+                        <p class="subtitle is-uppercase">Total Games</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+         <div class="container mb-3">
+            <div class="title page-heading title is-uppercase is-3">Game Analytics</div>
+            <div class="tile is-ancestor has-text-centered">
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">{{clubMostGames.club}}</p>
+                        <p class="subtitle is-uppercase">Most Games Played</p>
+                    </article>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">{{highestScore}}</p>
+                        <p class="subtitle is-uppercase">Highest Scoring Game</p>
+                    </article>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">{{largestScoreDifference}}</p>
+                        <p class="subtitle is-uppercase">Larges Score Difference</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+        <div class="container mb-3">
+            <div class="title page-heading title is-uppercase is-3">Number of Clubs per County</div>
+            <div class="tile is-ancestor has-text-centered">
+            {{#each countyAnalytics}}
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">{{clubCount}}</p>
+                        <p class="subtitle is-uppercase">{{address}}</p>
+                    </article>
+                </div>
+            {{/each}}
+            </div>
+        </div>
+        <div class="container mb-3">
+            <div class="title page-heading title is-uppercase is-3">Number of Games Played per Club</div>
+            <div class="tile is-ancestor has-text-centered">
+            {{#each clubAnalytics}}
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">{{gameCount}}</p>
+                        <p class="subtitle">{{club}}</p>
+                    </article>
+                </div>
+            {{/each}}
+            </div>
+        </div>
+    </section>
 </section>

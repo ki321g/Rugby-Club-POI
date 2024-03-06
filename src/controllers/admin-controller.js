@@ -1,5 +1,6 @@
 import { ClubSpec } from "../models/joi-schemas.js";
 import { UserSpec } from "../models/joi-schemas.js";
+import { Analytics } from "../utils/analytics-utils.js";
 import { db } from "../models/db.js";
 
 export const adminController = {
@@ -33,12 +34,22 @@ export const adminController = {
       if (loggedInUser.accountType === "superadmin" || loggedInUser.accountType === "admin") {
         superAdmin = Boolean(loggedInUser.accountType);
       }
-
+      
+      const { totalUsersQty, totalClubsQty, totalGamesQty, clubMostGames, highestScore, largestScoreDifference, countyAnalytics, clubAnalytics } = await Analytics();
+     
       const viewData = {
         title: "RugbyGamePOI Analytics",
         user: request.auth.credentials,
         UserLoggedIn: UserLoggedIn,
         superAdmin: superAdmin,
+        totalUsersQty: totalUsersQty,
+        totalClubsQty: totalClubsQty,
+        totalGamesQty: totalGamesQty,
+        clubMostGames: clubMostGames,
+        highestScore: highestScore,
+        largestScoreDifference: largestScoreDifference,
+        countyAnalytics: countyAnalytics,
+        clubAnalytics: clubAnalytics,
       };
       return h.view("analytics-view", viewData);
     },
