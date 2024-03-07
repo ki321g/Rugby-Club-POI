@@ -1,9 +1,20 @@
-<div class="card">
+{{#if superAdmin}}
+  {{> admin-menu active="dashboard"}}
+{{else}}
+  {{>  menu active="dashboard"}}
+{{/if}}
+
+
+<section class="section pt-4">
+    <div class="card">
+      <h1 class="title page-heading is-3 p-3 mb-0">Edit/Add Club Image</h1>
   {{#if imageExists}}
-    <div class="card-image">
-      <figure class="image is-1000x500">
-        <img src={{club.img}} />
-      </figure>
+    <div class="card-image level">
+      <div class="level-item">
+        <figure class="image mt-2 is-576x408">
+          <img src={{club.img}} />
+        </figure>
+      </div>
     </div>
   {{/if}}
   <div class="card-content">
@@ -26,6 +37,9 @@
     </form>
   </div>
 </div>
+</section>
+
+
 
 <script>
   const fileInput = document.querySelector(".file-input"); fileInput.onchange = () => { if (fileInput.files.length > 0) { const fileName = document.querySelector(".file-name");

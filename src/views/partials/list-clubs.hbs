@@ -1,42 +1,79 @@
-{{#each clubs}}
-  <div class="box box-link-hover-shadow">
-    <h2 class="title page-heading is-2">
-      {{club}}
-    </h2>
-    <p> {{address}} </p>
-    <p> {{phone}} </p>
-    <p> {{email}} </p>
-    <p> {{website}} </p>
-    <p> {{latitude}} </p>
-    <p> {{longitude}} </p>
-    <p> {{description}}</p>
-    <p> {{_id}} </p>
-    {{#if img}}
-      <div class="card-image">
-        <figure class="image is-256x256">
-          <img src={{img}} />
-        </figure>
-        <div class="delete-button-container is-aligned-right pt-2">
-          <a
-            href="/dashboard/deleteimage/{{_id}}"
-            class="button is-danger is-outlined is-hoverable pr-5 pl-5"
-            onclick="return confirm('Are you sure you want to delete this image?');"
-          >Delete<i class="fa-solid fa-trash pl-4"></i></a>
-        </div>
-      </div>
-    {{/if}}
-    <a href="/dashboard/editclub/{{_id}}" class="button">
-      <span class="icon is-small">
-        <i class="fas fa-edit"></i>
-      </span>
-    </a>
-    <a href="/club/{{_id}}" class="button">
-      <span class="icon is-small">
-        <i class="fas fa-folder-open"></i>
-      </span>
-    </a>
-    <a href="/dashboard/deleteclub/{{_id}}" class="button">
-      <i class="fas fa-trash"></i>
-    </a>
-  </div>
+ {{#each clubs}}
+            <div class="blog-posts">
+                <div class="box box-link-hover-shadow">
+                    <h2 class="title page-heading is-2 is-uppercase mb-0">
+                        {{club}}
+                    </h2>
+                    <div class="columns featured-post is-multiline">
+                        <div class="column is-12 post">
+                            <article class="columns featured is-multiline">
+                            {{#if img}}
+                              <figure class="image is-520x360">
+                                <div class="column">
+                                    <img src={{img}} alt="">                                    
+                                    <div class="buttons-overlay">
+                                        <a class="button imgBtn is-warning is-half is-medium is-uppercase has-text-grey mr-2" href="/dashboard/editimage/{{_id}}">Update Image</a>
+                                        <a class="button imgBtn is-danger is-half is-medium is-uppercase has-text-grey" href="/dashboard/deleteimage/{{_id}}">Delete Image</a>
+                                    </div>
+                                </div>
+                              </figure>                                
+                            {{else}} 
+                              <figure class="image is-520x360">                                                    
+                                <div class="column">
+                                    <img src="/images/club-image.png" alt="">
+                                    <div class="buttons-overlay">
+                                        <a class="button imgBtn is-warning is-fullwidth is-medium is-uppercase has-text-grey mr-2" href="/dashboard/editimage/{{_id}}">Add Image</a>
+                                    </div>
+                                </div>                                
+                              </figure>   
+                            {{/if}}
+                                <div class="column featured-content va">
+                                    <div>
+                                        <h3 class="heading post-category">County</h3>
+                                        <h1 class="title post-title page-heading is-3 mb-3">{{address}}</h1>
+                                        <h3 class="heading post-category">Phone</h3>
+                                        <h1 class="title post-title page-heading is-3 mb-3">{{phone}}</h1>
+                                        <h3 class="heading post-category">Email</h3>
+                                        <h1 class="title post-title page-heading is-3 mb-3">{{email}}</h1>
+                                        <h3 class="heading post-category">website</h3>
+                                        <h1 class="title post-title page-heading is-3 mb-3">{{website}}</h1>                                      
+                                        <div class="buttons has-addons is-fullwidth">
+                                            <a id="place-link-location" class="button is-half" href="https://www.google.com/maps/?q={{latitude}}%2C{{longitude}}"
+                                                target="_blank"><i class="fas fa-location-dot fa-lg mr-2"></i> View Place</a>
+                                            <a id="place-link-directions" class="button is-half" href="https://www.google.com/maps/dir/?api=1&origin=Current+Location&destination={{latitude}}%2C{{longitude}}"
+                                                target="_blank"><i class="fas fa-route fa-lg mr-2"></i> Get Directions</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="column is-12 pb-0">
+                                    <h3 class="heading post-category">Description</h3>
+                                    <p class="post-excerpt">This template is based off of the official default blog
+                                        template created by the fine folks over at <a href="https://ghost.io">Ghost</a>.
+                                        If you are looking for a fully featured blog platform, I highly recommend
+                                        checking them out!</p>
+                                    <br>
+                                </div>       
+                                <div class="column is-12 pt-0">
+                                    <div class="buttons has-addons is-fullwidth">
+                                        <a class="button controlBtn is-warning is-medium is-third is-uppercase has-text-grey"href="/dashboard/editclub/{{_id}}">
+                                            <i class="fas fa-edit fa-xl mr-2"></i>
+                                            Edit Club
+                                        </a>
+                                        <a class="button controlBtn is-warning is-medium is-third is-uppercase has-text-grey" href="/club/{{_id}}">
+                                            <i class="fas fa-edit fa-xl mr-2" href="/club/{{_id}}"></i>
+                                            View/Edit Games
+                                        </a>
+                                        <a class="button controlBtn is-danger is-medium is-uppercase is-third" href="/dashboard/deleteclub/{{_id}}">
+                                            <i class="fas fa-trash-alt fa-xl mr-2"></i>
+                                            Delete Club
+                                        </a>
+                                    </div>                                   
+                                </div>
+                        </div>
+                    </div>
+                    </article>
+                </div>   
+            </div>
+    </div>
 {{/each}}

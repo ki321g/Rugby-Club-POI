@@ -24,9 +24,6 @@ export const dashboardController = {
       if (numberClubs > 0) {
         hideAddClub = true;
       }
-      console.log("Number of clubs: " + numberClubs);
-      console.log("Hide Add Club: " + hideAddClub);
-
       const viewData = {
         title: "RugbyGamePOI Dashboard",
         user: loggedInUser,
@@ -81,11 +78,6 @@ export const dashboardController = {
       if (numberClubs > 0) {
         hideAddClub = true;
       }
-      console.log("Number of clubs: " + numberClubs);
-      console.log("Hide Add Club: " + hideAddClub);
-      console.log("Club Added: " + clubAdded);
-      console.log(checkClub)
-
       const viewData = {
         title: "RugbyGamePOI Dashboard",
         user: loggedInUser,
@@ -107,8 +99,6 @@ export const dashboardController = {
         superAdmin = Boolean(loggedInUser.accountType);
       }
 
-      console.log("Editing ClubID: " + request.params.id);
-      console.log("SuperAdmin: " + superAdmin);
       const club = await db.clubStore.getClubById(request.params.id);
 
       const viewData = {
@@ -173,7 +163,7 @@ export const dashboardController = {
       maxBytes: 209715200,
       parse: true,
     },
-  },
+  },    
 
   deleteClub: {
     handler: async function (request, h) {
@@ -195,7 +185,6 @@ export const dashboardController = {
 
       const splitImageURL = club.img.split("/");
       const publicId = splitImageURL[splitImageURL.length - 1].split(".")[0];
-      // console.log(imageName);
 
       await imageStore.deleteImage(publicId);
       
@@ -223,6 +212,41 @@ export const dashboardController = {
         };
         
         return h.redirect(`/dashboard`, viewData);
+    },
+  },
+
+  editImage: {
+    handler: async function (request, h) {           
+      const loggedInUser = request.auth.credentials;
+      let superAdmin = false;
+      let hideAddClub = false;
+      const clubAdded = true;
+      let clubs, numberClubs; 
+      console.log("Editing Club Image: " + request.params.id);
+      const club = await db.clubStore.getClubById(request.params.id);
+      const imageExists = Boolean(club.img);
+      const userClubs = await db.clubStore.getUserClubs(loggedInUser._id);
+        if (loggedInUser.accountType === "superadmin" || loggedInUser.accountType === "admin") {
+          superAdmin = Boolean(loggedInUser.accountType);
+        }
+        clubs = userClubs.sort((a, b) => a.club.localeCompare(b.club));
+        numberClubs = clubs.length;
+
+        if (numberClubs > 0) {
+          hideAddClub = true;
+        }
+        
+        const viewData = {
+          title: "RugbyGamePOI Dashboard",
+          user: loggedInUser,
+          superAdmin: superAdmin,
+          club: club,
+          hideAddClub: hideAddClub,
+          imageExists: imageExists,
+          clubAdded: clubAdded,
+          apiKey: process.env.GOOGLE_API_KEY,
+        };
+        return h.view(`edit-image-view`, viewData);
     },
   },
 };
