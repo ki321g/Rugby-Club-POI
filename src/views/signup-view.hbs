@@ -19,26 +19,72 @@
     <button class="delete"></button> Invalid email or password
   </div> --}}
   <form action="/register" method="POST">
-    <label class="label">Name</label>
+  <div class="columns">
+  <div class="column is-2">
+    <!-- empty column -->
+  </div>
+  <div class="column is-8">
     <div class="field is-horizontal">
-      <div class="field-body">
-        <div class="field">
+    <div class="field-body">
+      <div class="field">
+        <label class="label">First Name</label>
+        <p class="control has-icons-left">
           <input class="input" type="text" placeholder="Enter first name" name="firstName">
-        </div>
-        <div class="field">
+          <span class="icon is-small is-left">
+            <i class="fas fa-user"></i>
+          </span>
+        </p>
+      </div>
+      <div class="field">
+        <label class="label">Last Name</label>
+        <p class="control has-icons-left">
           <input class="input" type="text" placeholder="Enter last name" name="lastName">
-        </div>
+          <span class="icon is-small is-left">
+            <i class="fas fa-user"></i>
+          </span>
+        </p>
       </div>
     </div>
-    <div class="field">
-      <label class="label">Email</label> <input class="input" type="text" placeholder="Enter email" name="email">
-    </div>
-    <div class="field">
-      <label class="label">Password</label> <input class="input" type="password" placeholder="Enter Password" name="password">
-    </div>    
-    <input type="hidden" name="accountType" value="user">
-    <div class="field is-grouped">
-      <button class="button is-link">Submit</button>
-    </div>
+  </div>
+ <div class="field">
+  <label class="label">Email</label>
+  <p class="control has-icons-left">
+    <input class="input" type="email" placeholder="Enter email" name="email">
+    <span class="icon is-small is-left">
+      <i class="fas fa-envelope"></i>
+    </span>
+  </p>
+</div>
+<div class="field">
+  <label class="label">Password</label>
+  <p class="control has-icons-left">
+    <input class="input" type="password" placeholder="Enter password" name="password">
+    <span class="icon is-small is-left">
+      <i class="fas fa-lock"></i>
+    </span>
+  </p>
+</div>
+{{!-- <div class="field">
+  <label class="label">Confirm Password</label>
+  <p class="control has-icons-left">
+    <input class="input" type="password" placeholder="Confirm password" name="confirmPassword">
+    <span class="icon is-small is-left">
+      <i class="fas fa-lock"></i>
+    </span>
+  </p>
+</div> --}}
+<input type="hidden" name="accountType" value="user">
+<div class="field">
+  <p class="control">
+    <button class="button is-primary is-large is-fullwidth">
+      Sign Up
+    </button>
+  </p>
+</div>
+</div>
+  <div class="column is-2">
+    <!-- empty column -->
+  </div>
+</div>
   </form>
 </section>
