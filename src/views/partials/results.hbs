@@ -1,0 +1,61 @@
+{{#each clubs}}
+    <div class="blog-posts">
+        <div class="box box-link-hover-shadow">
+            <div class="columns is-fullwidth">
+                <div class="column has-text-left">
+                    <h2 class="title page-heading is-2 is-uppercase mb-0">
+                        {{club}} 
+                    </h2>
+                </div>
+                <div class="column has-text-right">
+                    <h2 class="title page-heading is-2 is-uppercase mb-0">
+                        {{category}} Club
+                    </h2>
+                </div>
+            </div>                    
+            <div class="columns featured-post is-multiline">
+                <div class="column is-12 post">
+                    <article class="columns featured is-multiline">
+                    {{#if img}}
+                      <figure class="image is-520x360">
+                        <div class="column">
+                            <img src={{img}} alt="">
+                        </div>
+                      </figure>                                
+                    {{else}} 
+                      <figure class="image is-520x360">                                                    
+                        <div class="column">
+                            <img src="/images/club-image.png" alt="">
+                        </div>                                
+                      </figure>   
+                    {{/if}}
+                        <div class="column featured-content va">
+                            <div>
+                                <h3 class="heading post-category">County</h3>
+                                <h1 class="title post-title page-heading is-3 mb-3">{{address}}</h1>
+                                <h3 class="heading post-category">Phone</h3>
+                                <h1 class="title post-title page-heading is-3 mb-3">{{phone}}</h1>
+                                <h3 class="heading post-category">Email</h3>
+                                <h1 class="title post-title page-heading is-3 mb-3">{{email}}</h1>
+                                <h3 class="heading post-category">website</h3>
+                                <h1 class="title post-title page-heading is-3 mb-3">{{website}}</h1>                                      
+                                <div class="buttons has-addons is-fullwidth">
+                                    <a id="place-link-location" class="button is-half" href="https://www.google.com/maps/?q={{latitude}}%2C{{longitude}}"
+                                        target="_blank"><i class="fas fa-location-dot fa-lg mr-2"></i> View Place</a>
+                                    <a id="place-link-directions" class="button is-half" href="https://www.google.com/maps/dir/?api=1&origin=Current+Location&destination={{latitude}}%2C{{longitude}}"
+                                        target="_blank"><i class="fas fa-route fa-lg mr-2"></i> Get Directions</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="column is-12 pb-0">
+                            <h3 class="heading post-category">Description</h3>
+                            <p class="post-excerpt">{{description}}</p>
+                            <br>
+                        </div>                                      
+                </div>
+            </div>
+            </article>
+        </div>   
+    </div>    
+{{/each}}

@@ -44,13 +44,14 @@ export const GameArraySpec = Joi.array().items(GameSpecPlus).label("GameArray");
 export const ClubSpec = Joi.object()
   .keys({
     club: Joi.string().example("Waterford City RFC").required(),
-    address: Joi.string().example("Cork Road, Waterford").required(),
+    address: Joi.string().example("Waterford").required(),
     phone: Joi.string().example("0869874563").allow("").optional(),
     email: Joi.string().example("info@waterfordrfc.ie").allow("").optional(),
     website: Joi.string().example("http://www.waterfordrfc.ie").allow("").optional(),
     latitude: Joi.number().example("52.2386926").required(),
     longitude: Joi.number().example("-7.1403204").required(),
     description: Joi.string().example("A great rugby club").allow("").optional(),
+    category: Joi.string().example("Senior").required(),
     // userId: IdSpec,
   })
   .label("Club");

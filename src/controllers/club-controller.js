@@ -69,6 +69,7 @@ export const clubController = {
         latitude: Number(request.payload.latitude),
         longitude: Number(request.payload.longitude),
         description: request.payload.description,
+        category: request.payload.category.toUpperCase(),
       };
 
       await db.clubStore.updateClub(clubID, updatedClub);

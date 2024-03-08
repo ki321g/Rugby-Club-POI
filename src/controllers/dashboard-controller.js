@@ -47,8 +47,8 @@ export const dashboardController = {
       const loggedInUser = request.auth.credentials;
       let superAdmin = false;
       let hideAddClub = false;
-      let clubs, numberClubs;      
-      
+      let clubs, numberClubs; 
+
       const newClub = {
         club: request.payload.club,
         address: request.payload.address,
@@ -58,10 +58,11 @@ export const dashboardController = {
         latitude: Number(request.payload.latitude),
         longitude: Number(request.payload.longitude),
         description: request.payload.description,
+        category: request.payload.category.toUpperCase(),
         userId: loggedInUser._id,
       };
-
-      const addingClub = await db.clubStore.addClub(newClub);    
+     
+      const addingClub = await db.clubStore.addClub(newClub); 
       const checkClub = await db.clubStore.getOnlyClubById(addingClub._id);
       const clubAdded = Boolean(checkClub);
 
@@ -180,7 +181,7 @@ export const dashboardController = {
       let superAdmin = false;
       let hideAddClub = false;
       let clubs, numberClubs; 
-      console.log("Deleting Club Image: " + request.params.id);
+      
       const club = await db.clubStore.getClubById(request.params.id);
 
       const splitImageURL = club.img.split("/");
