@@ -16,6 +16,10 @@
   letter-spacing: -2px;
 }
 
+.select-label {
+  font-weight: 800;
+}
+
 /********Main********/
 
 /* .home-page {
@@ -186,3 +190,9 @@ button {
 .button.imgBtn.is-danger {
   color: #ffffff !important;
 }
+
+
+/* .custom-select {
+  align-self: center; /* This will vertically align the select with the buttons */
+  width: 400px; /* This will make the select a little wider */
+} */

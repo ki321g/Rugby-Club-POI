@@ -10,10 +10,32 @@
 
 <section class="section pt-4">
   <h1 class="title page-heading is-2 is-uppercase mb-3">Clubs List</h1>
- <div class="buttons">
-    <a class="button" href="/clubs">ALL</a>
-    <a class="button" href="/clubs/junior">JUNIOR</a>
-    <a class="button" href="/clubs/senior">SENIOR</a>
+  {{!-- <div class="buttons">
+      <a class="button mb-0" href="/clubs">ALL</a>
+      <a class="button mb-0" href="/clubs/junior">JUNIOR</a>
+      <a class="button mb-0" href="/clubs/senior">SENIOR</a>
+      <div class="select custom-select">
+        <select name="county">
+          <option value="">ALL</option>
+          {{#each clubCounties}}
+            <option value="{{this}}">{{this}}</option>
+          {{/each}}
+        </select>
+      </div>
+  </div> --}}
+  <div class="buttons is-flex is-align-items-center">
+  <a class="button mb-0" href="/clubs">ALL</a>
+  <a class="button mb-0" href="/clubs/junior">JUNIOR</a>
+  <a class="button mb-0" href="/clubs/senior">SENIOR</a>
+  <span class="title select-label is-4 mb-0 mr-2">Filter by County:</span>
+  <div class="select custom-select">
+    <select name="county">
+      <option value="">ALL</option>
+      {{#each clubCounties}}
+        <option value="{{this}}">{{this}}</option>
+      {{/each}}
+    </select>
   </div>
-
-  {{> results }}
+</div>
+  {{> club-results }}
+</section>
