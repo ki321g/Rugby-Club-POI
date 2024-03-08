@@ -61,7 +61,6 @@ export const clubMongoStore = {
     try {
       await Club.deleteOne({ _id: id });
     } catch (error) {
-      console.log("bad id");
     }
   },
 

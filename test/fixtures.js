@@ -47,6 +47,7 @@ export const clare = {
   longitude: 54321,
   description:
     "clare Rugby Football Club is a rugby union club based in clare, Ireland, playing in Division 2A of the All-Ireland League. The club was founded in 1921 and is the oldest rugby club in clare.",
+  category: "junior",
 };
 
 
@@ -69,6 +70,7 @@ export const wexford = {
   longitude: 54321,
   description:
     "wexford Rugby Football Club is a rugby union club based in wexford, Ireland, playing in Division 2A of the All-Ireland League. The club was founded in 1921 and is the oldest rugby club in wexford.",
+  category: "senior",
 };
 
 export const corkWaterford = {
@@ -91,6 +93,7 @@ export const testClubs = [
     longitude: 54321,
     description:
       "Waterford Rugby Football Club is a rugby union club based in Waterford, Ireland, playing in Division 2A of the All-Ireland League. The club was founded in 1921 and is the oldest rugby club in Waterford.",
+    category: "junior",
   },
   {
     club: "Cork RFC",
@@ -102,6 +105,7 @@ export const testClubs = [
     longitude: 654321,
     description:
       "Cork Rugby Football Club is a rugby union club based in Cork, Ireland, playing in Division 2A of the All-Ireland League. The club was founded in 1921 and is the oldest rugby club in Cork.",
+    category: "senior",
   },
   {
     club: "Dublin RFC",
@@ -113,6 +117,7 @@ export const testClubs = [
     longitude: 1354165465,
     description:
       "Dublin Rugby Football Club is a rugby union club based in Dublin, Ireland, playing in Division 2A of the All-Ireland League. The club was founded in 1921 and is the oldest rugby club in Cork.",
+    category: "senior",
   },
 ];
 

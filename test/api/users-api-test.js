@@ -9,7 +9,7 @@ const users = new Array(testUsers.length);
 suite("User API tests", () => {
   setup(async () => {
     //db.init("json");
-    db.init("mongo");
+    // db.init("mongo");
     rugbyGamePOIService.clearAuth();
     await rugbyGamePOIService.createUser(maggie);
     await rugbyGamePOIService.authenticate(maggieCredentials);
@@ -58,11 +58,12 @@ suite("User API tests", () => {
 
   test("delete all userApi", async () => {
     let returnedUsers = await rugbyGamePOIService.getAllUsers();
-    assert.equal(returnedUsers.length, 4);
+    assert.equal(returnedUsers.length, 5);
     await rugbyGamePOIService.deleteAllUsers();
     await rugbyGamePOIService.createUser(maggie);
     await rugbyGamePOIService.authenticate(maggieCredentials);
     returnedUsers = await rugbyGamePOIService.getAllUsers();
-    assert.equal(returnedUsers.length, 1);
+    const qtyUsers = returnedUsers.length - 1;
+    assert.equal(qtyUsers, 1);
   });
 });

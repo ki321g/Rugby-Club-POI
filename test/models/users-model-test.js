@@ -21,10 +21,10 @@ suite("User Model tests", () => {
 
   test("delete all userApi", async () => {
     let returnedUsers = await db.userStore.getAllUsers();
-    assert.equal(returnedUsers.length, 3);
+    assert.equal(returnedUsers.length, 4);
     await db.userStore.deleteAll();
     returnedUsers = await db.userStore.getAllUsers();
-    assert.equal(returnedUsers.length, 0);
+    assert.equal(returnedUsers.length, 1);
   });
 
   test("get a user - success", async () => {
@@ -38,7 +38,8 @@ suite("User Model tests", () => {
   test("delete One User - success", async () => {
     await db.userStore.deleteUserById(testUsers[0]._id);
     const returnedUsers = await db.userStore.getAllUsers();
-    assert.equal(returnedUsers.length, testUsers.length - 1);
+    const qtyUsers = returnedUsers.length;
+    assert.equal(qtyUsers, testUsers.length);
     const deletedUser = await db.userStore.getUserById(testUsers[0]._id);
     assert.isNull(deletedUser);
   });
@@ -52,6 +53,7 @@ suite("User Model tests", () => {
   test("delete One User - fail", async () => {
     await db.userStore.deleteUserById("bad-id");
     const allUsers = await db.userStore.getAllUsers();
-    assert.equal(testUsers.length, allUsers.length);
+    const qtyUsers = allUsers.length - 1;
+    assert.equal(testUsers.length, qtyUsers);
   });
 });

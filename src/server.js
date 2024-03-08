@@ -16,6 +16,8 @@ import { apiRoutes } from "./api-routes.js";
 import jwt from "hapi-auth-jwt2";
 import { validate } from "./api/jwt-utils.js";
 
+
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -99,7 +101,7 @@ async function init() {
     verifyOptions: { algorithms: ["HS256"] },
   });
 
-  server.auth.default("session");
+  server.auth.default("session");  
 
   db.init(process.env.STORE_TYPE);
   server.route(webRoutes);

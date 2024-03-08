@@ -54,9 +54,7 @@ export const clubApi = {
       try {
         // decode and validate the JWT token
         const decodedToken = decodeToken(request.headers.authorization);
-        const validationResult = await validate(decodedToken, request);
-        // console.log(validationResult);
-        // console.log(decodedToken);
+        const validationResult = await validate(decodedToken, request);         
         if (!validationResult.isValid) {
           return Boom.unauthorized("Invalid credentials");
         }

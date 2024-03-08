@@ -13,7 +13,7 @@ suite("Game API tests", () => {
 
   setup(async () => {    
     //db.init("json");
-    db.init("mongo");
+    // db.init("mongo");
     rugbyGamePOIService.clearAuth();
     user = await rugbyGamePOIService.createUser(maggie);
     await rugbyGamePOIService.authenticate(maggieCredentials);
@@ -22,7 +22,7 @@ suite("Game API tests", () => {
     await rugbyGamePOIService.deleteAllUsers();
     user = await rugbyGamePOIService.createUser(maggie);
     await rugbyGamePOIService.authenticate(maggieCredentials);
-    wexford.userid = user._id;
+    // wexford.userid = user._id;
     testingClub = await rugbyGamePOIService.createClub(wexford);    
   });
 

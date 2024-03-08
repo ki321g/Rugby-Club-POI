@@ -52,12 +52,12 @@ export const ClubSpec = Joi.object()
     longitude: Joi.number().example("-7.1403204").required(),
     description: Joi.string().example("A great rugby club").allow("").optional(),
     category: Joi.string().example("Senior").required(),
-    // userId: IdSpec,
+    userId: IdSpec,
   })
   .label("Club");
 
 export const ClubSpecPlus = ClubSpec.keys({
-  userId: IdSpec,
+  // userId: IdSpec,
   _id: IdSpec,
   __v: Joi.number(),
 }).label("ClubPlus");
