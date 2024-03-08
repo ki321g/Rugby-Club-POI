@@ -29,10 +29,10 @@ export const clubsController = {
         }
       }
 
-      const clubs = await db.clubStore.getAllClubs();
-      // Create clubCounties array
-      const clubCounties = clubs.map((club) => club.address.toUpperCase());
-
+      const clubs = await db.clubStore.getAllClubs(); // Gets clubs from the database
+      let clubCounties = clubs.map((club) => club.address.toUpperCase()); // Create clubCounties array
+      clubCounties = [...new Set(clubCounties)]; // Remove duplicates
+      
       const viewData = {
         title: "List Clubs",
         user: loggedInUser,
@@ -52,10 +52,10 @@ export const clubsController = {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
 
-      const category = request.params.category.toUpperCase();
-      const clubs = await db.clubStore.getClubsByCategory(category);
-      // Create clubCounties array
-      const clubCounties = clubs.map((club) => club.address.toUpperCase());
+      const category = request.params.category.toUpperCase(); // Get the category from the params
+      const clubs = await db.clubStore.getClubsByCategory(category); // Gets clubs from the database
+      let clubCounties = clubs.map((club) => club.address.toUpperCase()); // Create clubCounties array
+      clubCounties = [...new Set(clubCounties)]; // Remove duplicates
 
       let superAdmin = false;
       let hideAddClub = false;

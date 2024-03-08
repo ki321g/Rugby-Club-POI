@@ -61,21 +61,3 @@
 {{/each}}
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  $(document).ready(function() {
-    $('select[name="county"]').change(function() {
-      var selectedCounty = $(this).val().toUpperCase();
-      
-      $('.blog-posts').each(function() {
-        var clubCounty = $(this).data('address').toUpperCase();
-        
-        if (clubCounty === selectedCounty || selectedCounty === '') {
-          $(this).show();
-        } else {
-          $(this).hide();
-        }
-      });
-    });
-  });
-</script>
