@@ -22,19 +22,19 @@ index: {
         hideAddClub = true;
       }
 
-    const clubs = await db.clubStore.getAllClubs();
-    const viewData = {
-        title: "List Clubs",
-        user: loggedInUser,
-        superAdmin: superAdmin,
-        clubs: clubs,
-        UserLoggedIn: UserLoggedIn,
-        hideAddClub: hideAddClub,
-        clubs,
-    };
-    return h.view("clubs-view", viewData);
-    },
-},
+      const clubs = await db.clubStore.getAllClubs();
+      const viewData = {
+          title: "List Clubs",
+          user: loggedInUser,
+          superAdmin: superAdmin,
+          clubs: clubs,
+          UserLoggedIn: UserLoggedIn,
+          hideAddClub: hideAddClub,
+          clubs,
+      };
+      return h.view("clubs-view", viewData);
+      },
+  },
   category: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
