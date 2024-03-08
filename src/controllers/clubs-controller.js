@@ -1,4 +1,7 @@
+import { UserSpec, UserCredentialsSpec, GameSpec, ClubSpec } from "../models/joi-schemas.js";
+import { imageStore } from "../models/image-store.js";
 import { db } from "../models/db.js";
+
 
 export const clubsController = {
 index: {
