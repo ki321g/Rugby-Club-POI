@@ -48,23 +48,7 @@ export const clubsController = {
       mode: "try",
     },
     handler: async function (request, h) {
-      const loggedInUser = request.auth.credentials;
-      let superAdmin = false;
-      let hideAddClub = false;
-      let checkClubs, numberClubs;
-
-      const userClubs = await db.clubStore.getUserClubs(loggedInUser._id);
-      if (loggedInUser.accountType === "superadmin" || loggedInUser.accountType === "admin") {
-        superAdmin = Boolean(loggedInUser.accountType);
-      }
-      checkClubs = userClubs.sort((a, b) => a.club.localeCompare(b.club));
-      numberClubs = checkClubs.length;
-      
-      let UserLoggedIn = Boolean(loggedInUser);
-
-      if (numberClubs > 0) {
-        hideAddClub = true;
-      }
+      const loggedInUser = request.auth.credentials;    
 
       const category = request.params.category.toUpperCase();
       const clubs = await db.clubStore.getClubsByCategory(category);
