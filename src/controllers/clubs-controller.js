@@ -14,6 +14,8 @@ index: {
       }
       checkClubs = userClubs.sort((a, b) => a.club.localeCompare(b.club));
       numberClubs = checkClubs.length;
+      
+      let UserLoggedIn = Boolean(loggedInUser);
 
       if (numberClubs > 0) {
         hideAddClub = true;
@@ -25,6 +27,7 @@ index: {
         user: loggedInUser,
         superAdmin: superAdmin,
         clubs: clubs,
+        UserLoggedIn: UserLoggedIn,
         hideAddClub: hideAddClub,
         clubs,
     };
