@@ -40,7 +40,6 @@ export const webRoutes = [
   { method: "GET", path: "/clubs", config: clubsController.index},
   { method: "GET", path: "/clubs/{category}", config: clubsController.category },
 
-
   { method: "GET", path: "/game/{id}/editgame/{gameid}", config: gameController.index },
   { method: "POST", path: "/game/{id}/updategame/{gameid}", config: gameController.update },
 

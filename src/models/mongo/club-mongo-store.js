@@ -49,7 +49,7 @@ export const clubMongoStore = {
   },
 
   async getClubsByCategory(category) {
-    try {      
+    try {         
       const clubs = await Club.find({ category: category }).lean();
       return clubs;
     } catch (error) {
