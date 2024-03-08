@@ -6,6 +6,10 @@
   background: hsl(207, 61%, 48%) !important;
 }
 
+.page-margin {
+  margin-top: 3rem;
+}
+
 .brand-heading {
   font-weight: 800;
   letter-spacing: -2px;
@@ -20,6 +24,9 @@
   font-weight: 800;
 }
 
+.button-font {
+  font-weight: 600;
+}
 /********Main********/
 
 /* .home-page {

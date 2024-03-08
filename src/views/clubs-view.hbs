@@ -8,7 +8,7 @@
   {{>  welcome-menu active="clubs"}}
 {{/if}}
 
-<section class="section pt-4">
+<section class="section page-margin pt-6">
   <h1 class="title page-heading is-2 is-uppercase mb-3">Clubs List</h1>
   {{!-- <div class="buttons">
       <a class="button mb-0" href="/clubs">ALL</a>
@@ -36,6 +36,33 @@
       {{/each}}
     </select>
   </div>
+  <span class="title select-label number-of-clubs ml-auto is-uppercase is-4 mb-0 mr-2 ">Clubs: {{clubs.length}}</span>
 </div>
   {{> club-results }}
 </section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+   $('select[name="county"]').change(function() {
+      var selectedCounty = $(this).val().toUpperCase();
+      var visibleClubs = 0;
+
+      $('.blog-posts').each(function() {
+        var clubCounty = $(this).data('address').toUpperCase();
+
+        if (clubCounty === selectedCounty || selectedCounty === '') {
+          $(this).show();
+          if (clubCounty === selectedCounty) {
+            visibleClubs++;
+          }
+        } else {
+          $(this).hide();
+        }
+      });
+
+      // Update the number of clubs
+      $('.number-of-clubs').text('Clubs: ' + visibleClubs);
+    });
+  });
+</script>
