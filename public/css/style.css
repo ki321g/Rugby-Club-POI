@@ -16,6 +16,26 @@
   letter-spacing: -2px;
 }
 
+.select-label {
+  font-weight: 800;
+}
+
+/********Main********/
+
+/* .home-page {
+  min-height: calc(100vh - 4.5rem);
+} */
+
+/* .hero {
+  display: flex;
+  justify-content: center;
+  min-height: calc(100vh - 4.5rem);
+}
+
+.hero-body {
+  height: 100%; 
+} */
+
 /********ADD Club********/
 #search-box {
   width: 100%;
@@ -98,7 +118,7 @@
   /* min-height: 100vh; */
   /* background: #191b1f; */
   /* padding-top: 4rem; */
-  padding-bottom: 2rem; 
+  padding-bottom: 2rem;
 }
 
 .blog-posts article {
@@ -170,3 +190,9 @@ button {
 .button.imgBtn.is-danger {
   color: #ffffff !important;
 }
+
+
+/* .custom-select {
+  align-self: center; /* This will vertically align the select with the buttons */
+  width: 400px; /* This will make the select a little wider */
+} */

@@ -1,5 +1,5 @@
 {{#each clubs}}
-    <div class="blog-posts">
+    <div class="blog-posts" data-address="{{this.address}}">
         <div class="box box-link-hover-shadow">
             <div class="columns is-fullwidth">
                 <div class="column has-text-left">
@@ -59,3 +59,23 @@
         </div>   
     </div>    
 {{/each}}
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('select[name="county"]').change(function() {
+      var selectedCounty = $(this).val().toUpperCase();
+      
+      $('.blog-posts').each(function() {
+        var clubCounty = $(this).data('address').toUpperCase();
+        
+        if (clubCounty === selectedCounty || selectedCounty === '') {
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+      });
+    });
+  });
+</script>
