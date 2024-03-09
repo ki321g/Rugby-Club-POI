@@ -28,7 +28,7 @@ export const GameSpec = Joi.object()
     homescore: Joi.number().example("12").required(),
     awayscore: Joi.number().example("10").required(),
     away: Joi.string().example("Tramore RFC").required(),
-    gametime: Joi.string().example("Some time").required(),
+    gametime: Joi.string().example("12:00").required(),
     gamelocation: Joi.string().example("Waterford").required(),
     clubid: IdSpec,
   })
@@ -51,7 +51,8 @@ export const ClubSpec = Joi.object()
     latitude: Joi.number().example("52.2386926").required(),
     longitude: Joi.number().example("-7.1403204").required(),
     description: Joi.string().example("A great rugby club").allow("").optional(),
-    category: Joi.string().example("Senior").required(),
+    category: Joi.string().example("Senior").required(),    
+    img: Joi.string().example("http://URL.com/IMG_NAME.jpg").allow("").optional(),
     userId: IdSpec,
   })
   .label("Club");

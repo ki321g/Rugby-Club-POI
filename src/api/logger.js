@@ -1,3 +1,6 @@
+import Boom from "@hapi/boom";
+
 export function validationError(request, h, error) {
-  console.log(error.message);
+  console.error("Validation error:", error.message);
+  throw Boom.badRequest(error.message); // Or any appropriate error response
 }

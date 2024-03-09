@@ -19,6 +19,7 @@ export const clubApi = {
       }
     },
     tags: ["api"],
+    // validate: { params: { id: IdSpec }, failAction: validationError },
     response: { schema: ClubArraySpec, failAction: validationError },
     description: "Get all Clubs",
     notes: "Returns all Clubs",

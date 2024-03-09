@@ -70,14 +70,25 @@ export const userApi = {
       strategy: "jwt",
     },
     handler: async function (request, h) {
+      console.log("Step: 0 - Before Try");
       try {
+        console.log("Step: 1");
+        console.log(request.params.id);
         const user = await db.userStore.getUserById(request.params.id);
+        console.log("Step: 2");
+        console.log(user);
         if (!user) {
+          console.log("Step: 3");
+          console.log("No USER with this id");
           return Boom.notFound("No User with this id");
-        }
+        }        
+        console.log("Step: 4 - Before delete user");
         await db.userStore.deleteUserById(user._id);
+        console.log("Step: 4 - After delete user");
+        // return h.response({ message: 'User deleted successfully' }).code(200);
         return h.response().code(204);
-      } catch (err) {
+      } catch (err) {        
+        console.log("Step: 5 - After delete user");
         return Boom.serverUnavailable("No User with this id");
       }
     },
