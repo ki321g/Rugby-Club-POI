@@ -73,6 +73,8 @@ export async function Analytics() {
     clubAnalytics.sort((a, b) => b.gameCount - a.gameCount);
     const clubMostGames = clubAnalytics[0]; // This is the club with the most games
 
+    clubAnalytics = clubAnalytics.filter((club) => club.gameCount !== 0);
+
     return {
       totalUsersQty: totalUsersQty,
       totalClubsQty: totalClubsQty,
