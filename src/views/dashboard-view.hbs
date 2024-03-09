@@ -1,7 +1,16 @@
-{{#if superAdmin}}
+{{!-- {{#if superAdmin}}
   {{> admin-menu active="dashboard"}}
 {{else}}
   {{>  menu active="dashboard"}}
+{{/if}} --}}
+{{#if UserLoggedIn}}
+  {{#if superAdmin}}
+    {{> admin-menu active="dashboard"}}
+  {{else}}
+    {{>  menu active="dashboard"}}
+  {{/if}}
+{{else}}
+  {{>  welcome-menu active="dashboard"}}
 {{/if}}
 
 <section class="section pt-6 page-margin">   
