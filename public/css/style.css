@@ -20,6 +20,11 @@
   letter-spacing: -2px;
 }
 
+.page-content {
+  font-weight: 700;
+  letter-spacing: -2px;
+}
+
 .select-label {
   font-weight: 800;
 }
@@ -27,21 +32,6 @@
 .button-font {
   font-weight: 600;
 }
-/********Main********/
-
-/* .home-page {
-  min-height: calc(100vh - 4.5rem);
-} */
-
-/* .hero {
-  display: flex;
-  justify-content: center;
-  min-height: calc(100vh - 4.5rem);
-}
-
-.hero-body {
-  height: 100%; 
-} */
 
 /********ADD Club********/
 #search-box {
@@ -120,11 +110,7 @@
 }
 
 /********IMAGE********/
-
 .blog-posts {
-  /* min-height: 100vh; */
-  /* background: #191b1f; */
-  /* padding-top: 4rem; */
   padding-bottom: 2rem;
 }
 
@@ -154,12 +140,6 @@
 .blog-posts .post .featured .featured-image img {
   height: 380px;
 }
-
-/* .level-item a {
-  display: block;
-  text-align: center;
-  width: 100%;
-} */
 
 .button.is-half {
   width: 50%;
@@ -198,8 +178,6 @@ button {
   color: #ffffff !important;
 }
 
-
-/* .custom-select {
-  align-self: center; /* This will vertically align the select with the buttons */
-  width: 400px; /* This will make the select a little wider */
-} */
+.table-centered th {
+  text-align: center !important;
+}

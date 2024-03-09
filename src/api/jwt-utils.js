@@ -23,12 +23,10 @@ export function createToken(user) {
 export function decodeToken(token) {
   const userInfo = {};
   try {
-    const decoded = jwt.verify(token, process.env.COOKIE_PASSWORD);
-    // console.log(decoded.userId);
+    const decoded = jwt.verify(token, process.env.COOKIE_PASSWORD);    
      userInfo.userId = decoded.userId;    
      userInfo.email = decoded.email;
-    // console.log(decoded);
-    // console.log(userInfo);
+
     if (decoded.userId) {
       userInfo.userId = decoded.userId;
     }

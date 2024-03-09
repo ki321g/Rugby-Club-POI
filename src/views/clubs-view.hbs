@@ -8,61 +8,8 @@
   {{>  welcome-menu active="clubs"}}
 {{/if}}
 
-<section class="section page-margin pt-6">
-  <h1 class="title page-heading is-2 is-uppercase mb-3">Clubs List</h1>
-  {{!-- <div class="buttons">
-      <a class="button mb-0" href="/clubs">ALL</a>
-      <a class="button mb-0" href="/clubs/junior">JUNIOR</a>
-      <a class="button mb-0" href="/clubs/senior">SENIOR</a>
-      <div class="select custom-select">
-        <select name="county">
-          <option value="">ALL</option>
-          {{#each clubCounties}}
-            <option value="{{this}}">{{this}}</option>
-          {{/each}}
-        </select>
-      </div>
-  </div> --}}
-  <div class="buttons is-flex is-align-items-center">
-  <a class="button mb-0" href="/clubs">ALL</a>
-  <a class="button mb-0" href="/clubs/junior">JUNIOR</a>
-  <a class="button mb-0" href="/clubs/senior">SENIOR</a>
-  <span class="title select-label is-4 mb-0 mr-2">Filter by County:</span>
-  <div class="select custom-select">
-    <select name="county">
-      <option value="">ALL</option>
-      {{#each clubCounties}}
-        <option value="{{this}}">{{this}}</option>
-      {{/each}}
-    </select>
-  </div>
-  <span class="title select-label number-of-clubs ml-auto is-uppercase is-4 mb-0 mr-2 ">Clubs: {{clubs.length}}</span>
-</div>
-  {{> club-results }}
-</section>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  $(document).ready(function() {
-   $('select[name="county"]').change(function() {
-      var selectedCounty = $(this).val().toUpperCase();
-      var visibleClubs = 0;
-
-      $('.blog-posts').each(function() {
-        var clubCounty = $(this).data('address').toUpperCase();
-
-        if (clubCounty === selectedCounty || selectedCounty === '') {
-          $(this).show();
-          if (clubCounty === selectedCounty) {
-            visibleClubs++;
-          }
-        } else {
-          $(this).hide();
-        }
-      });
-
-      // Update the number of clubs
-      $('.number-of-clubs').text('Clubs: ' + visibleClubs);
-    });
-  });
-</script>
+{{#if clubDetails}}
+  {{> club-details }} 
+{{else}}
+  {{> club }}
+{{/if}}

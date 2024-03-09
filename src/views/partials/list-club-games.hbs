@@ -1,0 +1,36 @@
+<table class="table is-fullwidth is-striped is-hoverable is-fullwidth table-centered">
+  <thead>
+    <tr class="is-uppercase has-text-centered">
+      <th>Home Team</th>
+      <th>Home Score</th>
+      <th>Away Score</th>
+      <th>Email</th>
+      <th>Away Team</th>
+      <th>Game Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each club.games}}
+      <tr class="has-text-centered">
+        <td>
+          {{home}}
+        </td>
+        <td>
+          {{homescore}}
+        </td>
+        <td>
+          {{awayscore}}
+        </td>
+        <td>
+          {{away}}
+        </td>
+        <td>
+          {{gametime}}
+        </td>
+        <td>
+          {{gamelocation}}
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
