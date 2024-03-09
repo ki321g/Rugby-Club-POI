@@ -89,4 +89,49 @@ export const clubsController = {
       return h.view("clubs-view", viewData);
     },
   },
+  showClubDetails: {
+    auth: {
+      mode: "try",
+    },
+    handler: async function (request, h) {
+      const loggedInUser = request.auth.credentials;
+      const clubId = request.params.id;
+      console.log(clubId);
+      let superAdmin = false;
+      let hideAddClub = false;
+      let UserLoggedIn = false;
+      let clubDetails = true;
+      let checkClubs, numberClubs;
+
+      if (loggedInUser) {
+        const userClubs = await db.clubStore.getUserClubs(loggedInUser._id);
+        if (loggedInUser.accountType === "superadmin" || loggedInUser.accountType === "admin") {
+          superAdmin = Boolean(loggedInUser.accountType);
+        }
+        checkClubs = userClubs.sort((a, b) => a.club.localeCompare(b.club));
+        numberClubs = checkClubs.length;
+
+        UserLoggedIn = Boolean(loggedInUser);
+
+        if (numberClubs > 0) {
+          hideAddClub = true;
+        }
+      }
+
+      const club = await db.clubStore.getOnlyClubById(clubId); // Gets club from the database
+      const games = await db.gameStore.getGamesByClubId(clubId); // Gets games from the database
+      club.games = games;
+      console.log(club);
+      const viewData = {
+        title: "Club Details",
+        user: loggedInUser,
+        superAdmin: superAdmin,
+        club: club,
+        UserLoggedIn: UserLoggedIn,
+        hideAddClub: hideAddClub,
+        clubDetails: clubDetails,
+      };
+      return h.view("clubs-view", viewData);
+    },
+  },
 };
