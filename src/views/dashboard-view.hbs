@@ -1,9 +1,9 @@
-{{!-- {{#if superAdmin}}
+{{#if superAdmin}}
   {{> admin-menu active="dashboard"}}
 {{else}}
   {{>  menu active="dashboard"}}
-{{/if}} --}}
-{{#if UserLoggedIn}}
+{{/if}}
+{{!-- {{#if UserLoggedIn}}
   {{#if superAdmin}}
     {{> admin-menu active="dashboard"}}
   {{else}}
@@ -11,7 +11,7 @@
   {{/if}}
 {{else}}
   {{>  welcome-menu active="dashboard"}}
-{{/if}}
+{{/if}} --}}
 
 <section class="section pt-6 page-margin">   
   {{#if clubAdded}}
