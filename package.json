@@ -35,6 +35,7 @@
     "@hapi/hapi": "^21.3.2",
     "@hapi/inert": "^7.1.0",
     "@hapi/vision": "^7.0.3",
+    "chai": "^5.1.0",
     "cloudinary": "^2.0.3",
     "dotenv": "^16.4.1",
     "handlebars": "^4.7.8",
@@ -43,9 +44,9 @@
     "joi": "^17.12.0",
     "jsonwebtoken": "^9.0.2",
     "lowdb": "^7.0.1",
+    "mais-mongoose-seeder": "^1.0.7",
     "mongodb": "^6.4.0",
     "mongoose": "^8.1.1",
-    "chai": "^5.1.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
