@@ -60,27 +60,83 @@
         <div class="container mb-3">
             <div class="title page-heading title is-uppercase is-3">Number of Clubs per County</div>
             <div class="tile is-ancestor has-text-centered">
-            {{#each countyAnalytics}}
+            {{!-- {{#each countyAnalytics}}
                 <div class="tile is-parent">
                     <article class="tile is-child box">
                         <p class="title">{{clubCount}}</p>
                         <p class="subtitle is-uppercase">{{address}}</p>
                     </article>
                 </div>
+            {{/each}} --}}
+
+            
+            {{#each countyAnalytics}}
+                {{#if @first}}
+                    <div class="columns is-multiline">
+                {{/if}}
+                <div class="column is-3">
+                    <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">{{clubCount}}</p>
+                        <p class="subtitle is-uppercase">{{address}}</p>
+                    </article>
+                    </div>
+                </div>
+                {{#if @last}}
+                    </div>
+                {{/if}}
             {{/each}}
+
+
+
+
+
             </div>
         </div>
         <div class="container mb-3">
             <div class="title page-heading title is-uppercase is-3">Number of Games Played per Club</div>
-            <div class="tile is-ancestor has-text-centered">
-            {{#each clubAnalytics}}
+            <div class="is-ancestor has-text-centered">
+            {{!-- {{#each clubAnalytics}}
                 <div class="tile is-parent">
                     <article class="tile is-child box">
                         <p class="title">{{gameCount}}</p>
                         <p class="subtitle">{{club}}</p>
                     </article>
                 </div>
+            {{/each}} --}}
+
+
+            {{#each clubAnalytics}}
+                {{#if @first}}
+                    <div class="columns is-multiline">
+                {{/if}}
+                <div class="column is-3">
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <p class="title">{{gameCount}}</p>
+                            <p class="subtitle is-uppercase">{{club}}</p>
+                        </article>
+                    </div>
+                </div>
+                {{#if @last}}
+                    </div>
+                {{/if}}
             {{/each}}
+{{!-- <div class="columns is-multiline">
+  {{#each clubAnalytics}}
+    <div class="column is-3">
+      <div class="tile is-parent">
+        <article class="tile is-child box">
+          <p class="title">{{gameCount}}</p>
+          <p class="subtitle">{{club}}</p>
+        </article>
+      </div>
+    </div>
+  {{/each}}
+</div> --}}
+           
+            
+
             </div>
         </div>
     </section>
