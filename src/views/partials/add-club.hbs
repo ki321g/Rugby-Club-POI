@@ -1,4 +1,10 @@
-<h1 class="title page-heading is-1">Add Club</h1>
+{{#if superAdmin}}
+  {{!-- <button id="showAddClubButton">Show Add Club</button> --}}
+  <a id="showAddClubButton" class="button controlBtn is-warning is-medium is-fullwidth is-uppercase has-text-grey mb-4"><i class="fas fa-edit fa-xl mr-2"></i> Show/Hide Add Club</a>
+  <div id="addClubDiv" style="display: none;">
+{{else}}
+  <h1 class="title page-heading is-1">Add Club</h1>
+{{/if}}
 
   <form action="/dashboard/addclub" method="POST">
     <div class="field-body">
@@ -80,6 +86,22 @@
       </div>
     </div>
   </form>
+
+
+{{#if superAdmin}}
+  </div>
+{{/if}}
+
+<script>
+  document.getElementById('showAddClubButton').addEventListener('click', function() {
+    var addClubDiv = document.getElementById('addClubDiv');
+    if (addClubDiv.style.display === 'none') {
+      addClubDiv.style.display = 'block';
+    } else {
+      addClubDiv.style.display = 'none';
+    }
+  });
+</script>
 
   <!-- Your JavaScript code goes here -->
   <script>

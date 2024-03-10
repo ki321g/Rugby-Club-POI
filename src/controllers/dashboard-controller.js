@@ -17,7 +17,7 @@ export const dashboardController = {
       }
       clubs = userClubs.sort((a, b) => a.club.localeCompare(b.club));
       numberClubs = clubs.length;
-
+      console.log("superAdmin: " + superAdmin);
       // if (loggedInUser.accountType === "user" && numberClubs > 0) {
       //   hideAddClub = true;
       // }

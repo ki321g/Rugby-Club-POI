@@ -17,7 +17,10 @@
   {{#if clubAdded}}
     {{> club-image }}  
   {{else}}
-    {{#if hideAddClub}}
+    {{#if hideAddClub}}    
+        {{#if superAdmin}}
+        {{> add-club-dashboard }}
+        {{/if}}
         {{> list-clubs }}
       {{else}}
         {{> add-club-dashboard }}

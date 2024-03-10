@@ -13,6 +13,8 @@ export const webRoutes = [
   { method: "GET", path: "/signup", config: accountsController.showSignup },
   { method: "GET", path: "/login", config: accountsController.showLogin },
   { method: "GET", path: "/logout", config: accountsController.logout },
+  { method: "GET", path: "/profile", config: accountsController.profile },
+  { method: "POST", path: "/userupdate/{id}", config: accountsController.userUpdateSelf },
   { method: "POST", path: "/register", config: accountsController.signup },
   { method: "POST", path: "/authenticate", config: accountsController.login },
   { method: "POST", path: "/updateuser/{id}", config: accountsController.updateUser },
