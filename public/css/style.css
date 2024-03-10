@@ -150,6 +150,11 @@
   color: #333; /* Change to the color you want */
 }
 
+.button.aboutBtn:hover {
+  background-color: #f5f5f5; /* Change to the color you want */
+  color: #333; /* Change to the color you want */
+}
+
 .controlBtn.button.is-third {
   width: 33%;
   border: 2px solid #ffffff;
