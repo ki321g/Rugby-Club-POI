@@ -24,6 +24,7 @@ suite("User Model tests", () => {
     assert.equal(returnedUsers.length, 4);
     await db.userStore.deleteAll();
     returnedUsers = await db.userStore.getAllUsers();
+    const qtyUsers = returnedUsers.length - 1;
     assert.equal(returnedUsers.length, 1);
   });
 

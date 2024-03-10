@@ -26,10 +26,22 @@ export function connectMongo() {
     console.log("database disconnected");
   });
 
-  db.once("open", function () {
+  db.once("open", async function () {
     if (this.readyState === 1) {
       console.log(`database connected to ${this.name} on ${this.host}`);
-      seed();
+      const countUsers = await Mongoose.model("User").countDocuments();
+      const countClubs = await Mongoose.model("Club").countDocuments();
+      const countGames = await Mongoose.model("Game").countDocuments();
+      console.log("countUsers", countUsers);
+      console.log("countClubs", countClubs);
+      console.log("countGames", countGames);
+      if (countUsers === 0 && countClubs === 0 && countGames === 0) {        
+        console.log("Database not seeded");
+        await seed();  
+      } else {
+        console.log("Database already seeded"); 
+      }
+      
     }
   });
 }
