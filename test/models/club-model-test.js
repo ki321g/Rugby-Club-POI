@@ -43,10 +43,11 @@ suite("Club Model Tests", () => {
   });
 
   test("Delete One Club - Success", async () => {
+    const beforeDeleteClub = await db.clubStore.getAllClubs();
     const id = testClubs[0]._id;
     await db.clubStore.deleteClubById(id);
     const returnedClubs = await db.clubStore.getAllClubs();
-    assert.equal(returnedClubs.length, testClubs.length - 1);
+    assert.equal(returnedClubs.length, beforeDeleteClub.length - 1);
     const deletedClub = await db.clubStore.getClubById(id);
     assert.isNull(deletedClub);
   });

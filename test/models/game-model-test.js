@@ -67,7 +67,7 @@ suite("Game Model Tests", () => {
     assert.isNull(await db.gameStore.getGameById());
   });
 
-  test("Delete One User - Fail", async () => {
+  test("Delete One Game - Fail", async () => {
     await db.gameStore.deleteGame("bad-id");
     const games = await db.gameStore.getAllGames();
     assert.equal(games.length, testClubs.length);
