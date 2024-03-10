@@ -18,9 +18,6 @@ export const dashboardController = {
       clubs = userClubs.sort((a, b) => a.club.localeCompare(b.club));
       numberClubs = clubs.length;
       console.log("superAdmin: " + superAdmin);
-      // if (loggedInUser.accountType === "user" && numberClubs > 0) {
-      //   hideAddClub = true;
-      // }
       if (numberClubs > 0) {
         hideAddClub = true;
       }
@@ -73,9 +70,6 @@ export const dashboardController = {
       clubs = userClubs.sort((a, b) => a.club.localeCompare(b.club));
       numberClubs = clubs.length;
 
-      // if (loggedInUser.accountType === "user" && numberClubs > 0) {
-      //   hideAddClub = true;
-      // }
       if (numberClubs > 0) {
         hideAddClub = true;
       }
@@ -85,7 +79,6 @@ export const dashboardController = {
         club: checkClub,
         clubAdded: clubAdded,
       };
-      // return h.view("dashboard-view", viewData);
       return h.view("dashboard-view", viewData)
     },
   },
@@ -136,9 +129,6 @@ export const dashboardController = {
         clubs = userClubs.sort((a, b) => a.club.localeCompare(b.club));
         numberClubs = clubs.length;
 
-        // if (loggedInUser.accountType === "user" && numberClubs > 0) {
-        //   hideAddClub = true;
-        // }
         if (numberClubs > 0) {
           hideAddClub = true;
         }

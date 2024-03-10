@@ -8,8 +8,7 @@ const users = new Array(testUsers.length);
 
 suite("User API tests", () => {
   setup(async () => {
-    //db.init("json");
-    // db.init("mongo");
+
     rugbyGamePOIService.clearAuth();
     await rugbyGamePOIService.createUser(maggie);
     await rugbyGamePOIService.authenticate(maggieCredentials);

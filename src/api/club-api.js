@@ -6,6 +6,7 @@ import { validationError } from "./logger.js";
 import { decodeToken, validate } from "./jwt-utils.js";
 
 export const clubApi = {
+  // Find all clubs
   find: {
     auth: {
       strategy: "jwt",
@@ -23,7 +24,7 @@ export const clubApi = {
     description: "Get all Clubs",
     notes: "Returns all Clubs",
   },
-
+  // Find a club by id
   findOne: {
     auth: {
       strategy: "jwt",
@@ -45,7 +46,7 @@ export const clubApi = {
     validate: { params: { id: IdSpec }, failAction: validationError },
     response: { schema: ClubSpecPlus, failAction: validationError },
   },
-
+  // Create a new club
   create: {
     auth: {
       strategy: "jwt",
@@ -58,18 +59,8 @@ export const clubApi = {
         if (!validationResult.isValid) {
           return Boom.unauthorized("Invalid credentials");
         }
-        // access user ID from decoded payload
-        // eslint-disable-next-line prefer-destructuring
-       // const userId = decodedToken.userId;
-        // access new  data from request payload
-
-        // console.log(userId);
         const club = request.payload;
-        // console.log(club);
-        // Add userId to the new  data
-        // console.log(decodedToken.userId);
         club.userId = decodedToken.userId;
-        // console.log(club);
 
         const newClub = await db.clubStore.addClub(club);
         if (newClub) {
@@ -86,7 +77,7 @@ export const clubApi = {
     validate: { payload: ClubSpec, failAction: validationError },
     response: { schema: ClubSpecPlus, failAction: validationError },
   },
-
+  // Update a club
   deleteOne: {
     auth: {
       strategy: "jwt",
@@ -107,7 +98,7 @@ export const clubApi = {
     description: "Delete a Club",
     validate: { params: { id: IdSpec }, failAction: validationError },
   },
-
+  // Update all clubs
   deleteAll: {
     auth: {
       strategy: "jwt",

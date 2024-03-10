@@ -29,7 +29,6 @@ export const webRoutes = [
   { method: "GET", path: "/dashboard/editclub/{id}", config: dashboardController.editClub },
   { method: "GET", path: "/dashboard/deleteclub/{id}", config: dashboardController.deleteClub },
 
-  // { method: "POST", path: "/dashboard/editimage/{id}", config: dashboardController.editImage },
   { method: "GET", path: "/dashboard/editimage/{id}", config: dashboardController.editImage },
   { method: "POST", path: "/dashboard/{id}/uploadimage", config: dashboardController.uploadImage },
   { method: "GET", path: "/dashboard/deleteimage/{id}", config: dashboardController.deleteImage },

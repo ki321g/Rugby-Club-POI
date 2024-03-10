@@ -4,6 +4,7 @@ import { IdSpec, GameSpec, GameSpecPlus, GameArraySpec  } from "../models/joi-sc
 import { validationError } from "./logger.js";
 
 export const gameApi = {
+  // Find all games
   find: {
     auth: {
       strategy: "jwt",
@@ -21,7 +22,7 @@ export const gameApi = {
     description: "Get all gameApi",
     notes: "Returns all gameApi",
   },
-
+  // Find a game by id
   findOne: {
     auth: {
       strategy: "jwt",
@@ -43,7 +44,7 @@ export const gameApi = {
     validate: { params: { id: IdSpec }, failAction: validationError },
     response: { schema: GameSpecPlus, failAction: validationError },
   },
-
+  // Create a new game
   create: {
     auth: {
       strategy: "jwt",
@@ -65,7 +66,7 @@ export const gameApi = {
     validate: { payload: GameSpec },
     response: { schema: GameSpecPlus, failAction: validationError },
   },
-
+  // Delete a game by id
   deleteOne: {
     auth: {
       strategy: "jwt",
@@ -86,7 +87,7 @@ export const gameApi = {
     description: "Delete a Game",
     validate: { params: { id: IdSpec }, failAction: validationError },
   },  
-
+  // Delete all games
   deleteAll: {
     auth: {
       strategy: "jwt",

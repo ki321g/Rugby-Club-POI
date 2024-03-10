@@ -5,6 +5,7 @@ import { validationError } from "./logger.js";
 import { createToken } from "./jwt-utils.js";
 
 export const userApi = {
+  // Find all users
   find: {
     auth: {
       strategy: "jwt",
@@ -22,7 +23,7 @@ export const userApi = {
     notes: "Returns details of all userApi",
     response: { schema: UserArray, failAction: validationError },
   },
-
+  // Find a user by id
   findOne: {
     auth: {
       strategy: "jwt",
@@ -44,7 +45,7 @@ export const userApi = {
     validate: { params: { id: IdSpec }, failAction: validationError },
     response: { schema: UserSpecPlus, failAction: validationError },
   },
-
+  // Create a new user
   create: {
     auth: false,
     handler: async function (request, h) {
@@ -64,7 +65,7 @@ export const userApi = {
     validate: { payload: UserSpec, failAction: validationError },
     response: { schema: UserSpecPlus, failAction: validationError },
   },
-
+  // delete a user by id
   deleteOne: {
     auth: {
       strategy: "jwt",
@@ -86,7 +87,7 @@ export const userApi = {
     validate: { params: { id: IdSpec }, failAction: validationError },
     response: { schema: UserSpecPlus, failAction: validationError },
   },
-
+  // delete all users
   deleteAll: {
     auth: {
       strategy: "jwt",
@@ -103,7 +104,7 @@ export const userApi = {
     description: "Delete all userApi",
     notes: "All userApi removed from Rugby CLub POI",
   },
-
+  // authenticate a user
   authenticate: {
     auth: false,
     handler: async function (request, h) {

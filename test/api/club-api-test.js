@@ -5,7 +5,7 @@ import { rugbyGamePOIService } from "./rugby-game-poi-service.js";
 import { maggie, maggieCredentials, wexford, testClubs } from "../fixtures.js";
 import { db } from "../../src/models/db.js";
 
-// const clubs = new Array(testClubs.length);
+
 EventEmitter.setMaxListeners(25);
 
 suite("Club API tests", () => {
@@ -13,8 +13,6 @@ suite("Club API tests", () => {
   let userId = null;
 
   setup(async () => {
-    // db.init("json");
-    // db.init("mongo");
     rugbyGamePOIService.clearAuth();
     user = await rugbyGamePOIService.createUser(maggie);
     await rugbyGamePOIService.authenticate(maggieCredentials);
@@ -22,7 +20,7 @@ suite("Club API tests", () => {
     await rugbyGamePOIService.deleteAllUsers();
     user = await rugbyGamePOIService.createUser(maggie);
     await rugbyGamePOIService.authenticate(maggieCredentials);
-    // wexford.userid = user._id;
+
   });
 
   teardown(async () => {});
@@ -47,8 +45,7 @@ suite("Club API tests", () => {
 
   test("Create Multiple Clubs", async () => {
     for (let i = 0; i < testClubs.length; i += 1) {
-      // testClubs[i].userid = user._id;
-      // eslint-disable-next-line no-await-in-loop
+
       await rugbyGamePOIService.createClub(testClubs[i]);
     }
     let returnedClubs = await rugbyGamePOIService.getAllClubs();

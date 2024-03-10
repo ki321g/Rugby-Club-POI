@@ -6,7 +6,6 @@ import { maggie, maggieCredentials } from "../fixtures.js";
 suite("Authentication API tests", async () => {
   setup(async () => {
     rugbyGamePOIService.clearAuth();
-    // await rugbyGamePOIService.deleteAllUsers(); // added
     await rugbyGamePOIService.createUser(maggie);
     await rugbyGamePOIService.authenticate(maggieCredentials);
     await rugbyGamePOIService.deleteAllUsers();

@@ -1,5 +1,4 @@
-{{#if superAdmin}}
-  {{!-- <button id="showAddClubButton">Show Add Club</button> --}}
+{{#if superAdmin}}  
   <a id="showAddClubButton" class="button controlBtn is-warning is-medium is-fullwidth is-uppercase has-text-grey mb-4"><i class="fas fa-edit fa-xl mr-2"></i> Show/Hide Add Club</a>
   <div id="addClubDiv" style="display: none;">
 {{else}}
@@ -11,14 +10,11 @@
       <div class="container">
         <div class="columns is-vcentered">
           <div class="column has-text-centered is-5">
-            <!-- Content for first column -->
             <input class="input mb-3" type="text" id="search-box" value="Rugby" placeholder="Search for Places" />
             <select class="mb-3" id="search-results" multiple></select>
           </div>
           <div class="column is-8 is-left">
-            <!-- Content for second column -->
             <div id="map"></div>
-            <!-- <button class="button" id="fill-button">Add Club</button> -->
           </div>
         </div>
         <div class="columns is-vcentered is-12">
@@ -75,10 +71,7 @@
                   <textarea class="textarea" rows="5" placeholder="Enter description here..." name="description"></textarea>
                 </div>
                 <button class="button is-primary is-large is-fullwidth is-large m-3 p-4">Add Club</button>
-                {{!-- <br />
-                <a id="place-link-location" href="#" target="_blank">View Place</a>
-                ||
-                <a id="place-link-directions" href="#" target="_blank">Get Directions</a> --}}
+               
               </div>
             </div>
           </div>

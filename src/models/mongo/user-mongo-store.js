@@ -33,9 +33,6 @@ export const userMongoStore = {
     }
   },
 
-  // async deleteAll() {
-  //   await User.deleteMany({});
-  // },
 
   // Delete's all users bar superadmin
   async deleteAll() {

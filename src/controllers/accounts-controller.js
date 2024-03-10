@@ -35,12 +35,6 @@ export const accountsController = {
       }
     },
   },
-  // showSignup: {
-  //   auth: false,
-  //   handler: function (request, h) {
-  //     return h.view("signup-view", { title: "Sign up for RugbyGamePOI" });
-  //   },
-  // },
   showSignup: {
     auth: {
       mode: "try",
@@ -88,17 +82,10 @@ export const accountsController = {
       } else {
         user.accountType = "user";
       }
-      // console.log(user);
       await db.userStore.addUser(user);
       return h.redirect("/login");
     },
   },
-  // showLogin: {
-  //   auth: false,
-  //   handler: function (request, h) {
-  //     return h.view("login-view", { title: "Login to RugbyGamePOI" });
-  //   },
-  // },  
   showLogin: {
     auth: {
       mode: "try",
