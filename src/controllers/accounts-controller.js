@@ -172,7 +172,74 @@ export const accountsController = {
       return h.redirect("/admin");
     },
   },
+  userUpdateSelf: {
+    validate: {
+      payload: UserSpec,
+      options: { abortEarly: false },
+      failAction: function (request, h, error) {
+        return h.view("profile-view", { title: "Edit user error", errors: error.details }).takeover().code(400);
+      },
+    },
+    handler: async function (request, h) {
+      const userID = request.params.id;
+      const updatedUser = request.payload;
+      await db.userStore.updateUser(userID, updatedUser);
 
+      const loggedInUser = request.auth.credentials;      
+      let UserLoggedIn = Boolean(loggedInUser);
+      console.log(loggedInUser);     
+      const users = await db.userStore.getUserById(loggedInUser.id);
+      let superAdmin = false;
+      let hideAddClub = false;
+
+      const userClubs = await db.clubStore.getUserClubs(loggedInUser._id);
+      if (loggedInUser.accountType === "superadmin" || loggedInUser.accountType === "admin") {
+        superAdmin = Boolean(loggedInUser.accountType);
+      }
+      
+      if (loggedInUser) {
+        const viewData = {
+          title: "RugbyGamePOI Profile",
+          user: loggedInUser,
+          UserLoggedIn: UserLoggedIn,
+          superAdmin: superAdmin,
+        };
+
+        return h.redirect("/profile");
+      };
+    },
+  },
+  profile: {
+    auth: {
+      mode: "try",
+    },
+    handler: async function (request, h) {
+      const loggedInUser = request.auth.credentials;      
+      let UserLoggedIn = Boolean(loggedInUser);
+      console.log(loggedInUser);     
+      const users = await db.userStore.getUserById(loggedInUser.id);
+      let superAdmin = false;
+      let hideAddClub = false;
+
+      const userClubs = await db.clubStore.getUserClubs(loggedInUser._id);
+      if (loggedInUser.accountType === "superadmin" || loggedInUser.accountType === "admin") {
+        superAdmin = Boolean(loggedInUser.accountType);
+      }
+      
+      if (loggedInUser) {
+        const viewData = {
+          title: "RugbyGamePOI Profile",
+          user: loggedInUser,
+          UserLoggedIn: UserLoggedIn,
+          superAdmin: superAdmin,
+        };
+
+        return h.view("profile-view", viewData);
+      } else {
+        return h.view("/",);
+      }
+    },
+  },
   async validate(request, session) {
     const user = await db.userStore.getUserById(session.id);
     if (!user) {

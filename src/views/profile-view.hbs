@@ -1,0 +1,74 @@
+{{#if UserLoggedIn}}
+  {{#if superAdmin}}
+    {{> admin-menu active="profile"}}
+  {{else}}
+    {{>  menu active="profile"}}
+  {{/if}}
+{{else}}
+  {{>  welcome-menu active="profile"}}
+{{/if}}
+
+<section class="section pt-4 page-margin">
+    <h1 class="title page-heading is-3">Edit User</h1>
+    <form method="POST" action="/userupdate/{{user._id}}">
+        <div class="container">
+            <div class="b-table">
+                <div class="table-wrapper has-mobile-cards">
+                    <table class="table is-fullwidth is-striped is-hoverable is-fullwidth">
+                        <thead>
+                            <tr class="is-uppercase">
+                                <th class="has-text-centered">FirstName</th>
+                                <th class="has-text-centered">LastName</th>
+                                <th class="has-text-centered">eMail</th>
+                                <th class="has-text-centered">password</th>
+                                <th class="has-text-centered">accountType</th>
+                                <th class="has-text-centered"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="field">
+                                        <input class="input" type="text" value="{{user.firstName}}" name="firstName">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="field">
+                                        <input class="input" type="text" value="{{user.lastName}}" name="lastName">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="field">
+                                        <input class="input" type="email" value="{{user.email}}" name="email">
+                                    </div>
+                                </td>
+                                <td data-label="Progress" class="is-progress-cell">
+                                    <div class="field">
+                                        <input class="input" type="text" value="{{user.password}}" name="password">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="field">
+                                        <input class="input" type="text" value="{{user.accountType}}" name="accountType" readonly>
+                                    </div>
+                                </td>
+                                <td class="is-actions-cell">
+                                    <div class="buttons is-right">
+                                        <button class="button is-primary"><i class="fas fa-pen-to-square"></i> Update</button>
+                                    </div>
+                                </td>
+                            </tr>         
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+{{#if errors}}
+    <ul>
+        {{#each errors}}
+            <li>{{message}}</li>
+        {{/each}}
+    </ul>
+{{/if}}
