@@ -8,7 +8,6 @@ import { clubsController } from "./controllers/clubs-controller.js";
 
 export const webRoutes = [
   { method: "GET", path: "/about", config: aboutController.index },
-
   { method: "GET", path: "/", config: accountsController.index },
   { method: "GET", path: "/signup", config: accountsController.showSignup },
   { method: "GET", path: "/login", config: accountsController.showLogin },

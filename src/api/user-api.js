@@ -117,15 +117,28 @@ export const userApi = {
           return Boom.unauthorized("Invalid password");
         }
         const token = createToken(user);
-        return h.response({ success: true, token: token }).code(201);
+        return h.response({ success: true, token: token, _id: user._id.toString() }).code(201);
       } catch (err) {
         return Boom.serverUnavailable("Database Error");
       }
     },
     tags: ["api"],
-    description: "Authenticate  a User",
+    description: "Authenticate a User",
     notes: "If user has valid email/password, create and return a JWT token",
     validate: { payload: UserCredentialsSpec, failAction: validationError },
-    response: { schema: JwtAuth, failAction: validationError }    
+    response: { schema: JwtAuth, failAction: validationError },
+  },
+  // Health Check
+  health: {
+    auth: false,
+    handler: async function (request, h) {
+      try {
+        console.log("Health check");
+          return h.response().code(200);      
+      } catch (err) {
+        // return Boom.serverUnavailable("Error");
+        return h.response().code(500);
+      }
+    },
   },
 };

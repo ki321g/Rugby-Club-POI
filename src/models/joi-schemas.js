@@ -65,7 +65,8 @@ export const ClubSpecPlus = ClubSpec.keys({
 export const ClubArraySpec = Joi.array().items(ClubSpecPlus).label("ClubArray");
 
 export const JwtAuth = Joi.object()
-  .keys({
+  .keys({    
+  _id: IdSpec.example("5f8f4b3b3f4b3f4b3f4b3f4b").required(),
     success: Joi.boolean().example("true").required(),
     token: Joi.string().example("eyJhbGciOiJND.g5YmJisIjoiaGYwNTNjAOhE.gCWGmY5-YigQw0DCBo").required(),
   })
